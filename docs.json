@@ -25,6 +25,15 @@
   "styling": {
     "css": "/styles/custom.css"
   },
+  "icons": {
+    "library": "lucide"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#040404"
+    }
+  },
   "logo": {
     "light": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png",
     "dark": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png"

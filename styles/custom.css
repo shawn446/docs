@@ -8,14 +8,11 @@
 }
 
 /* ============================================================
-   Design tokens
-   One radius, one border weight — applied consistently to every
-   surface (cards, callouts, code, tables, accordions, images, etc.)
+   Design tokens — one radius, one border weight, one surface
    ============================================================ */
 :root {
   --rv-radius: 2px;
-  --rv-radius-pill: 4px;
-
+  --rv-radius-round: 9999px;
   --rv-border-width: 1px;
 
   --rv-border: rgba(0, 0, 0, 0.08);
@@ -29,6 +26,7 @@
   --rv-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   --rv-surface: #ffffff;
+  --rv-surface-muted: #fafafa;
   --rv-text: #040404;
   --rv-text-muted: rgba(4, 4, 4, 0.65);
 }
@@ -43,14 +41,14 @@
   --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.45);
 
   --rv-surface: #040404;
+  --rv-surface-muted: #0a0a0a;
   --rv-text: #f5f5f5;
   --rv-text-muted: rgba(245, 245, 245, 0.65);
 }
 
 /* ============================================================
    Override Mintlify's background CSS variables so the outer
-   chrome and the content area share one surface. This is the
-   only way to beat the theme's gradients and neutral greys.
+   chrome and the inner content share one surface.
    ============================================================ */
 :root,
 .light {
@@ -80,20 +78,22 @@
 }
 
 /* ============================================================
-   Cohesive surface — force one background across every layer
-   Mintlify wraps the content in. Targets wrapper roots,
-   background utility classes, and gradient backdrops.
+   Cohesive surface — flatten every wrapper, decoration, and
+   gradient. This is the heavy hand: we force one background
+   across the whole layout.
    ============================================================ */
 html,
 body,
 #__next,
 #root,
 body > div,
+body > div > div,
 main,
 article,
 aside,
 header,
 nav,
+footer,
 #content-area,
 .mint-content,
 .mint-body,
@@ -101,6 +101,7 @@ main article,
 main .prose,
 main > div,
 [class*="background"],
+[class*="Background"],
 .bg-background,
 .bg-background-light,
 .bg-background-dark,
@@ -116,7 +117,32 @@ main > div,
   background-image: none !important;
 }
 
-/* Kill any inner shell, card, or gradient around the content area */
+/* Kill Mintlify's decorative gradients, grids, and window patterns */
+[class*="gradient"],
+[class*="Gradient"],
+[class*="decoration"],
+[class*="Decoration"],
+[class*="backdrop"],
+[class*="Backdrop"] {
+  background-image: none !important;
+  background: var(--rv-surface) !important;
+  opacity: 1 !important;
+}
+
+/* Pseudo-element gradients Mintlify sometimes paints on body/html */
+html::before,
+html::after,
+body::before,
+body::after,
+main::before,
+main::after {
+  background: none !important;
+  background-image: none !important;
+  content: none !important;
+  display: none !important;
+}
+
+/* Strip any outer card shell / shadow / border around content */
 main,
 #content-area,
 .mint-content,
@@ -143,7 +169,7 @@ a[href="/introduction"] img {
 }
 
 /* ============================================================
-   Content width — override Mintlify's inner max-width.
+   Content width
    ============================================================ */
 #content-area,
 .mint-content,
@@ -192,11 +218,23 @@ li {
   line-height: 1.6;
 }
 
+hr {
+  border: none !important;
+  border-top: var(--rv-border-width) solid var(--rv-border) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* Non-callout blockquote — quiet, indented, no card styling */
+.prose blockquote:not([class*="callout"]):not([class*="Callout_"]) {
+  border-left: 3px solid var(--rv-border-strong) !important;
+  padding: 0.25rem 0 0.25rem 1rem !important;
+  color: var(--rv-text-muted) !important;
+  font-style: normal !important;
+  background: transparent !important;
+}
+
 /* ============================================================
-   Unified block treatment — every block-level surface uses the
-   same radius and border weight for a consistent editorial feel.
-   Cards, callouts, code blocks, tables, accordions, images,
-   iframes, and frames all share these defaults.
+   Unified radius — every block-level surface shares it
    ============================================================ */
 a.card,
 .card,
@@ -205,7 +243,6 @@ a.card,
 .callout,
 [class*="callout"],
 [class*="Callout_"],
-.prose blockquote,
 pre,
 .code-block,
 [class*="code-block"],
@@ -226,7 +263,9 @@ iframe,
   border-radius: var(--rv-radius) !important;
 }
 
-/* Cards */
+/* ============================================================
+   Cards
+   ============================================================ */
 a.card,
 .card,
 [class*="Card_card"],
@@ -246,14 +285,11 @@ a.card:hover,
 }
 
 /* ============================================================
-   Callouts — normalize Tip/Note/Warning/Info so they don't
-   render as weird white-on-green banners. Tinted background,
-   accent left border, text stays in the primary color.
+   Callouts — Tip / Note / Warning / Info / Danger
    ============================================================ */
 .callout,
 [class*="callout"],
-[class*="Callout_"],
-.prose blockquote {
+[class*="Callout_"] {
   border: var(--rv-border-width) solid var(--rv-border) !important;
   border-left-width: 3px !important;
   padding: 1rem 1.25rem !important;
@@ -268,7 +304,6 @@ a.card:hover,
   background-color: transparent !important;
 }
 
-/* Keep inline code legible inside callouts */
 .callout code,
 [class*="callout"] code,
 [class*="Callout_"] code {
@@ -280,7 +315,6 @@ a.card:hover,
 .dark [class*="callout"] code,
 .dark [class*="Callout_"] code {
   background-color: rgba(255, 255, 255, 0.08) !important;
-  color: var(--rv-text) !important;
 }
 
 /* Callout accent colors — left border only */
@@ -289,25 +323,21 @@ a.card:hover,
 [class*="callout-tip"] {
   border-left-color: #10b981 !important;
 }
-
 .callout[class*="note"],
 [class*="Callout_note"],
 [class*="callout-note"] {
   border-left-color: #3b82f6 !important;
 }
-
 .callout[class*="warning"],
 [class*="Callout_warning"],
 [class*="callout-warning"] {
   border-left-color: #f59e0b !important;
 }
-
 .callout[class*="info"],
 [class*="Callout_info"],
 [class*="callout-info"] {
   border-left-color: #6366f1 !important;
 }
-
 .callout[class*="danger"],
 [class*="Callout_danger"],
 [class*="callout-danger"] {
@@ -339,7 +369,7 @@ pre button,
 }
 
 /* ============================================================
-   Tables
+   Tables — left column padding, heavier header font
    ============================================================ */
 .prose table,
 article table,
@@ -348,16 +378,44 @@ main table {
   border-spacing: 0 !important;
   border: var(--rv-border-width) solid var(--rv-border) !important;
   overflow: hidden !important;
+  width: 100%;
 }
 
 .prose table th,
-.prose table td,
 article table th,
+main table th {
+  font-weight: 600 !important;
+  text-align: left !important;
+  padding: 0.75rem 1rem !important;
+  background-color: var(--rv-surface-muted) !important;
+  border: none !important;
+  border-bottom: var(--rv-border-width) solid var(--rv-border) !important;
+}
+
+.prose table td,
 article table td,
-main table th,
 main table td {
+  padding: 0.75rem 1rem !important;
   border: none !important;
   border-bottom: var(--rv-border-width) solid var(--rv-border-subtle) !important;
+}
+
+.prose table th:first-child,
+.prose table td:first-child,
+article table th:first-child,
+article table td:first-child,
+main table th:first-child,
+main table td:first-child {
+  padding-left: 1.25rem !important;
+}
+
+.prose table th:last-child,
+.prose table td:last-child,
+article table th:last-child,
+article table td:last-child,
+main table th:last-child,
+main table td:last-child {
+  padding-right: 1.25rem !important;
 }
 
 .prose table tr:last-child td,
@@ -384,7 +442,7 @@ iframe[src*="arcade.software"] {
 }
 
 /* ============================================================
-   Buttons
+   Buttons — base
    ============================================================ */
 button,
 .button,
@@ -407,6 +465,35 @@ a[role="button"]:active {
 }
 
 /* ============================================================
+   Page footer pagination — Next / Previous buttons
+   ============================================================ */
+a[class*="pagination"],
+a[class*="Pagination"],
+[class*="PaginationLink"],
+[class*="pagination-link"],
+[class*="pagination_"],
+[class*="page-nav"] a,
+[class*="PageNav"] a,
+[class*="NextPrev"] a,
+[class*="next-prev"] a,
+nav[class*="page"] a,
+footer[class*="page"] a {
+  border-radius: var(--rv-radius) !important;
+  border: var(--rv-border-width) solid var(--rv-border) !important;
+  background-color: var(--rv-surface) !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease !important;
+}
+
+a[class*="pagination"]:hover,
+a[class*="Pagination"]:hover,
+[class*="PaginationLink"]:hover,
+[class*="NextPrev"] a:hover {
+  border-color: var(--rv-border-strong) !important;
+  background-color: var(--rv-surface-muted) !important;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
    Sidebar nav items
    ============================================================ */
 #sidebar a,
@@ -421,8 +508,15 @@ aside button,
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
+/* Group headers in sidebar get their own small gap */
+[class*="NavGroup"],
+[class*="navGroup"],
+[class*="nav-group"] {
+  margin-bottom: 0.5rem;
+}
+
 /* ============================================================
-   Accordion / expandable
+   Accordions — gap between stacked items
    ============================================================ */
 .accordion,
 [class*="accordion"],
@@ -431,22 +525,102 @@ details {
   border: var(--rv-border-width) solid var(--rv-border) !important;
 }
 
+.accordion + .accordion,
+[class*="accordion"] + [class*="accordion"],
+[class*="Accordion_"] + [class*="Accordion_"],
+details + details {
+  margin-top: 0.75rem !important;
+}
+
+/* AccordionGroup wrapper — flex column with gap */
+[class*="AccordionGroup"],
+[class*="accordion-group"] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[class*="AccordionGroup"] > *,
+[class*="accordion-group"] > * {
+  margin-top: 0 !important;
+}
+
 details summary {
   border-radius: var(--rv-radius);
+  padding: 0.875rem 1rem;
+}
+
+details[open] summary {
+  border-bottom: var(--rv-border-width) solid var(--rv-border);
+}
+
+details > *:not(summary) {
+  padding: 1rem;
 }
 
 /* ============================================================
-   Inputs
+   Steps — preserve circular number badges
+   ============================================================ */
+[class*="Step_"] [class*="number"],
+[class*="step-number"],
+[class*="StepNumber"],
+[class*="Steps_"] li > *:first-child,
+.steps > div > *:first-child {
+  border-radius: var(--rv-radius-round) !important;
+}
+
+/* Catch anything that was explicitly styled as a circle/pill and
+   prevent the universal radius rule from squaring it off. */
+[class*="rounded-full"],
+[class*="Rounded-full"],
+[class*="circle"],
+[class*="Circle"],
+[class*="avatar"],
+[class*="Avatar"],
+[class*="badge-round"],
+[class*="pill"],
+[class*="Pill"],
+[data-shape="circle"],
+[data-shape="pill"] {
+  border-radius: var(--rv-radius-round) !important;
+}
+
+/* ============================================================
+   Inputs (search, etc.)
    ============================================================ */
 input[type="text"],
 input[type="search"],
 input[type="email"],
-textarea {
+textarea,
+[class*="SearchInput"],
+[class*="search-input"] {
+  border-radius: var(--rv-radius) !important;
+}
+
+/* Search modal / results list */
+[class*="SearchModal"],
+[class*="search-modal"],
+[class*="SearchResult"],
+[class*="search-result"] {
   border-radius: var(--rv-radius) !important;
 }
 
 /* ============================================================
-   Lighter-weight Lucide icons
+   Focus states — visible but on-brand
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--rv-text) !important;
+  outline-offset: 2px !important;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--rv-text) !important;
+  outline-offset: 2px !important;
+}
+
+/* ============================================================
+   Lucide icons — lighter stroke
    ============================================================ */
 svg {
   stroke-width: 1.5;
@@ -459,8 +633,21 @@ a.card svg,
 }
 
 /* ============================================================
-   Smooth scrolling
+   Misc
    ============================================================ */
 html {
   scroll-behavior: smooth;
+}
+
+/* Table of contents on the right — quiet */
+[class*="toc"] a,
+[class*="TableOfContents"] a,
+[class*="TOC"] a {
+  border-radius: var(--rv-radius) !important;
+}
+
+/* Badges / pills that aren't explicitly circular */
+[class*="badge"]:not([class*="badge-round"]):not([class*="pill"]),
+[class*="Badge_"]:not([class*="pill"]) {
+  border-radius: var(--rv-radius) !important;
 }
