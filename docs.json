@@ -2,8 +2,25 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
   "name": "Rivvet",
+  "layout": "wide",
   "colors": {
-    "primary": "#040404"
+    "primary": "#040404",
+    "light": "#FFFFFF",
+    "dark": "#040404"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Roobert",
+      "source": "/fonts/roobert.woff2",
+      "format": "woff2-variations",
+      "weight": "100 900"
+    },
+    "body": {
+      "family": "Roobert",
+      "source": "/fonts/roobert.woff2",
+      "format": "woff2-variations",
+      "weight": "100 900"
+    }
   },
   "logo": {
     "light": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png",
