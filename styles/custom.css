@@ -9,12 +9,14 @@
 
 /* ============================================================
    Design tokens
+   One radius, one border weight — applied consistently to every
+   surface (cards, callouts, code, tables, accordions, images, etc.)
    ============================================================ */
 :root {
-  --rv-radius-sm: 6px;
-  --rv-radius-md: 10px;
-  --rv-radius-lg: 14px;
-  --rv-radius-xl: 20px;
+  --rv-radius: 2px;
+  --rv-radius-pill: 4px;
+
+  --rv-border-width: 1px;
 
   --rv-border: rgba(0, 0, 0, 0.08);
   --rv-border-strong: rgba(0, 0, 0, 0.14);
@@ -25,6 +27,10 @@
   --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.08);
 
   --rv-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --rv-surface: #ffffff;
+  --rv-text: #040404;
+  --rv-text-muted: rgba(4, 4, 4, 0.65);
 }
 
 .dark {
@@ -35,44 +41,91 @@
   --rv-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
   --rv-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.35);
   --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.45);
+
+  --rv-surface: #040404;
+  --rv-text: #f5f5f5;
+  --rv-text-muted: rgba(245, 245, 245, 0.65);
 }
 
 /* ============================================================
-   Cohesive surface — unify page and content background
-   so the main content doesn't read as a card on a card.
+   Override Mintlify's background CSS variables so the outer
+   chrome and the content area share one surface. This is the
+   only way to beat the theme's gradients and neutral greys.
+   ============================================================ */
+:root,
+.light {
+  --background: #ffffff !important;
+  --background-light: #ffffff !important;
+  --background-dark: #ffffff !important;
+  --background-hover: #fafafa !important;
+  --background-subtle: #fafafa !important;
+  --background-muted: #ffffff !important;
+  --background-primary: #ffffff !important;
+  --background-secondary: #ffffff !important;
+  --bg-primary: #ffffff !important;
+  --bg-secondary: #ffffff !important;
+}
+
+.dark {
+  --background: #040404 !important;
+  --background-light: #040404 !important;
+  --background-dark: #040404 !important;
+  --background-hover: #0d0d0d !important;
+  --background-subtle: #0a0a0a !important;
+  --background-muted: #040404 !important;
+  --background-primary: #040404 !important;
+  --background-secondary: #040404 !important;
+  --bg-primary: #040404 !important;
+  --bg-secondary: #040404 !important;
+}
+
+/* ============================================================
+   Cohesive surface — force one background across every layer
+   Mintlify wraps the content in. Targets wrapper roots,
+   background utility classes, and gradient backdrops.
    ============================================================ */
 html,
 body,
+#__next,
+#root,
+body > div,
 main,
+article,
+aside,
+header,
+nav,
 #content-area,
 .mint-content,
+.mint-body,
 main article,
 main .prose,
 main > div,
-[class*="background"] {
-  background-color: #ffffff !important;
+[class*="background"],
+.bg-background,
+.bg-background-light,
+.bg-background-dark,
+.bg-white,
+.bg-gray-50,
+.bg-gray-100,
+.bg-zinc-50,
+.bg-zinc-100,
+.bg-neutral-50,
+.bg-neutral-100,
+.bg-stone-50 {
+  background-color: var(--rv-surface) !important;
+  background-image: none !important;
 }
 
-.dark html,
-.dark body,
-.dark main,
-.dark #content-area,
-.dark .mint-content,
-.dark main article,
-.dark main .prose,
-.dark main > div,
-.dark [class*="background"] {
-  background-color: #040404 !important;
-}
-
-/* Kill any inner panel/card shell Mintlify puts around the content */
+/* Kill any inner shell, card, or gradient around the content area */
 main,
 #content-area,
 .mint-content,
 main article,
-main > div {
+main > div,
+.mint-body > div {
   border: none !important;
   box-shadow: none !important;
+  background-image: none !important;
 }
 
 /* ============================================================
@@ -91,7 +144,6 @@ a[href="/introduction"] img {
 
 /* ============================================================
    Content width — override Mintlify's inner max-width.
-   Targets known containers plus common Tailwind utilities.
    ============================================================ */
 #content-area,
 .mint-content,
@@ -141,23 +193,47 @@ li {
 }
 
 /* ============================================================
-   Cards — subtle border, gentle lift on hover
+   Unified block treatment — every block-level surface uses the
+   same radius and border weight for a consistent editorial feel.
+   Cards, callouts, code blocks, tables, accordions, images,
+   iframes, and frames all share these defaults.
    ============================================================ */
 a.card,
 .card,
 [class*="Card_card"],
-[class*="card-root"] {
-  border: 1px solid var(--rv-border) !important;
-  border-radius: 2px !important;
-  background-color: #ffffff !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
+[class*="card-root"],
+.callout,
+[class*="callout"],
+[class*="Callout_"],
+.prose blockquote,
+pre,
+.code-block,
+[class*="code-block"],
+[class*="CodeBlock_"],
+.prose table,
+article table,
+main table,
+.accordion,
+[class*="accordion"],
+[class*="Accordion_"],
+details,
+.prose img,
+article img,
+main img,
+iframe,
+.frame,
+[class*="Frame_"] {
+  border-radius: var(--rv-radius) !important;
 }
 
-.dark a.card,
-.dark .card,
-.dark [class*="Card_card"],
-.dark [class*="card-root"] {
-  background-color: #0a0a0a !important;
+/* Cards */
+a.card,
+.card,
+[class*="Card_card"],
+[class*="card-root"] {
+  border: var(--rv-border-width) solid var(--rv-border) !important;
+  background-color: var(--rv-surface) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
 }
 
 a.card:hover,
@@ -170,28 +246,72 @@ a.card:hover,
 }
 
 /* ============================================================
-   Lighter-weight icons (Lucide SVG stroke)
-   ============================================================ */
-svg {
-  stroke-width: 1.5;
-}
-
-a.card svg,
-.card svg,
-[class*="Card_card"] svg {
-  stroke-width: 1.25;
-}
-
-/* ============================================================
-   Callouts — Tip / Note / Warning / Info
+   Callouts — normalize Tip/Note/Warning/Info so they don't
+   render as weird white-on-green banners. Tinted background,
+   accent left border, text stays in the primary color.
    ============================================================ */
 .callout,
 [class*="callout"],
 [class*="Callout_"],
 .prose blockquote {
-  border-radius: var(--rv-radius-md) !important;
+  border: var(--rv-border-width) solid var(--rv-border) !important;
   border-left-width: 3px !important;
   padding: 1rem 1.25rem !important;
+  background-color: var(--rv-surface) !important;
+  color: var(--rv-text) !important;
+}
+
+.callout *,
+[class*="callout"] *,
+[class*="Callout_"] * {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+/* Keep inline code legible inside callouts */
+.callout code,
+[class*="callout"] code,
+[class*="Callout_"] code {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: var(--rv-text) !important;
+}
+
+.dark .callout code,
+.dark [class*="callout"] code,
+.dark [class*="Callout_"] code {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--rv-text) !important;
+}
+
+/* Callout accent colors — left border only */
+.callout[class*="tip"],
+[class*="Callout_tip"],
+[class*="callout-tip"] {
+  border-left-color: #10b981 !important;
+}
+
+.callout[class*="note"],
+[class*="Callout_note"],
+[class*="callout-note"] {
+  border-left-color: #3b82f6 !important;
+}
+
+.callout[class*="warning"],
+[class*="Callout_warning"],
+[class*="callout-warning"] {
+  border-left-color: #f59e0b !important;
+}
+
+.callout[class*="info"],
+[class*="Callout_info"],
+[class*="callout-info"] {
+  border-left-color: #6366f1 !important;
+}
+
+.callout[class*="danger"],
+[class*="Callout_danger"],
+[class*="callout-danger"] {
+  border-left-color: #ef4444 !important;
 }
 
 /* ============================================================
@@ -201,8 +321,7 @@ pre,
 .code-block,
 [class*="code-block"],
 [class*="CodeBlock_"] {
-  border-radius: var(--rv-radius-md) !important;
-  border: 1px solid var(--rv-border) !important;
+  border: var(--rv-border-width) solid var(--rv-border) !important;
   font-family: var(--rv-mono) !important;
 }
 
@@ -210,26 +329,24 @@ code,
 :not(pre) > code {
   font-family: var(--rv-mono) !important;
   font-size: 0.9em !important;
-  border-radius: var(--rv-radius-sm) !important;
+  border-radius: var(--rv-radius) !important;
   padding: 0.15em 0.4em !important;
 }
 
-/* Copy button on code blocks inherits md radius */
 pre button,
 [class*="code-block"] button {
-  border-radius: var(--rv-radius-sm) !important;
+  border-radius: var(--rv-radius) !important;
 }
 
 /* ============================================================
-   Tables — rounded outer corners via separate borders
+   Tables
    ============================================================ */
 .prose table,
 article table,
 main table {
   border-collapse: separate !important;
   border-spacing: 0 !important;
-  border: 1px solid var(--rv-border) !important;
-  border-radius: var(--rv-radius-md) !important;
+  border: var(--rv-border-width) solid var(--rv-border) !important;
   overflow: hidden !important;
 }
 
@@ -240,7 +357,7 @@ article table td,
 main table th,
 main table td {
   border: none !important;
-  border-bottom: 1px solid var(--rv-border-subtle) !important;
+  border-bottom: var(--rv-border-width) solid var(--rv-border-subtle) !important;
 }
 
 .prose table tr:last-child td,
@@ -252,27 +369,17 @@ main table tr:last-child td {
 /* ============================================================
    Images and iframes
    ============================================================ */
-.prose img,
-article img,
-main img {
-  border-radius: var(--rv-radius-lg);
-}
-
 iframe {
-  border-radius: var(--rv-radius-lg);
-  border: 1px solid var(--rv-border);
+  border: var(--rv-border-width) solid var(--rv-border);
 }
 
 iframe[src*="arcade.software"] {
-  border-radius: var(--rv-radius-xl);
   box-shadow: var(--rv-shadow-elevated);
-  border: 1px solid var(--rv-border-subtle);
+  border: var(--rv-border-width) solid var(--rv-border-subtle);
 }
 
-/* Frame component wrapper */
 .frame,
 [class*="Frame_"] {
-  border-radius: var(--rv-radius-lg);
   overflow: hidden;
 }
 
@@ -283,7 +390,7 @@ button,
 .button,
 a[role="button"],
 [class*="Button_"] {
-  border-radius: var(--rv-radius-md) !important;
+  border-radius: var(--rv-radius) !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
@@ -310,7 +417,7 @@ aside a,
 aside button,
 [class*="sidebar"] a,
 [class*="Sidebar_"] a {
-  border-radius: var(--rv-radius-sm);
+  border-radius: var(--rv-radius) !important;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -321,22 +428,34 @@ aside button,
 [class*="accordion"],
 [class*="Accordion_"],
 details {
-  border-radius: 2px !important;
-  border: 1px solid var(--rv-border) !important;
+  border: var(--rv-border-width) solid var(--rv-border) !important;
 }
 
 details summary {
-  border-radius: var(--rv-radius-md);
+  border-radius: var(--rv-radius);
 }
 
 /* ============================================================
-   Inputs (search, etc.)
+   Inputs
    ============================================================ */
 input[type="text"],
 input[type="search"],
 input[type="email"],
 textarea {
-  border-radius: var(--rv-radius-sm) !important;
+  border-radius: var(--rv-radius) !important;
+}
+
+/* ============================================================
+   Lighter-weight Lucide icons
+   ============================================================ */
+svg {
+  stroke-width: 1.5;
+}
+
+a.card svg,
+.card svg,
+[class*="Card_card"] svg {
+  stroke-width: 1.25;
 }
 
 /* ============================================================
