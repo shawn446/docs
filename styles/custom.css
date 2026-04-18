@@ -129,6 +129,41 @@ main > div,
   opacity: 1 !important;
 }
 
+/* Mintlify topbar / sticky header — the grey band above the content.
+   Targets every shape the top bar takes: role, data-slot, data-sticky,
+   class patterns, and wrappers that contain the nav or header. */
+[role="banner"],
+[data-slot="topbar"],
+[data-slot="navbar"],
+[data-sticky-element],
+[data-sticky-element="topbar"],
+[class*="topbar"],
+[class*="TopBar"],
+[class*="Topbar"],
+[class*="header"],
+[class*="Header"],
+header,
+div:has(> nav),
+div:has(> header),
+div:has(> [class*="topbar"]),
+div:has(> [class*="TopBar"]) {
+  background-color: var(--rv-surface) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: var(--rv-border) !important;
+  box-shadow: none !important;
+}
+
+.dark [role="banner"],
+.dark [data-slot="topbar"],
+.dark [data-sticky-element],
+.dark [class*="topbar"],
+.dark [class*="TopBar"],
+.dark [class*="Topbar"] {
+  background-color: var(--rv-surface) !important;
+}
+
 /* Pseudo-element gradients Mintlify sometimes paints on body/html */
 html::before,
 html::after,

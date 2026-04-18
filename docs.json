@@ -125,7 +125,7 @@
           },
           {
             "group": "Manage & Customize",
-            "icon": "sliders",
+            "icon": "sliders-horizontal",
             "pages": [
               "users/call-forwarding",
               "users/presence-and-status",
