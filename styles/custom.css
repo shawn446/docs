@@ -28,13 +28,65 @@
 }
 
 .dark {
-  --rv-border: rgba(255, 255, 255, 0.08);
-  --rv-border-strong: rgba(255, 255, 255, 0.14);
-  --rv-border-subtle: rgba(255, 255, 255, 0.05);
+  --rv-border: rgba(255, 255, 255, 0.1);
+  --rv-border-strong: rgba(255, 255, 255, 0.18);
+  --rv-border-subtle: rgba(255, 255, 255, 0.06);
 
   --rv-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
   --rv-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.35);
   --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ============================================================
+   Cohesive surface — unify page and content background
+   so the main content doesn't read as a card on a card.
+   ============================================================ */
+html,
+body,
+main,
+#content-area,
+.mint-content,
+main article,
+main .prose,
+main > div,
+[class*="background"] {
+  background-color: #ffffff !important;
+}
+
+.dark html,
+.dark body,
+.dark main,
+.dark #content-area,
+.dark .mint-content,
+.dark main article,
+.dark main .prose,
+.dark main > div,
+.dark [class*="background"] {
+  background-color: #040404 !important;
+}
+
+/* Kill any inner panel/card shell Mintlify puts around the content */
+main,
+#content-area,
+.mint-content,
+main article,
+main > div {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   Navbar logo — make it noticeably bigger
+   ============================================================ */
+nav img,
+header img,
+[class*="navbar"] img,
+[class*="Navbar"] img,
+a[href="/"] img,
+a[href="/introduction"] img {
+  height: 40px !important;
+  max-height: 40px !important;
+  width: auto !important;
 }
 
 /* ============================================================
@@ -95,9 +147,17 @@ a.card,
 .card,
 [class*="Card_card"],
 [class*="card-root"] {
-  border: 1px solid var(--rv-border) !important;
+  border: 2px solid var(--rv-border) !important;
   border-radius: var(--rv-radius-lg) !important;
+  background-color: #ffffff !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.dark a.card,
+.dark .card,
+.dark [class*="Card_card"],
+.dark [class*="card-root"] {
+  background-color: #0a0a0a !important;
 }
 
 a.card:hover,
@@ -107,6 +167,19 @@ a.card:hover,
   transform: translateY(-1px);
   box-shadow: var(--rv-shadow-hover) !important;
   border-color: var(--rv-border-strong) !important;
+}
+
+/* ============================================================
+   Lighter-weight icons (Lucide SVG stroke)
+   ============================================================ */
+svg {
+  stroke-width: 1.5;
+}
+
+a.card svg,
+.card svg,
+[class*="Card_card"] svg {
+  stroke-width: 1.25;
 }
 
 /* ============================================================
@@ -249,7 +322,7 @@ aside button,
 [class*="Accordion_"],
 details {
   border-radius: var(--rv-radius-md) !important;
-  border: 1px solid var(--rv-border) !important;
+  border: 2px solid var(--rv-border) !important;
 }
 
 details summary {
