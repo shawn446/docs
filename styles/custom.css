@@ -594,7 +594,7 @@ details > *:not(summary) {
 }
 
 /* ============================================================
-   Steps — preserve circular number badges
+   Steps — filled dark container behind the number
    ============================================================ */
 [class*="Step_"] [class*="number"],
 [class*="step-number"],
@@ -602,6 +602,36 @@ details > *:not(summary) {
 [class*="Steps_"] li > *:first-child,
 .steps > div > *:first-child {
   border-radius: var(--rv-radius-round) !important;
+  background-color: var(--rv-text) !important;
+  color: var(--rv-surface) !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+[class*="Step_"] [class*="number"] *,
+[class*="step-number"] *,
+[class*="StepNumber"] *,
+[class*="Steps_"] li > *:first-child * {
+  color: var(--rv-surface) !important;
+  background-color: transparent !important;
+}
+
+/* In dark mode, invert so the badge stays high-contrast against the
+   dark page surface. */
+.dark [class*="Step_"] [class*="number"],
+.dark [class*="step-number"],
+.dark [class*="StepNumber"],
+.dark [class*="Steps_"] li > *:first-child,
+.dark .steps > div > *:first-child {
+  background-color: var(--rv-text) !important;
+  color: var(--rv-surface) !important;
+}
+
+.dark [class*="Step_"] [class*="number"] *,
+.dark [class*="step-number"] *,
+.dark [class*="StepNumber"] *,
+.dark [class*="Steps_"] li > *:first-child * {
+  color: var(--rv-surface) !important;
 }
 
 /* Catch anything that was explicitly styled as a circle/pill and
