@@ -147,8 +147,8 @@ a.card,
 .card,
 [class*="Card_card"],
 [class*="card-root"] {
-  border: 2px solid var(--rv-border) !important;
-  border-radius: var(--rv-radius-lg) !important;
+  border: 1px solid var(--rv-border) !important;
+  border-radius: 2px !important;
   background-color: #ffffff !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
 }
@@ -321,8 +321,8 @@ aside button,
 [class*="accordion"],
 [class*="Accordion_"],
 details {
-  border-radius: var(--rv-radius-md) !important;
-  border: 2px solid var(--rv-border) !important;
+  border-radius: 2px !important;
+  border: 1px solid var(--rv-border) !important;
 }
 
 details summary {
