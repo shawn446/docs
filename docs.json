@@ -12,15 +12,18 @@
     "heading": {
       "family": "Roobert",
       "source": "/fonts/roobert.woff2",
-      "format": "woff2-variations",
-      "weight": "100 900"
+      "format": "woff2",
+      "weight": 600
     },
     "body": {
       "family": "Roobert",
       "source": "/fonts/roobert.woff2",
-      "format": "woff2-variations",
-      "weight": "100 900"
+      "format": "woff2",
+      "weight": 400
     }
+  },
+  "styling": {
+    "css": "/styles/custom.css"
   },
   "logo": {
     "light": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png",
