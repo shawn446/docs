@@ -7,17 +7,268 @@
   font-display: swap;
 }
 
-/* Force wider content */
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --rv-radius-sm: 6px;
+  --rv-radius-md: 10px;
+  --rv-radius-lg: 14px;
+  --rv-radius-xl: 20px;
+
+  --rv-border: rgba(0, 0, 0, 0.08);
+  --rv-border-strong: rgba(0, 0, 0, 0.14);
+  --rv-border-subtle: rgba(0, 0, 0, 0.05);
+
+  --rv-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --rv-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.05), 0 10px 28px rgba(0, 0, 0, 0.06);
+  --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+  --rv-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.dark {
+  --rv-border: rgba(255, 255, 255, 0.08);
+  --rv-border-strong: rgba(255, 255, 255, 0.14);
+  --rv-border-subtle: rgba(255, 255, 255, 0.05);
+
+  --rv-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --rv-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.35);
+  --rv-shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ============================================================
+   Content width — override Mintlify's inner max-width.
+   Targets known containers plus common Tailwind utilities.
+   ============================================================ */
 #content-area,
 .mint-content,
 main article,
 main .prose,
 main > div {
-  max-width: 1200px !important;
+  max-width: 1280px !important;
 }
 
-/* Widen the overall page container */
 .max-w-8xl,
-.max-w-7xl {
+.max-w-7xl,
+.max-w-6xl {
   max-width: 1400px !important;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+h3 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+body,
+p,
+li {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Cards — subtle border, gentle lift on hover
+   ============================================================ */
+a.card,
+.card,
+[class*="Card_card"],
+[class*="card-root"] {
+  border: 1px solid var(--rv-border) !important;
+  border-radius: var(--rv-radius-lg) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+a.card:hover,
+.card:hover,
+[class*="Card_card"]:hover,
+[class*="card-root"]:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--rv-shadow-hover) !important;
+  border-color: var(--rv-border-strong) !important;
+}
+
+/* ============================================================
+   Callouts — Tip / Note / Warning / Info
+   ============================================================ */
+.callout,
+[class*="callout"],
+[class*="Callout_"],
+.prose blockquote {
+  border-radius: var(--rv-radius-md) !important;
+  border-left-width: 3px !important;
+  padding: 1rem 1.25rem !important;
+}
+
+/* ============================================================
+   Code blocks and inline code
+   ============================================================ */
+pre,
+.code-block,
+[class*="code-block"],
+[class*="CodeBlock_"] {
+  border-radius: var(--rv-radius-md) !important;
+  border: 1px solid var(--rv-border) !important;
+  font-family: var(--rv-mono) !important;
+}
+
+code,
+:not(pre) > code {
+  font-family: var(--rv-mono) !important;
+  font-size: 0.9em !important;
+  border-radius: var(--rv-radius-sm) !important;
+  padding: 0.15em 0.4em !important;
+}
+
+/* Copy button on code blocks inherits md radius */
+pre button,
+[class*="code-block"] button {
+  border-radius: var(--rv-radius-sm) !important;
+}
+
+/* ============================================================
+   Tables — rounded outer corners via separate borders
+   ============================================================ */
+.prose table,
+article table,
+main table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid var(--rv-border) !important;
+  border-radius: var(--rv-radius-md) !important;
+  overflow: hidden !important;
+}
+
+.prose table th,
+.prose table td,
+article table th,
+article table td,
+main table th,
+main table td {
+  border: none !important;
+  border-bottom: 1px solid var(--rv-border-subtle) !important;
+}
+
+.prose table tr:last-child td,
+article table tr:last-child td,
+main table tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ============================================================
+   Images and iframes
+   ============================================================ */
+.prose img,
+article img,
+main img {
+  border-radius: var(--rv-radius-lg);
+}
+
+iframe {
+  border-radius: var(--rv-radius-lg);
+  border: 1px solid var(--rv-border);
+}
+
+iframe[src*="arcade.software"] {
+  border-radius: var(--rv-radius-xl);
+  box-shadow: var(--rv-shadow-elevated);
+  border: 1px solid var(--rv-border-subtle);
+}
+
+/* Frame component wrapper */
+.frame,
+[class*="Frame_"] {
+  border-radius: var(--rv-radius-lg);
+  overflow: hidden;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+button,
+.button,
+a[role="button"],
+[class*="Button_"] {
+  border-radius: var(--rv-radius-md) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+button:hover,
+.button:hover,
+a[role="button"]:hover {
+  transform: translateY(-1px);
+}
+
+button:active,
+.button:active,
+a[role="button"]:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   Sidebar nav items
+   ============================================================ */
+#sidebar a,
+#sidebar button,
+nav a,
+nav button,
+aside a,
+aside button,
+[class*="sidebar"] a,
+[class*="Sidebar_"] a {
+  border-radius: var(--rv-radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* ============================================================
+   Accordion / expandable
+   ============================================================ */
+.accordion,
+[class*="accordion"],
+[class*="Accordion_"],
+details {
+  border-radius: var(--rv-radius-md) !important;
+  border: 1px solid var(--rv-border) !important;
+}
+
+details summary {
+  border-radius: var(--rv-radius-md);
+}
+
+/* ============================================================
+   Inputs (search, etc.)
+   ============================================================ */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+textarea {
+  border-radius: var(--rv-radius-sm) !important;
+}
+
+/* ============================================================
+   Smooth scrolling
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
 }
