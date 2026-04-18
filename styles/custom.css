@@ -177,14 +177,18 @@ main::after {
   display: none !important;
 }
 
-/* Strip any outer card shell / shadow / border around content */
+/* Strip any outer card shell / shadow / border / rounding around content */
 main,
 #content-area,
 .mint-content,
 main article,
 main > div,
-.mint-body > div {
+.mint-body,
+.mint-body > div,
+[class*="content-wrapper"],
+[class*="ContentWrapper"] {
   border: none !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
 }
@@ -543,6 +547,32 @@ aside button,
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
+/* Group / section headers — no highlight, no box, no rounding */
+aside [class*="group"],
+aside [class*="Group"],
+aside [class*="section"],
+aside [class*="Section"],
+[class*="sidebar"] [class*="group"],
+[class*="sidebar"] [class*="Group"],
+[class*="sidebar"] [class*="section"],
+[class*="sidebar"] [class*="Section"],
+[class*="Sidebar_"] [class*="group"],
+[class*="Sidebar_"] [class*="Group"],
+[class*="NavGroup"] > *:first-child,
+[class*="navGroup"] > *:first-child,
+[class*="group-label"],
+[class*="GroupLabel"],
+[class*="group-heading"],
+[class*="GroupHeading"],
+[class*="section-title"],
+[class*="SectionTitle"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 /* Group headers in sidebar get their own small gap */
 [class*="NavGroup"],
 [class*="navGroup"],
@@ -602,45 +632,59 @@ details > *:not(summary) {
 }
 
 /* ============================================================
-   Steps — filled dark container behind the number
+   Steps — force a filled dark circle behind every step number
    ============================================================ */
 [class*="Step_"] [class*="number"],
 [class*="step-number"],
 [class*="StepNumber"],
-[class*="Steps_"] li > *:first-child,
-.steps > div > *:first-child {
-  border-radius: var(--rv-radius-round) !important;
+[class*="step-indicator"],
+[class*="StepIndicator"],
+[class*="step-bullet"],
+[class*="step-marker"],
+[class*="step-badge"],
+[class*="step-dot"],
+[class*="step-circle"],
+[class*="Step_indicator"],
+[class*="Step_marker"],
+[class*="Steps_"] li > div:first-child,
+[class*="Steps_"] li > span:first-child,
+[class*="Steps_"] > ol > li::before,
+.steps li > div:first-child,
+.steps > ol > li::before,
+.steps [class*="rounded-full"],
+[class*="Step_"] [class*="rounded-full"],
+[class*="Steps_"] [class*="rounded-full"] {
   background-color: var(--rv-text) !important;
   color: var(--rv-surface) !important;
+  border-radius: var(--rv-radius-round) !important;
   border: none !important;
   font-weight: 600 !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  min-width: 1.75rem !important;
+  min-height: 1.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  font-size: 0.875rem !important;
+  line-height: 1 !important;
 }
 
+/* Force inner text color on any child span/div */
 [class*="Step_"] [class*="number"] *,
 [class*="step-number"] *,
 [class*="StepNumber"] *,
-[class*="Steps_"] li > *:first-child * {
+[class*="step-indicator"] *,
+[class*="StepIndicator"] *,
+[class*="Steps_"] li > div:first-child *,
+[class*="Steps_"] li > span:first-child * {
   color: var(--rv-surface) !important;
   background-color: transparent !important;
 }
 
-/* In dark mode, invert so the badge stays high-contrast against the
-   dark page surface. */
-.dark [class*="Step_"] [class*="number"],
-.dark [class*="step-number"],
-.dark [class*="StepNumber"],
-.dark [class*="Steps_"] li > *:first-child,
-.dark .steps > div > *:first-child {
-  background-color: var(--rv-text) !important;
-  color: var(--rv-surface) !important;
-}
-
-.dark [class*="Step_"] [class*="number"] *,
-.dark [class*="step-number"] *,
-.dark [class*="StepNumber"] *,
-.dark [class*="Steps_"] li > *:first-child * {
-  color: var(--rv-surface) !important;
-}
+/* Dark mode keeps the same token pair — brand text becomes white,
+   surface becomes near-black, so the fill flips automatically. */
 
 /* Catch anything that was explicitly styled as a circle/pill and
    prevent the universal radius rule from squaring it off. */
