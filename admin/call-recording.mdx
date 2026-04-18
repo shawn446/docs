@@ -1,0 +1,187 @@
+---
+title: "Set Up Call Recording Policies for Zoom Phone"
+description: "Configure automatic call recording, consent prompts, transcription, PII redaction, and data retention to meet compliance requirements."
+---
+
+Call recording in Zoom Phone gives you a systematic way to capture conversations for compliance, quality assurance, training, and dispute resolution. This guide walks you through enabling automatic recording, configuring consent prompts that meet one-party and two-party consent laws, setting up transcription with PII redaction, and controlling how recordings are stored and accessed.
+
+## Prerequisites
+
+- Admin access to the Zoom web portal with privileges to edit account settings
+- Understanding of recording consent laws in your jurisdiction (one-party vs. two-party consent)
+- Audio prompts prepared for recording notifications, if using custom prompts
+- A decision on which calls to record: inbound, outbound, internal, external, or some combination
+
+## Understanding call recording types
+
+Zoom Phone supports two recording methods:
+
+- **Automatic recording** — Records calls systematically based on policies you configure. Requires admin setup.
+- **Ad-hoc recording** — Users start recording manually during a call. User-initiated, no admin policy required.
+
+This guide covers automatic recording setup. Policies can specify call direction (inbound, outbound, or both), call classification (internal, external, or both), consent requirements, and transcription behavior.
+
+<Note>
+Internal calls are classified by how they're dialed, not where they route. A call to someone in your account that forwards to an external number is still considered an internal call.
+</Note>
+
+## Enabling automatic call recording
+
+<Steps>
+  <Step title="Access recording settings">
+    Sign in to the Zoom web portal as an admin. Navigate to **Account Management** > **Account Settings** > **Zoom Phone**.
+  </Step>
+  <Step title="Enable automatic recording">
+    Toggle **Automatic Call Recording** to on. If a verification dialog appears, click **Enable** to confirm.
+  </Step>
+  <Step title="Choose recording scope">
+    Apply the policy at the appropriate scope. You can enable automatic recording for:
+
+    - Specific users
+    - Call queues
+    - Shared line groups
+    - Sites (if using multiple sites)
+
+    <Note>
+    To apply recording settings at a nested level (user, group, site, or call queue), follow the same process within each entity's settings rather than at the account level.
+    </Note>
+  </Step>
+</Steps>
+
+## Configuring recording policies
+
+### Set call types to record
+
+Under the automatic recording policy, configure:
+
+- **Call direction** — Select inbound calls, outbound calls, or both.
+- **Call classification** — Select internal calls, external calls, or both.
+
+### Configure inbound call prompts
+
+<Steps>
+  <Step title="Play a pre-connect prompt to the caller">
+    Enable **Play a prompt only to caller before attempting to connect** to notify the caller before connecting them to the user. Select the default prompt, or click **Edit** to choose a custom audio file from the Asset Library.
+  </Step>
+  <Step title="Provide consent options before recording starts">
+    Enable **Provide consent options before recording starts** to give callers the option to opt out of recording.
+
+    - If enabled, the opt-out applies for the entire call duration, including after transfers.
+    - Set the number of prompt repeats.
+    - Choose the action after no response: connect with recording enabled, connect without recording, or disconnect.
+    - Set the timeout duration in seconds under **After user takes no action for**.
+
+    <Warning>
+    Call screening does not work when consent options are enabled. Disable call screening for users where consent prompts are active.
+    </Warning>
+  </Step>
+  <Step title="Configure recording start notifications">
+    Enable **Play a prompt to call participants when recording has started** to warn participants that recording is active. Choose the audience — all participants or the recording user only — and select or customize the prompt.
+
+    To require explicit consent via keypress, enable **Press 1 to provide consent**. The prompt plays twice; if the participant does not press 1, their continued participation counts as passive consent. Call logs indicate whether consent was active or passive.
+
+    Enable **Play a prompt for calls where recording has already started** to cover transferred calls and shared line scenarios where recording was already in progress when the participant joined.
+  </Step>
+</Steps>
+
+### Configure outbound call notifications
+
+For outbound calls, configure the following:
+
+- **Play a prompt when recording has started** — Enable notification for outbound calls. Choose the audience (all participants or recording user only) and customize the prompt if needed.
+- **Press 1 to provide consent** — Same behavior as inbound: requires a keypress or counts continued participation as passive consent.
+- **Play a prompt when recording is stopped** — Notifies participants when recording ends. Select the audience for this notification.
+
+## Additional recording settings
+
+<Steps>
+  <Step title="Configure the recording beep tone">
+    Enable **Play a recording beep tone** to play a periodic audio cue indicating the call is being recorded. Choose the audience (all participants or recording user only), set the beep interval between 5 seconds and 2 minutes, and adjust the volume.
+  </Step>
+  <Step title="Enable transcription">
+    Enable **Allow call recording transcription** to automatically transcribe recordings. Users can view transcriptions in the Zoom desktop or mobile app.
+  </Step>
+  <Step title="Enable PII redaction">
+    Enable **Redact personal and sensitive data** to automatically remove personally identifiable information from transcripts. Select a PII Group to define what data to redact.
+
+    <Warning>
+    Redacted data cannot be viewed by anyone, including admins. Verify your PII Group configuration before enabling redaction in production.
+    </Warning>
+  </Step>
+  <Step title="Configure recording controls">
+    - Enable **Allow extensions to stop and resume automatic recording** to let users pause and resume recording using in-call controls.
+    - Enable **Disconnect call if recording fails** to terminate a call if the recording system fails for more than 5 seconds. This setting does not apply to emergency calls.
+  </Step>
+</Steps>
+
+## Accessing call recordings
+
+<Steps>
+  <Step title="View recording logs">
+    Navigate to **Phone System Management** > **Recordings** to see all recordings for users and call queues. Filter by date range, user, or extension, or search by caller and callee information.
+  </Step>
+  <Step title="Play and download recordings">
+    Click on any recording to play it. Download recordings for archival or analysis. If transcription is enabled, view the transcript alongside the recording.
+  </Step>
+  <Step title="Share recordings">
+    Share recordings with specific phone users. Control whether users can access their own automatic recordings, and set sharing permissions at the account or user level.
+  </Step>
+</Steps>
+
+## Managing recording storage
+
+Zoom Phone stores recordings in the cloud based on your account storage settings.
+
+Navigate to **Account Management** > **Account Settings** > **Recording** to manage:
+
+- **Storage location** — May be subject to data residency requirements depending on your region.
+- **Retention policies** — Configure how long recordings are retained before automatic deletion. Set retention periods that satisfy compliance requirements while minimizing storage costs.
+
+## Compliance use cases
+
+<AccordionGroup>
+  <Accordion title="Two-party consent jurisdictions">
+    In states or countries requiring all parties to consent to recording (such as California, Florida, and several EU member states), enable **Provide consent options before recording starts** for inbound calls and **Press 1 to provide consent** for outbound calls. This creates a clear, auditable record of consent in your call logs.
+  </Accordion>
+  <Accordion title="Financial services">
+    Enable automatic recording for all regulated activities, configure retention policies per applicable regulations (such as MiFID II or FINRA), and enable PII redaction to protect sensitive financial data in transcripts.
+  </Accordion>
+  <Accordion title="Healthcare">
+    Enable transcription with PII redaction to protect PHI in call transcripts. Pair with E2EE settings for calls discussing protected health information. See [Security and Compliance](/admin/security-and-compliance) for HIPAA configuration.
+  </Accordion>
+  <Accordion title="Quality assurance and training">
+    Use department-level recording policies to target your support or sales teams specifically. Enable transcription to make recordings searchable, and give supervisors access to recordings via recording sharing permissions.
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<Tip>
+Enable transcription to make recordings searchable and easier to review. Transcriptions dramatically reduce time spent finding specific conversations.
+</Tip>
+
+<Tip>
+Use groups to apply different recording policies to sales, support, and other departments based on their specific compliance needs.
+</Tip>
+
+- **Research your legal requirements** before enabling automatic recording. Two-party consent states require all parties to consent, while one-party consent requires only one party to know about recording.
+- **Test recording prompts** thoroughly before rolling out organization-wide. Make test calls to verify prompts play correctly, consent options work as expected, and recording quality meets your needs.
+- **Inform employees** about recording policies: when calls are recorded, how recordings are used, and who has access. Include this in employee handbooks and training materials.
+- **Set retention periods** that meet compliance requirements but minimize data storage and privacy exposure. Don't keep recordings longer than necessary.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Consent prompt not playing for transferred calls">
+    Enable **Play a prompt for calls where recording has already started**. This ensures transferred callers hear the recording notification even though recording was already active when they joined.
+  </Accordion>
+  <Accordion title="Recording fails to start automatically">
+    Verify the user or extension is included in the automatic recording policy scope. Check that recording hasn't been disabled at a group or user level, which would override the account-level policy.
+  </Accordion>
+  <Accordion title="Transcription not appearing for older recordings">
+    Transcription only applies to recordings created after the feature was enabled. Existing recordings are not retroactively transcribed.
+  </Accordion>
+  <Accordion title="Users can't access their own recordings">
+    Check recording sharing settings to confirm users have permission to access their automatic recordings. This permission is controlled separately from ad-hoc recording access.
+  </Accordion>
+</AccordionGroup>

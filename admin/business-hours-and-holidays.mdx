@@ -1,0 +1,217 @@
+---
+title: "Set Business Hours and Holiday Schedules in Zoom Phone"
+description: "Configure default business hours, overflow routing, and holiday schedules to control how calls route across your organization based on time and date."
+---
+
+Business hours and holiday schedules control when your organization is considered "open" for calls and what happens to callers when you're not. Getting these settings right before go-live means every extension—users, call queues, auto receptionists, and shared line groups—routes calls predictably throughout the day and year. Set up your organization-wide defaults first, then customize individual extensions that have different schedules.
+
+**Estimated time:** 15–20 minutes
+
+**Who this is for:** Zoom Phone administrators configuring call routing policies for their organization
+
+## Prerequisites
+
+- Account owner or admin access to the Zoom web portal
+- Sites and locations configured (if using multiple sites)
+- Understanding of your organization's operating hours and holiday schedule
+- A routing destination ready for after-hours and holiday calls (voicemail, auto receptionist, or on-call user)
+
+## Understanding business hours vs. overflow
+
+Business hours determine when your organization is open. Overflow settings control what happens to calls during each time period:
+
+- **Business Hours Overflow:** How calls are handled during your normal operating hours
+- **Closed Hours Overflow:** Call routing when you're outside business hours
+- **Holiday Hours Overflow:** Special handling for designated holidays and force major events
+
+<Note>
+  These default settings apply organization-wide but can be overridden by individual users, call queues, and other extensions that have their own schedules configured.
+</Note>
+
+## Set default business hours
+
+<Steps>
+  <Step title="Access account settings">
+    Sign in to the Zoom web portal as an admin, then navigate to **Phone System Management** > **Company Info**.
+
+    - If you have multiple sites enabled: Click the site name, then click the **Settings** tab.
+    - If multiple sites are disabled: Click **Account Settings**.
+  </Step>
+  <Step title="Configure business hours">
+    In the Hours section, locate **Default Business Hours** and click **Edit**. Set your operating hours for each day of the week.
+
+    For 24/7 operations or night shifts, business hours can span past 11:30 PM.
+  </Step>
+  <Step title="Save your settings">
+    Review the hours for accuracy, then click **Save**.
+  </Step>
+</Steps>
+
+<Note>
+  Phone users can override these organization-wide defaults with their own specific business hours if needed.
+</Note>
+
+## Configure overflow settings
+
+Overflow settings determine how incoming calls are routed during business hours, closed hours, and holidays. All three overflow types are configured from the same Hours section in account settings.
+
+<Steps>
+  <Step title="Set business hours overflow">
+    In the Hours section, locate **Default Overflow for Business Hours** and click the dropdown. Select the routing behavior for calls that arrive during your operating hours:
+
+    - Forward to voicemail
+    - Route to a specific extension
+    - Allow callers to reach an operator
+  </Step>
+  <Step title="Configure closed-hours overflow">
+    Locate **Default Overflow for Closed Hours** and select the routing behavior for after-hours calls. Common options include directing callers to voicemail or playing a custom closed-hours message.
+  </Step>
+  <Step title="Set holiday hours overflow">
+    Locate **Default Overflow for Holiday Hours** and choose how calls are handled on designated holidays. Optional settings include:
+
+    - **Allow callers to reach an operator:** Configure an IVR menu and operator destination.
+    - **Allow callers to check voicemail:** Set up voicemail access options for callers who want to leave a message.
+  </Step>
+</Steps>
+
+<Tip>
+  When enabling "Allow callers to reach an operator," the operator can be any phone user, call queue, auto receptionist, or shared line group—not just a single person.
+</Tip>
+
+## Manage holidays and force major events
+
+<Steps>
+  <Step title="Access holiday settings">
+    From **Account Settings** > **Settings** tab, locate **Default Holiday & Force Major Events Group** under Hours and click **Manage**.
+  </Step>
+  <Step title="Add holidays">
+    Click the group name you want to manage, then select the **Holidays** tab. In the top-right corner, click **Add Holiday** and choose from two options:
+
+    - **Add new holidays:** Configure the date and time, select the all-day option if applicable, and set a recurrence pattern for annual holidays.
+    - **Copy holidays from existing group:** Select a source group and choose which holidays to copy.
+
+    Click **Save** when finished.
+  </Step>
+  <Step title="Enable automatic cleanup (optional)">
+    At the top of the Holidays page, select **Automatically delete holidays that have ended**. This keeps your holiday list current without requiring manual cleanup each year.
+  </Step>
+  <Step title="Edit or remove holidays">
+    From the Holidays tab, click any existing holiday to modify its settings or click **Remove** to delete it.
+  </Step>
+</Steps>
+
+<Warning>
+  If two holidays conflict or overlap, Zoom prioritizes the holiday with the most immediate time. Review your holiday calendar and resolve conflicts to avoid unexpected routing behavior.
+</Warning>
+
+## Assign holiday groups to extensions
+
+Holiday groups let you apply different holiday schedules to different parts of your organization. A site-level assignment automatically covers all extensions under that site.
+
+<Steps>
+  <Step title="Add targets to the holiday group">
+    In the holiday group settings, click the **Target** tab, then click **Add Targets** in the top-right corner. Choose what to assign:
+
+    - **Add Sites:** Assign entire sites to this holiday group. All users and extensions under the site inherit the group automatically.
+    - **Add Extensions:** Assign specific users, call queues, auto receptionists, common areas, or shared line groups individually.
+  </Step>
+  <Step title="Verify inheritance">
+    After adding targets, confirm they appear in the Target tab. All users and extensions under assigned sites automatically inherit the holiday group—you don't need to add them individually.
+  </Step>
+</Steps>
+
+## Set holiday call handling policies
+
+Customize how calls route during holidays for each type of extension. These settings let you apply different routing rules to users, queues, and receptionists during the same holiday period.
+
+<Steps>
+  <Step title="Access call handling settings">
+    In the holiday group settings, click the **Call Handling** tab.
+  </Step>
+  <Step title="Configure overflow by extension type">
+    Set routing behavior for each category:
+
+    - **Default overflow for Sites:** Applies to directly assigned sites.
+    - **Default overflow for Users:** Defines routing for individual phone users.
+    - **Default overflow for Common Areas:** Sets handling for common area phones.
+    - **Default overflow for Call Queues:** Configures queue behavior during holidays.
+    - **Default overflow for Auto Receptionists:** Sets auto receptionist routing.
+    - **Default overflow for Shared Line Groups:** Defines shared line behavior.
+  </Step>
+  <Step title="Customize audio prompts (optional)">
+    Access the Audio Prompt settings to configure custom holiday messages. Create greetings that inform callers of closures so they understand why calls are routing differently.
+  </Step>
+</Steps>
+
+## Routing examples by time period
+
+<AccordionGroup>
+  <Accordion title="Standard business hours routing">
+    Calls arrive during operating hours and route directly to the intended destination—a call queue, auto receptionist, or individual user. Business hours overflow handles edge cases like a queue reaching capacity during peak periods.
+  </Accordion>
+  <Accordion title="After-hours routing">
+    Calls arrive outside business hours and route to voicemail with a closed-hours message. Alternatively, route to an on-call auto receptionist that offers callers an emergency option.
+
+    Example: "You've reached Acme Corp. Our office is currently closed. For emergencies, press 1 to reach our on-call team. Otherwise, please leave a message and we'll return your call the next business day."
+  </Accordion>
+  <Accordion title="Holiday routing">
+    Designated holidays trigger a separate routing path from standard closed hours. This lets you play a holiday-specific message and route differently—for example, directing urgent calls to a holiday on-call contact rather than general voicemail.
+  </Accordion>
+  <Accordion title="Force major events">
+    Use force major event overflow for emergencies like severe weather or power outages. Configure this routing path in advance so you can activate it quickly when needed without scrambling to configure settings during an incident.
+  </Accordion>
+  <Accordion title="Multi-site routing with site-specific schedules">
+    Organizations with offices in multiple time zones can assign different holiday groups to each site. Headquarters might observe US holidays while a regional office follows a different national calendar—each site routes calls according to its own schedule.
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Start with organization-wide defaults">
+    Configure account-level settings first, then customize exceptions for specific users or departments. This approach ensures consistent call handling across your organization and reduces the risk of gaps in coverage.
+  </Accordion>
+  <Accordion title="Set up holidays before go-live">
+    Add your holiday calendar before launching the phone system. If holidays aren't configured, callers will hear your standard closed-hours routing on holidays—which may not include the right message or destination. Setting up holidays in advance gives you time to test routing before it matters.
+  </Accordion>
+  <Accordion title="Use recurring holidays">
+    Set major holidays (New Year's Day, Independence Day, etc.) as recurring events so you don't need to reconfigure them annually. Enable automatic deletion of past holidays to keep your calendar clean.
+  </Accordion>
+  <Accordion title="Test during off-hours">
+    Make changes to closed-hours and holiday overflow during regular business hours, then test by calling extensions to verify routing works as expected. This prevents surprises when actual off-hours calls arrive.
+  </Accordion>
+  <Accordion title="Plan for force major events in advance">
+    Configure force major event overflow before you need it. Having emergency routing ready ensures business continuity during unexpected closures—severe weather, power outages, or other disruptions.
+  </Accordion>
+</AccordionGroup>
+
+## Quick wins
+
+<Tip>
+  **Enable operator fallback for closed and holiday hours.** Configure "Allow callers to reach an operator" so urgent calls can still reach someone outside business hours. This prevents callers with time-sensitive needs from being sent directly to voicemail.
+</Tip>
+
+<Tip>
+  **Leverage holiday groups for department-specific schedules.** If multiple departments have different schedules, create separate holiday groups and assign them to specific extensions rather than relying on a single organization-wide calendar.
+</Tip>
+
+<Tip>
+  **Review holiday settings at the start of each year.** Update your holiday calendar annually and enable automatic deletion of past holidays to keep the system current without manual cleanup.
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Users can't customize their own hours">
+    Verify the user has proper permissions. Default business hours are organization-wide templates—users should be able to override them in their personal settings. Check whether the user's extension has custom hours configured that might be conflicting.
+  </Accordion>
+  <Accordion title="Conflicting holidays causing unexpected routing">
+    When holidays overlap, Zoom prioritizes the most immediate time. Review your holiday calendar for overlapping dates and remove or adjust conflicting entries.
+  </Accordion>
+  <Accordion title="Overflow settings not applying to all extensions">
+    Check that extensions are properly assigned to the holiday group in the Target tab. Sites must be explicitly added for automatic inheritance to apply to all users under that site.
+  </Accordion>
+  <Accordion title="Changes not taking effect immediately">
+    Some settings may take a few minutes to propagate across the system. Wait 5–10 minutes and test again before troubleshooting further.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,181 @@
+---
+title: "Set Up Call Forwarding Rules in Zoom Phone"
+description: "Configure how Zoom Phone routes incoming calls — forward to voicemail or external numbers with separate rules for business, closed, and holiday hours."
+---
+
+Call forwarding in Zoom Phone gives you precise control over how incoming calls reach you. You can ring multiple devices at once, route calls differently during business and closed hours, and set specific behavior for when you're busy or simply don't answer. All of these settings live in the Zoom web portal under your Phone Settings.
+
+## Accessing call forwarding settings
+
+Sign in to [zoom.us](https://zoom.us), click **Phone** in the left navigation, then click **Settings**. From here you'll see separate sections for Business Hours, Closed Hours, and Holiday Hours — each with its own call handling configuration.
+
+<Steps>
+  <Step title="Sign in to the web portal">
+    Go to **zoom.us** and sign in with your Zoom account credentials.
+
+    Click **Phone** in the left navigation panel.
+  </Step>
+  <Step title="Open your phone settings">
+    Click **Settings** in the Phone menu.
+
+    Scroll down to find the call handling sections.
+  </Step>
+  <Step title="Choose the scenario to configure">
+    - **Business Hours** — click **Edit** next to Call Handling
+    - **Closed Hours** — click **Edit** in the Closed Hours section
+    - **Holiday Hours** — click **Manage** next to Holiday List & Call Handling
+  </Step>
+</Steps>
+
+## Understanding call handling scenarios
+
+Zoom Phone applies different rules depending on when calls arrive.
+
+<AccordionGroup>
+  <Accordion title="Business hours">
+    These rules apply during your normal working hours. You set your schedule manually — including different hours per day and support for night shifts that run past 11:30 PM.
+  </Accordion>
+  <Accordion title="Closed hours">
+    Closed hours rules apply automatically outside your business hours. You don't need to toggle anything — Zoom Phone switches to closed hours handling as soon as your business hours end.
+  </Accordion>
+  <Accordion title="Holiday hours">
+    Holiday hours let you define specific dates with their own call handling. Add each holiday name and date, then configure how calls are handled on those days — typically forwarding to voicemail or an external number.
+  </Accordion>
+</AccordionGroup>
+
+## Configuring ring behavior
+
+### Simultaneous vs. sequential ringing
+
+<Tabs>
+  <Tab title="Simultaneous ringing">
+    All enabled devices ring at the same time. Set a maximum wait time of 15, 30, 45, or 60 seconds before the call falls through to your unanswered-call settings.
+
+    **Best for:** Catching every call as quickly as possible.
+  </Tab>
+  <Tab title="Sequential ringing">
+    Devices ring one after another. Set a ringing duration (15–60 seconds) for each device before it moves to the next.
+
+    **Best for:** Prioritizing your desk phone first, then mobile if you don't answer.
+
+    Drag and drop devices to change the ring order.
+  </Tab>
+</Tabs>
+
+### Enabling and reordering devices
+
+Toggle individual devices on or off in your call handling settings:
+
+- Zoom Desktop App
+- Zoom Mobile App
+- Desk phones
+- Zoom Phone Appliance Apps
+- Personal Zoom Room Apps
+
+In sequential ring mode, drag devices to set the order in which they ring.
+
+## Handling calls when you're busy
+
+When you're already on a call, Zoom Phone can treat new incoming calls in several ways.
+
+<AccordionGroup>
+  <Accordion title="Call waiting (default)">
+    A second call rings through while you're on the first. You can choose to hold or decline the first call, or send the waiting call directly to voicemail.
+  </Accordion>
+  <Accordion title="Forward to voicemail">
+    Callers hear your voicemail greeting automatically when you're busy. No second ring interrupts your active call.
+  </Accordion>
+  <Accordion title="Other busy options">
+    - Play a busy signal
+    - Forward to another extension
+    - Forward to an external contact
+    - Play a message, then disconnect
+  </Accordion>
+</AccordionGroup>
+
+## Handling unanswered calls
+
+When no one picks up within your ring time, Zoom Phone routes the call based on your unanswered-call settings.
+
+<AccordionGroup>
+  <Accordion title="Forward to voicemail (most common)">
+    Callers hear your greeting and can leave a message. You can also enable:
+
+    - **Press 0 for operator** — lets callers reach a live person
+    - **Check voicemail** — lets callers access the voicemail system
+  </Accordion>
+  <Accordion title="Forward to another extension">
+    Route unanswered calls to a colleague's extension. Useful for coverage arrangements.
+  </Accordion>
+  <Accordion title="Forward to an external number">
+    Send calls to any external phone number. This requires a Direct Inward Dial (DID) number assigned to your account. Users with extension-only access cannot forward externally.
+  </Accordion>
+  <Accordion title="Other options">
+    - Play a message, then disconnect
+    - Disconnect immediately (no voicemail)
+  </Accordion>
+</AccordionGroup>
+
+## Setting your business hours schedule
+
+<Steps>
+  <Step title="Open Business Hours settings">
+    In Phone Settings, find the **Business Hours** section and click **Edit**.
+  </Step>
+  <Step title="Configure your schedule">
+    Set your hours in 10-minute increments by entering times manually. You can set different hours for each day of the week. Business hours can extend past 11:30 PM to support night shifts.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Closed hours settings apply automatically outside the hours you define.
+  </Step>
+</Steps>
+
+## Managing holiday hours
+
+<Steps>
+  <Step title="Create your holiday list">
+    Click **Manage** next to Holiday Hours, then click **Add Holiday**. Enter the holiday name and date, then click **Save**.
+  </Step>
+  <Step title="Set call handling for each holiday">
+    Select a holiday from your list, click **Edit** next to Call Handling, and configure how calls should be handled — most commonly forwarding to voicemail or an external number. Click **Save**.
+  </Step>
+  <Step title="Review and maintain your list">
+    Confirm all company holidays are listed. Update the list annually for recurring holidays.
+  </Step>
+</Steps>
+
+<Note>
+  Holiday hours override your normal business hours and closed hours settings on the dates you specify.
+</Note>
+
+## Forwarding to an external number
+
+To forward calls to a number outside Zoom (such as your personal mobile), you need a DID number assigned to your account. Enter the external number in the call handling settings and select your country/region first.
+
+<Tip>
+  Enable **"Require to press 1 before connecting"** when forwarding to an external number. This prevents your external voicemail from picking up calls meant for you and helps filter spam.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Calls not forwarding to an external number">
+    Verify you have a Direct Inward Dial (DID) number assigned. Extension-only users cannot forward calls externally.
+  </Accordion>
+  <Accordion title="External number rings but disconnects when answered">
+    Enable **"Require to press 1 before connecting"** to prevent the call from routing to your external voicemail.
+  </Accordion>
+  <Accordion title="Changes not taking effect">
+    Click **Save** after making any changes. Refresh the page and confirm the settings were saved.
+  </Accordion>
+  <Accordion title="Calls going straight to voicemail unexpectedly">
+    Check that your devices are toggled on in call handling settings and that you're signed into Zoom on those devices.
+  </Accordion>
+  <Accordion title="Can't add an external phone number">
+    Select the correct country or region first. Some countries share country codes but appear as separate entries in the dropdown.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  After making changes, call yourself from another number to verify your forwarding rules work as expected.
+</Tip>

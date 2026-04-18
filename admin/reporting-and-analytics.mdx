@@ -1,0 +1,358 @@
+---
+title: "Zoom Phone Reporting and Analytics Guide"
+description: "Access call logs, QoS dashboards, usage reports, Power Pack queue analytics, and exportable data to monitor and optimize your phone system."
+---
+
+Zoom Phone provides several layers of analytics — detailed call logs, visual dashboards for quality and adoption, user performance reports, and advanced real-time queue analytics through Power Pack. Understanding which tool answers which question helps you monitor your deployment effectively, catch issues early, and optimize performance based on real data rather than intuition. This guide covers every reporting surface available to administrators and how to use each one.
+
+## Prerequisites
+
+- Admin access to the Zoom web portal
+- An active phone deployment with call data (wait 24–48 hours after go-live for dashboards to populate)
+- An understanding of your organization's performance goals and targets
+- Power Pack license (required for real-time queue analytics and email alerts)
+
+## Analytics overview
+
+Zoom Phone provides three main categories of analytics:
+
+| Category | What it answers | Where to find it |
+|----------|----------------|------------------|
+| **Call logs** | Who called whom, when, how long, and what happened | Phone System Management > Call Logs |
+| **Dashboards** | Quality trends, usage patterns, and adoption over time | Dashboard > Phone tab |
+| **Reports** | Exportable data for specific time periods and metrics | Account Management > Reports |
+
+<Note>
+Not all calls produce quality data. Very short calls (a few seconds or less) typically do not have quality metrics. Call history and Quality of Service data use different underlying datasets, so numbers may not match precisely between views.
+</Note>
+
+## Accessing reports and dashboards
+
+- **Call logs:** Navigate to **Phone System Management** > **Call Logs** for a detailed history of every call across your organization.
+- **Dashboards:** Navigate to **Dashboard** > **Phone** tab to access Usage & Adoption and Quality of Service analytics.
+- **User-specific reports:** Navigate to **Phone System Management** > **Users & Rooms**, click a user's name, then click the **History** tab for that individual's call history.
+
+## Call logs: understanding call history
+
+Call logs give you a record of every call — who called, the result, how it was routed, and how long it lasted.
+
+### Viewing and filtering call logs
+
+<Steps>
+  <Step title="Open call logs">
+    Navigate to **Phone System Management** > **Call Logs**. Use **New View** for advanced filtering options that expose more call path detail.
+  </Step>
+  <Step title="Apply filters">
+    Narrow your results using the available filters:
+
+    - Date range
+    - Call type (inbound, outbound, or internal)
+    - Call result (connected, canceled, or no answer)
+    - Extension type (user, queue, or auto receptionist)
+    - Number type (direct or toll-free)
+    - Site (if multiple sites are enabled)
+    - Spam calls
+    - Call events (transfer, recording, and other events)
+  </Step>
+  <Step title="Export to CSV">
+    Click **Export to CSV** to download the filtered call log for billing reconciliation, compliance audits, or external analysis.
+  </Step>
+</Steps>
+
+### Understanding call log columns
+
+**From / To:** Caller and recipient information. Displays display names for internal users, caller ID for external calls, and "Anonymous" for hidden caller IDs.
+
+**Result:** The call outcome:
+- **Call Connected** — The call was answered.
+- **Call Cancelled** — The caller hung up while the line was ringing.
+- **No Answer** — The call was not answered, was declined, or went to voicemail.
+
+**Path:** How the call was routed through your phone system:
+- **Extension** — Direct dial to a user
+- **Auto Receptionist** — Through an IVR menu
+- **Call Queue** — Distributed to queue members
+- **PSTN** — External call via the public phone network
+- **Shared Lines** — Call delegation or shared line group
+- **Monitor** — Call monitoring session (listen, whisper, or barge)
+- **Takeover** — Supervisor took over the call from an agent
+
+**Duration:** Total call length. **Charge:** Call cost, if applicable to your plan. **Site:** The associated site for multi-site accounts.
+
+### Identifying special call scenarios
+
+**Transferred calls:** Click **Details** to see the transfer destination. Warm transfers show a separate log entry for the consultation leg. Blind transfers show a "Transfer" label in the Path column.
+
+**Merged calls (conference):** Click **Details** to see all participants in the conference.
+
+**Call queue calls:** Click **Details** to see which queue members were tried. A "Busy" label indicates the member was skipped because they were unavailable.
+
+## Quality of Service (QoS) dashboard
+
+The QoS dashboard lets you monitor call quality across your entire organization and identify users, locations, or time periods with degraded audio.
+
+### Accessing the QoS dashboard
+
+Navigate to **Dashboard** > **Phone** tab, then click **Quality of Service**.
+
+### Key quality metrics
+
+- **Call quality score** — Overall quality rating on a 1–10 scale. Scores below 7 indicate a problem worth investigating.
+- **Jitter** — Variation in packet arrival time. Values above 30ms indicate network instability.
+- **Packet loss** — Percentage of lost data packets. Values above 2% noticeably degrade call audio.
+- **Latency** — Audio delay between speakers. Values above 150ms create an uncomfortable conversation experience.
+
+### Filtering and troubleshooting quality data
+
+Filter quality data by date range, extension type (user, call queue, auto receptionist, common area, Zoom Room), or site to identify problem users or locations.
+
+**Common causes of poor quality:**
+- Network congestion or insufficient bandwidth
+- WiFi interference (especially in open offices)
+- Firewall misconfiguration affecting Zoom traffic
+- Geographic distance from Zoom data centers
+- End-user device issues
+
+## Usage and adoption dashboard
+
+The Usage & Adoption dashboard shows how your organization is using Zoom Phone, making it the primary tool for tracking deployment success and identifying users who need additional support.
+
+### Accessing the Usage dashboard
+
+Navigate to **Dashboard** > **Phone** tab, then click **Usage & Adoption**.
+
+### Call activity metrics
+
+**Volume metrics:**
+- **Total Calls** — All calls including internal and external
+- **Internal Calls** — Calls between extensions within your account
+- **External Calls** — Calls to or from outside phone numbers
+
+**Call breakdown by direction:**
+- Inbound External Calls
+- Outbound External Calls
+- Inbound Internal Calls
+- Outbound Internal Calls
+
+**Call time metrics:**
+- VoIP Call Time (internal calls)
+- Toll-Free Call Time
+- International Call Time
+
+**Call Volume Chart:** A visual trend of call activity over your selected time period. Toggle legend items to show or hide specific call types.
+
+**Top 10 leaderboards:**
+- Top 10 Phone Numbers by call volume
+- Top 10 Extensions by call volume
+- Filter by inbound or outbound direction
+
+### SMS activity metrics
+
+- **Total SMS Users** — Users with SMS enabled
+- **Total SMS Messages** — Inbound, outbound, and internal message counts
+- **Team SMS** — Messages to and from call queues and auto receptionists
+- **MMS Messages** — Picture and media messages tracked separately
+
+View Top 10 SMS Users, filterable by Total SMS, Total MMS, or Team SMS volume.
+
+### License utilization
+
+Track how your Zoom Phone licenses are being used:
+
+- **Total Phone Users** — Active users broken down by Pro and Basic license types
+- **Total Common Areas** — Common area phones by device type
+- **Total Numbers** — Direct numbers by type (toll, toll-free, BYOC)
+- **License Details** — Available licenses by type, usage breakdown by user category, sortable by percentage remaining or count available
+
+### Activity and adoption tracking
+
+**Monthly Active Users:** Shows users who made or received at least one call during the period. The trend chart shows adoption growth over time. Filter by full month or a custom date range.
+
+**User Details Table:** Shows each user's activation status (Activated, Ready to Activate, Not Ready), SMS usage count, and voicemail interactions. Filter by user type, site, or department.
+
+## User performance reports
+
+Track individual user call activity for coaching, recognition, and identifying users who need additional support.
+
+### Accessing user reports
+
+Navigate to **Account Management** > **Reports**, select **Phone System Usage Reports**, and choose the report type and date range.
+
+### Available user metrics
+
+- Unique outbound calls
+- Total call duration
+- Average call duration
+- Calls by result (connected, no answer, etc.)
+- Peak calling times
+- Extension-specific activity
+
+### Viewing individual user call history
+
+<Steps>
+  <Step title="Open the user profile">
+    Navigate to **Phone System Management** > **Users & Rooms** and click the user's name.
+  </Step>
+  <Step title="Open the history tab">
+    Click the **History** tab.
+  </Step>
+  <Step title="Filter and review">
+    Filter by date range or specific contact to narrow the view. The history tab provides a simplified view of that user's call activity.
+  </Step>
+</Steps>
+
+<Note>
+User call history shows less detail than account-wide logs. It does not include auto receptionist or call queue routing details. Use account-wide call logs with the New View filter for a complete picture of call routing.
+</Note>
+
+## Power Pack: advanced call queue analytics
+
+<Info>
+Power Pack features require a Zoom Phone Power Pack license. Contact your Zoom account manager to add Power Pack to your subscription.
+</Info>
+
+Power Pack provides real-time queue monitoring and historical analytics designed for call center operations. It gives supervisors immediate visibility into queue health and gives managers the data they need to optimize staffing and service levels.
+
+### Accessing Power Pack analytics
+
+Navigate to **Dashboard** > **Phone** tab and click **Call Queue Analytics**, or go to **Phone System Management** > **Call Queues**, click the queue name, and click the **Analytics** tab.
+
+### Real-time queue dashboard
+
+**Inbound Monitor** — Live view of current queue activity:
+- Calls currently waiting in queue
+- Longest current wait time
+- Available agent count
+- Average speed to answer
+- Service level (percentage of calls answered within your threshold)
+
+**Member Availability Report** — Real-time agent status:
+- Status for all agents across all queues
+- Zoom app presence (available, busy, away)
+- Current call status for each member
+- Individual member search to check status quickly
+
+### Historical queue analytics
+
+**Performance metrics:**
+- Average wait time (in-queue before answer)
+- Average talk time
+- Average wrap-up time
+- Average hold time
+- Calls abandoned vs. connected
+
+**Call volume tracking:**
+- Total calls received
+- Connected calls
+- Abandoned calls
+- Overflow calls
+- Volume trend charts over time
+
+**Service level analytics:**
+- Percentage of calls answered within your target time
+- Customizable warning and critical thresholds with color coding for quick visual assessment
+
+### Customizing the Power Pack dashboard
+
+<Steps>
+  <Step title="Set custom service level thresholds">
+    In the Inbound Monitor section, click the ellipsis icon, then click **Threshold**. Set the threshold time (e.g., 30 seconds), the warning value (e.g., 70%), and the critical value (e.g., 50%). Choose indicator colors for each threshold level, then click **Confirm**.
+  </Step>
+  <Step title="Add custom KPIs">
+    Click the settings icon and select **KPIs** to add additional metric columns to your dashboard view. Choose the metrics most relevant to your operation and click **Confirm**.
+  </Step>
+  <Step title="Enable full-screen wallboard mode">
+    Click the full-screen icon to display the real-time queue dashboard on an office monitor. Real-time updates remain visible to the entire team, keeping agents and supervisors aligned on queue status without needing to check individual dashboards.
+  </Step>
+</Steps>
+
+### Power Pack email alerts
+
+Set up proactive notifications so managers respond to queue issues before they escalate:
+
+- Configure alerts for service level drops below your defined thresholds
+- Receive notifications when queues exceed wait time thresholds
+- Set up daily or weekly summary report emails
+- Customize alert recipients by queue or management role
+
+## Exporting data
+
+Export data from any reporting surface for external analysis, executive reporting, or compliance documentation.
+
+| Source | Format | Use for |
+|--------|--------|---------|
+| Call Logs | CSV | Billing reconciliation, compliance audits, custom analysis |
+| Usage & Adoption dashboard | CSV | Executive reporting, capacity planning |
+| User Reports (Reports section) | Download | Workforce management, coaching records |
+| Power Pack Analytics | CSV with custom date ranges | Queue performance reporting, staffing models |
+
+**Common uses for exported data:**
+- Billing reconciliation and cost center allocation
+- Compliance and regulatory audit evidence
+- Custom analysis in Excel or business intelligence tools
+- Executive dashboards and board reporting
+- Capacity planning and forecasting
+- Workforce management and scheduling optimization
+
+## Key metrics to track
+
+<AccordionGroup>
+  <Accordion title="Daily metrics">
+    - **Call quality score** — Flag any scores below 7 for investigation
+    - **Critical call failures** — Calls that dropped or failed unexpectedly
+    - **Overall call volume** — Unusual spikes or drops may indicate an issue
+    - **Queue service levels** (Power Pack) — Ensure queues are meeting their targets throughout the day
+  </Accordion>
+  <Accordion title="Weekly metrics">
+    - **Total call volume trends** — Week-over-week changes in call activity
+    - **User adoption rates** — Is the percentage of active users growing?
+    - **Quality trends by location or user** — Identify specific hotspots with degrading quality
+    - **Queue performance vs. targets** (Power Pack) — Review whether staffing levels are meeting service goals
+  </Accordion>
+  <Accordion title="Monthly metrics">
+    - **Billing and cost trends** — International call time, toll-free usage, per-minute costs
+    - **License utilization** — Are you using the licenses you're paying for? Do you need more?
+    - **Feature adoption** — SMS usage, call recording, voicemail interaction rates
+    - **User satisfaction** — Correlate quality scores with any user-reported complaints
+    - **Agent performance metrics** (Power Pack) — Individual and team-level queue performance
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<Tip>
+During the first month post-launch, check dashboards daily to catch quality and adoption issues early while they're still easy to fix.
+</Tip>
+
+<Tip>
+Display real-time Power Pack queue dashboards on monitors in your call center. Keeping the entire team aware of queue status drives faster response to spikes in volume.
+</Tip>
+
+- **Set service level baselines early.** Establish realistic targets for call queues based on your industry standards (typically 80% of calls answered within 20–30 seconds) before you can measure performance against them.
+- **Review quality trends weekly.** Catching degrading network conditions through QoS metrics before users complain is far less disruptive than reacting to a flood of support tickets.
+- **Track adoption monthly.** Low activity in the Usage dashboard may indicate training gaps, user resistance, or users who have reverted to personal devices.
+- **Export data regularly.** Schedule monthly exports of key reports for historical trending and year-over-year comparisons. Don't rely solely on live dashboards for long-term analysis.
+- **Use user performance reports for coaching.** Identify power users who can help train others and identify users who need additional support before they disengage.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Missing quality data for calls">
+    Very short calls — a few seconds or less — typically do not collect quality metrics. This is normal for abandoned calls, mis-dials, or calls that connect and hang up immediately. It does not indicate a configuration problem.
+  </Accordion>
+  <Accordion title="Call logs don't show queue routing details">
+    Switch to **New View** in Call Logs for advanced call path information. Click the **Details** column for any call to see the full routing path including which queue members were attempted.
+  </Accordion>
+  <Accordion title="User call history differs from account-wide logs">
+    User history is simplified and does not include auto receptionist or queue routing details. Use account-wide call logs with the New View filter for the complete picture, including all routing hops.
+  </Accordion>
+  <Accordion title="Dashboard shows no data">
+    Verify the date range is set correctly and includes a period with call activity. Wait 24–48 hours after go-live for dashboards to populate with enough data to be meaningful. If the account has had calls but the dashboard remains empty, contact Zoom support.
+  </Accordion>
+  <Accordion title="Exported CSV is missing expected columns">
+    Exports include only the visible and filtered columns from your current view. Adjust filter settings and column visibility before exporting to ensure all the data you need is included.
+  </Accordion>
+  <Accordion title="Power Pack analytics not available">
+    Verify that your account has a Power Pack license enabled. Navigate to **Account Management** > **Account Profile** to check your active add-ons. Contact your Zoom account manager to add Power Pack if it is not listed.
+  </Accordion>
+</AccordionGroup>

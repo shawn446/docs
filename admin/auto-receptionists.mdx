@@ -1,0 +1,254 @@
+---
+title: "Set Up Auto Receptionists and IVR Menus"
+description: "Create auto receptionists, configure IVR menus and menu keys, connect to call queues and users, and control business hours routing for your main number."
+---
+
+Auto receptionists answer calls automatically with pre-recorded or text-to-speech greetings, then route callers to the right destination. Use this guide to set up professional call handling for your main company number or departmental lines. Auto receptionists provide 24/7 coverage, reduce receptionist workload, and route callers efficiently—whether you need simple direct routing or a multi-level IVR with language and department selection.
+
+<Note>
+  Zoom automatically creates a main auto receptionist for each site. This receptionist is assigned to your main company number and cannot be deleted.
+</Note>
+
+## Prerequisites
+
+- Admin access to the Zoom web portal with privilege to edit account settings
+- An extension number available for the auto receptionist
+- Audio greetings prepared or text for text-to-speech (optional)
+- Understanding of your desired call routing flow
+- Direct phone numbers assigned (optional)
+
+## How auto receptionists route calls
+
+Auto receptionists support four routing modes:
+
+- **Direct routing:** Route immediately to a destination after playing the greeting
+- **Interactive Voice Response (IVR):** Present menu options (press 1 for sales, press 2 for support)
+- **Time-based routing:** Different routing for business hours, closed hours, and holidays
+- **Multi-level IVR:** Create hierarchical menus for complex organizations
+
+## Create an auto receptionist
+
+<Steps>
+  <Step title="Access auto receptionists">
+    Sign in to the Zoom web portal as an admin, then navigate to **Phone System Management** > **Auto Receptionists** and click **Add**.
+  </Step>
+  <Step title="Configure basic information">
+    Fill in the following fields:
+
+    - **Site:** Select the site if you use multiple sites.
+    - **Name:** Enter a descriptive name (e.g., "Main Company Auto Receptionist").
+    - **Specify a template:** Check this box to create a reusable template from this auto receptionist.
+  </Step>
+  <Step title="Save the initial setup">
+    Click **Save**. The portal redirects you to the auto receptionist settings where you continue configuration.
+  </Step>
+</Steps>
+
+## Configure profile settings
+
+<Steps>
+  <Step title="Open the Profile tab">
+    Navigate to your auto receptionist and click the **Profile** tab.
+  </Step>
+  <Step title="Set basic details">
+    Update the following:
+
+    - **Display Name:** Click **Rename** to change the name.
+    - **Extension Number:** Click **Edit** to change the extension.
+    - **Time Zone:** Select the appropriate time zone for business hours.
+    - **Department:** Enter the department name for organization.
+    - **Cost Center:** Enter the cost center for billing and reporting.
+  </Step>
+  <Step title="Assign phone numbers">
+    Click **Add** next to Number(s) to assign direct phone numbers. For the main auto receptionist, use the dropdown to select the main company number. Blue text indicates currently assigned direct numbers.
+  </Step>
+  <Step title="Configure additional settings">
+    Set the remaining options:
+
+    - **Audio Prompt Language:** Set the language for system prompts.
+    - **Default Transcription Language:** Set the language for voicemail transcription.
+    - **PIN Code:** Set the PIN for voicemail access.
+    - **Voicemail:** Toggle on to share the voicemail inbox with multiple users.
+  </Step>
+</Steps>
+
+## Set up business hours routing
+
+<Steps>
+  <Step title="Define business hours">
+    Click **Edit** next to Business Hours and set the days and times when the auto receptionist actively routes calls. Hours can span past 11:30 PM for night operations. Use 10-minute increments by manually entering times (e.g., 11:10 PM).
+  </Step>
+  <Step title="Configure the greeting">
+    Under **Greeting Prompt**, select Default or click **Audio Library** to use custom audio. The greeting plays before routing the caller. Select **Disable** to skip the greeting and route immediately.
+  </Step>
+  <Step title="Set the routing destination">
+    Click **Edit** next to Route to and choose from the following options:
+
+    - **Voicemail:** Route to the auto receptionist's voicemail or another extension's voicemail.
+    - **Phone User:** Route to a specific user.
+    - **Call Queue:** Send to a call queue.
+    - **Shared Line Group:** Route to a shared line.
+    - **Auto Receptionist:** Chain to another auto receptionist.
+    - **Interactive Voice Response (IVR):** Present menu options to the caller.
+    - **External Phone Number:** Route outside the system (requires a direct number assigned to this auto receptionist).
+    - **Partner Contact Center:** Route to a third-party contact center integration.
+  </Step>
+</Steps>
+
+## Create an IVR menu
+
+IVR menus let callers choose their destination by pressing keys on their keypad.
+
+<Steps>
+  <Step title="Enable IVR routing">
+    In the Business Hours routing section, click **Edit** next to Route to. Select **Interactive Voice Response (IVR)** from the dropdown and click **OK**.
+  </Step>
+  <Step title="Configure IVR settings">
+    Click **Edit** in the IVR Menu section, then set the **IVR Greeting Audio Prompt**:
+
+    - Click **Default** to use the system greeting.
+    - Click **Edit** > **Choose from Asset Library** to use custom audio.
+
+    The IVR greeting plays after the auto receptionist greeting and explains the menu options to the caller.
+  </Step>
+  <Step title="Set timeout options">
+    Configure what happens if the caller does not press a key:
+
+    - **Caller Takes No Action After:** Set the number of seconds before timeout (applies when voice navigation is enabled).
+    - **Play audio prompt:** Set how many times to repeat the prompt (1–3 times).
+    - **And then:** Choose what happens at timeout—disconnect or forward to a destination.
+  </Step>
+  <Step title="Enable voice navigation (optional)">
+    Toggle **Allow callers to navigate IVR by voice** to let callers speak commands instead of pressing keys. Set the **Voice Input Confidence Score** to Low, Medium, or High. Voice navigation supports English only.
+  </Step>
+  <Step title="Configure menu keys">
+    For each key (0–9, *, #), click **Edit** to assign a routing destination. A typical setup looks like:
+
+    - Key 1: Sales
+    - Key 2: Support
+    - Key 3: Billing
+    - Key 0: Operator / receptionist
+    - Key 9: Dial by name directory
+  </Step>
+  <Step title="Save the configuration">
+    Click **Save** to apply the IVR settings.
+  </Step>
+</Steps>
+
+## Build multi-level IVR systems
+
+For complex organizations, create hierarchical IVR menus—for example, language selection leading into department selection.
+
+**Planning approach:**
+
+1. **Diagram your IVR flow** — Map out all levels and branches before building.
+2. **Start at the bottom** — Create the lowest-level auto receptionists first (those that don't route to other IVRs).
+3. **Work your way up** — Build parent IVR menus that route to child auto receptionists.
+4. **Test each level** — Verify routing before connecting to higher levels.
+
+**Example structure:**
+
+```
+Main Number → Auto Receptionist (Language Selection)
+├── Press 1: English → Auto Receptionist (Department Menu)
+│   ├── Press 1: Sales Queue
+│   ├── Press 2: Support Queue
+│   └── Press 0: Operator
+└── Press 2: Spanish → Auto Receptionist (Department Menu)
+    ├── Press 1: Sales Queue (Spanish-speaking)
+    ├── Press 2: Support Queue (Spanish-speaking)
+    └── Press 0: Operator (Spanish-speaking)
+```
+
+**Implementation steps:**
+
+1. Create department-level auto receptionists (Sales, Support) with IVR menus.
+2. Create language-level auto receptionists that route to the department auto receptionists.
+3. Assign the main company number to the top-level (language) auto receptionist.
+
+## Configure closed and holiday hours
+
+<Steps>
+  <Step title="Set closed hours routing">
+    Click **Edit** next to Closed Hours. Configure a different greeting and routing destination for after-hours calls. A common approach is to play a message and then route to voicemail or an on-call user.
+  </Step>
+  <Step title="Configure break hours (optional)">
+    Click **Edit** next to Break Hours and set temporary routing during lunch breaks or meetings. This is useful for small businesses with limited coverage.
+  </Step>
+  <Step title="Set holiday hours">
+    Click **Manage** next to Holiday Hours. Designate specific dates as holidays, create special greetings informing callers of closures, and route to voicemail or an emergency contact.
+  </Step>
+</Steps>
+
+## Manage the main auto receptionist
+
+**Changing the main company number:**
+
+- Navigate to the main auto receptionist (it displays "Main Auto Receptionist" in its name).
+- Click the dropdown next to the main company number.
+- Select from assigned numbers or click **Select an unassigned number**.
+- The previous main number remains assigned or becomes unassigned based on your selection.
+
+**Assigning additional numbers:**
+
+- The main auto receptionist can have multiple direct numbers.
+- All numbers route to the same auto receptionist with the same settings.
+- Use IVR to route callers differently based on their menu selection.
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Keep menus simple">
+    Limit IVR menus to 5–6 options maximum. Too many choices confuse callers and increase abandonment. If you need more options, use multi-level IVR.
+  </Accordion>
+  <Accordion title="Always offer an operator option">
+    Include Key 0 to reach a live person in every IVR menu. Some callers prefer human interaction, and complex issues may require human judgment.
+  </Accordion>
+  <Accordion title="Test with real callers">
+    Before launching, have colleagues outside your tech team test the full call flow. They'll catch confusing wording or routing issues you might miss.
+  </Accordion>
+  <Accordion title="Update greetings regularly">
+    Keep holiday messages current. Nothing frustrates callers more than hearing "we're closed for Thanksgiving" in January.
+  </Accordion>
+  <Accordion title="Use professional audio">
+    Invest in professional voiceover or high-quality text-to-speech. Poor audio quality damages your brand and reduces caller confidence.
+  </Accordion>
+</AccordionGroup>
+
+## Quick wins
+
+<Tip>
+  **Create after-hours routing immediately.** Even if business hours are 24/7 initially, set up closed hours routing now. When you need it (holidays, emergencies), it's already configured.
+</Tip>
+
+<Tip>
+  **Enable dial by name directory.** Add a directory option (usually Key 9) so callers who know their contact can dial directly without navigating menus.
+</Tip>
+
+<Tip>
+  **Use text-to-speech for rapid updates.** For temporary messages (weather closures, event announcements), use text-to-speech. Update the text instantly without recording new audio.
+</Tip>
+
+<Tip>
+  **Layer IVR for growth.** Start with simple direct routing. As your organization grows, add IVR menus without changing phone numbers or external documentation.
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Callers not hearing IVR menu options">
+    Verify the IVR greeting audio is uploaded and not set to "Disable." Check that the IVR Menu section has keys configured with routing destinations.
+  </Accordion>
+  <Accordion title="Key presses not working in IVR">
+    Ensure each key has routing configured by clicking Edit next to the key. Keys without routing won't respond to caller input.
+  </Accordion>
+  <Accordion title="Main company number routing to wrong auto receptionist">
+    If you use multiple sites, the main company number routes to the main auto receptionist of the main site. Check the Company Info page to verify the main site assignment.
+  </Accordion>
+  <Accordion title="Multi-level IVR routing loops back to first menu">
+    Verify child auto receptionists exist and have correct routing. Test each level independently before connecting to the parent IVR.
+  </Accordion>
+  <Accordion title="Holiday greeting playing on wrong dates">
+    Check the time zone setting in the auto receptionist profile. Holiday dates are based on the auto receptionist's time zone, not the admin's time zone.
+  </Accordion>
+</AccordionGroup>

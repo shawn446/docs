@@ -1,0 +1,308 @@
+---
+title: "Security and Compliance Configuration for Zoom Phone"
+description: "Configure encryption, E2EE, emergency addresses, call blocking, role-based access, and compliance settings for HIPAA, GDPR, and more."
+---
+
+Securing your Zoom Phone deployment means configuring encryption correctly, protecting sensitive communications with end-to-end encryption where needed, ensuring emergency address accuracy for every user, blocking unwanted callers, and establishing role-based access controls that follow the principle of least privilege. This guide walks through each security layer — from baseline encryption to industry-specific compliance frameworks — and ends with a phased security checklist you can track against.
+
+## Prerequisites
+
+- Admin access to the Zoom web portal
+- Understanding of your organization's security and compliance requirements
+- Knowledge of applicable regulations (HIPAA, GDPR, financial services, etc.)
+- Emergency address information for all physical office locations and remote workers
+
+## Encryption and call security
+
+### Standard encryption
+
+All Zoom Phone calls use AES-128 bit encryption by default. This applies to:
+
+- Connections between the Zoom Cloud and Zoom clients
+- Desktop app calls
+- Mobile app calls
+- Desk phone calls on supported SIP devices
+
+<Note>
+Encryption is always enabled and cannot be disabled. This provides a baseline security layer for all communications without any additional configuration.
+</Note>
+
+### End-to-end encryption (E2EE)
+
+E2EE provides maximum call privacy. With E2EE enabled, only the call participants can decrypt audio — not even Zoom can access call content.
+
+Enable E2EE at the scope that matches your needs:
+
+<Tabs>
+  <Tab title="Account level">
+    <Steps>
+      <Step title="Open account settings">
+        Navigate to **Account Management** > **Account Settings** and click the **Zoom Phone** tab.
+      </Step>
+      <Step title="Enable E2EE">
+        Under General, toggle **End-to-End Encryption** to on. Click **Enable** to confirm.
+      </Step>
+      <Step title="Lock the setting (optional)">
+        Click the lock icon to prevent users from disabling E2EE on their own accounts.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Site level">
+    <Steps>
+      <Step title="Navigate to company info">
+        Navigate to **Phone System Management** > **Company Info**.
+      </Step>
+      <Step title="Open the site policy">
+        Click the site name, then click the **Policy** tab.
+      </Step>
+      <Step title="Enable E2EE">
+        Toggle **End-to-End Encryption** to on.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Group level">
+    <Steps>
+      <Step title="Open group settings">
+        Navigate to **User Management** > **Groups** and click the group name.
+      </Step>
+      <Step title="Enable E2EE">
+        Click the **Zoom Phone** tab and toggle **End-to-End Encryption** to on.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Individual user">
+    <Steps>
+      <Step title="Open user settings">
+        Navigate to **Phone System Management** > **Users & Rooms** and click the user's name.
+      </Step>
+      <Step title="Enable E2EE">
+        Click the **Policy** tab and toggle **End-to-End Encryption** to on.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+### E2EE limitations
+
+<Warning>
+When E2EE is enabled, the following features are unavailable for affected users: call recording (automatic or ad-hoc), call flip between devices, call monitoring (listen, whisper, barge), in-call controls (merge, transfer), DTMF codes, hold music, park and unpark, shared line appearance, switch to carrier, and elevating a call to a meeting. Enable E2EE selectively for departments where privacy outweighs the need for these features.
+</Warning>
+
+**Recommended approach:** Enable E2EE for executives, legal teams, and departments handling highly sensitive conversations. Keep E2EE disabled for support teams and call queue agents who rely on call recording and monitoring.
+
+## Emergency address management
+
+Emergency addresses are provided to first responders when users dial emergency numbers (911, 999, etc.). Every user must have an accurate emergency address before going live.
+
+<Steps>
+  <Step title="Set the account or site-level address">
+    Navigate to **Phone System Management** > **Company Info**. Click **Account Settings** or the site name, then click the **Settings** tab. Under Emergency Address, click **Edit**, enter the complete street address, verify that the system validates the address, and click **Save**.
+  </Step>
+  <Step title="Set individual user addresses">
+    For users whose location differs from the account address (remote workers, satellite offices), navigate to **Phone System Management** > **Users & Rooms**, click the user's name, click the **Profile** tab, and update the Emergency Address field.
+  </Step>
+</Steps>
+
+### Emergency address best practices
+
+<Warning>
+Emergency address accuracy can save lives. Audit addresses quarterly and immediately after any office move or user relocation.
+</Warning>
+
+| User type | Guidance |
+|-----------|----------|
+| **Remote workers** | Set the address to their home office. Update when they relocate. Train users on how to update their own address. |
+| **Multi-floor buildings** | Include floor and suite number. Consider separate sites per floor for precise first-responder routing. |
+| **Mobile or traveling users** | Set a default address. Educate users that their Zoom Phone address does not update based on physical location and they should use their mobile carrier for 911 when traveling. |
+| **Desk phones** | Assign the emergency address based on the phone's physical location. Update if phones are moved between offices. |
+
+## Call blocking and spam protection
+
+### Manage blocked numbers
+
+Block unwanted callers at the account, site, group, or user level.
+
+**Account-level block list:**
+
+<Steps>
+  <Step title="Open the block list">
+    Navigate to **Phone System Management** > **Settings**. Under Security, locate **Block List** and click **Manage Block List**.
+  </Step>
+  <Step title="Add a blocking rule">
+    Click **Add** and choose the blocking method:
+
+    - **Prefix match** — Block all numbers sharing a country code and area code. Enter the prefix (e.g., `1905` blocks all calls from the +1 (905) area code). Useful for blocking entire regions or known spam sources.
+    - **Phone number match** — Block a specific number. Enter the full number including country code (e.g., `19051231234` blocks +1 (905) 123-1234).
+  </Step>
+  <Step title="Set the block direction">
+    Choose **Inbound** to prevent the blocked number from calling or texting your users, or **Outbound** to prevent your users from calling the blocked number.
+  </Step>
+</Steps>
+
+**User-level block list:**
+
+Navigate to the user's settings, locate **Block List** under Others, and click **Manage Block List**. Users can also manage their own block list from the Zoom app.
+
+### Spam call protection
+
+- **Automatic spam detection** — Zoom identifies potential spam calls and displays a warning to the user before they answer. Verified callers show a checkmark icon.
+- **Block calls without caller ID** — Navigate to user settings and toggle **Block Calls without Caller ID** to on. This blocks all anonymous or hidden caller ID calls.
+- **Monitor call logs** for spam patterns and add repeat offenders to the block list. Educate users to report spam calls rather than engaging with them — responding confirms the number is active and may increase spam volume.
+
+## Access control and role-based permissions
+
+### User permission policies
+
+Navigate to **Account Management** > **Account Settings** > **Zoom Phone** tab to configure which features users can access and lock settings to prevent changes.
+
+**Key security policies to configure:**
+
+- **Prevent external calls** — Block all inbound external calls for sensitive internal roles. Useful for reception lines, internal support extensions, and users who should only communicate internally.
+- **Restrict international calling** — Navigate to **Phone System Management** > **Settings** and configure international calling restrictions to prevent toll fraud and control costs.
+- **Require feature access codes** — Force users to enter a PIN for certain features, adding an authentication layer for sensitive operations.
+
+### Role-based access control
+
+**Admin roles:**
+- Assign the minimum privileges necessary for each admin role.
+- Use role management to delegate specific functions — for example, a queue admin role for call queue management only.
+- Limit full admin access to IT leadership.
+
+**User groups:**
+- Create groups by department or security level.
+- Apply different security policies per group so departments with different risk profiles operate under appropriate controls.
+- Use groups to simplify policy management at scale rather than configuring each user individually.
+
+## Recording and data retention compliance
+
+### Call recording compliance
+
+- Enable recording prompts and consent options to meet legal requirements. See [Set Up Call Recording Policies](/admin/call-recording) for detailed configuration steps.
+- Configure automatic deletion by setting retention periods under **Account Management** > **Account Settings** > **Recording**.
+- Enable PII redaction to automatically remove credit card numbers, Social Security numbers, and other sensitive data from call transcripts.
+- Limit recording access using role-based permissions and audit recording access logs regularly.
+
+### Voicemail security
+
+- Require PINs for voicemail access via phone. Set complexity requirements and consider forcing periodic PIN changes.
+- Enable voicemail transcription with PII redaction for searchability while protecting sensitive content.
+- In highly sensitive environments, consider disabling voicemail transcription entirely.
+
+## Compliance frameworks
+
+<Tabs>
+  <Tab title="HIPAA">
+    For healthcare organizations handling protected health information (PHI):
+
+    **Required steps:**
+
+    1. Sign a Business Associate Agreement (BAA) with Zoom. Access compliance documentation at [zoom.us/trust](https://zoom.us/trust).
+    2. Enable E2EE for calls that discuss PHI.
+    3. Enable automatic call recording with consent prompts for documented call records.
+    4. Configure PII redaction for call transcripts.
+    5. Implement access controls and audit logging to track who accesses PHI-related recordings.
+    6. Train staff on HIPAA-compliant usage of Zoom Phone.
+
+    **Zoom Trust Center:** Download SOC 2, HIPAA, and ISO certifications and review security whitepapers at [zoom.us/trust](https://zoom.us/trust).
+  </Tab>
+  <Tab title="GDPR">
+    For organizations handling EU citizen data:
+
+    **Data subject rights:**
+    - Provide the ability to export individual user call logs on request.
+    - Establish a process for data deletion requests (right to erasure).
+    - Document all data processing activities involving call and voicemail data.
+
+    **Data residency:**
+    - Configure data storage location if your organization or regulation requires EU-based data processing.
+    - Review Zoom's available data center locations and understand where call data is processed and stored.
+  </Tab>
+  <Tab title="Financial services">
+    - Enable call recording for all regulated communication activities.
+    - Implement retention policies that align with applicable regulations (MiFID II, FINRA, etc.).
+    - Configure trade surveillance integrations if required by your compliance program.
+    - Export call logs monthly for regulatory reporting and audit evidence.
+  </Tab>
+  <Tab title="Legal">
+    - Enable E2EE for calls covered by attorney-client privilege.
+    - Enable call recording for evidence preservation and documentation of client communications.
+    - Implement secure voicemail access with PIN requirements.
+    - Limit recording access to authorized personnel using role-based permissions.
+  </Tab>
+  <Tab title="Education">
+    - Configure FERPA-compliant settings to protect student data in call records.
+    - Address COPPA compliance for any calls or communications involving minors.
+    - Configure age-appropriate security policies for student-facing phone lines.
+  </Tab>
+</Tabs>
+
+## Security monitoring and auditing
+
+### Monitor call logs for anomalies
+
+Review call logs regularly for:
+- Unusual call volume spikes
+- Calls to blocked or restricted countries
+- Repeated failed authentication attempts
+- Emerging spam call patterns
+
+Export logs monthly for compliance reporting and incident investigation.
+
+### Quality of service as a security indicator
+
+Sudden drops in call quality — increased latency, packet loss, or jitter — can indicate network anomalies or attack conditions. Monitor QoS metrics weekly and investigate unusual patterns. See [Reporting and Analytics](/admin/reporting-and-analytics) for QoS dashboard details.
+
+### User activity monitoring
+
+Track which users are not using Zoom Phone, as this may indicate they are using unauthorized communication tools that bypass your security policies. Review recording access logs and monitor for policy violations.
+
+## Security checklist
+
+Use this checklist to track your security posture over time.
+
+<AccordionGroup>
+  <Accordion title="Immediate (before go-live)">
+    - [ ] Configure emergency addresses for all users and locations
+    - [ ] Enable spam call protection and caller verification
+    - [ ] Set up call recording consent prompts to meet legal requirements
+    - [ ] Enable MFA for all admin accounts accessing the Zoom web portal
+  </Accordion>
+  <Accordion title="First week">
+    - [ ] Review and configure all policy settings under Account Settings > Zoom Phone
+    - [ ] Set up the account-level blocked number list
+    - [ ] Configure data retention policies for recordings and voicemail
+    - [ ] Audit user permissions and confirm minimum necessary access
+  </Accordion>
+  <Accordion title="First month">
+    - [ ] Enable E2EE for executives, legal teams, and sensitive departments
+    - [ ] Document security policies for call recording, data retention, acceptable use, and incident response
+    - [ ] Train users on spam calls, phishing via phone, proper handling of sensitive calls, and when to use E2EE
+    - [ ] Conduct the first security audit: review blocked numbers, emergency addresses, and compliance settings
+  </Accordion>
+  <Accordion title="Ongoing">
+    - [ ] Quarterly emergency address audits (especially after office moves or staff relocations)
+    - [ ] Monthly security log reviews for anomalies and policy violations
+    - [ ] Annual compliance reviews aligned with your regulatory calendar
+    - [ ] Regular user security training updates
+  </Accordion>
+</AccordionGroup>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Users can't make calls after enabling E2EE">
+    Verify E2EE is properly enabled at all applicable levels (account, site, group, and user). Check that users are on compatible Zoom clients with the latest version. Review the E2EE limitations — some features are incompatible with E2EE and may cause confusion if users expect them to work.
+  </Accordion>
+  <Accordion title="Emergency calls showing the wrong location">
+    Update the emergency address and wait up to 15 minutes for propagation. Verify the address was validated by the system — validated addresses display a checkmark indicator.
+  </Accordion>
+  <Accordion title="Blocked numbers still getting through">
+    Verify the block rule type is set to **Inbound** rather than **Outbound**. Check that the prefix format includes the country code. Note that user-level blocks can override account-level blocks, so check both levels.
+  </Accordion>
+  <Accordion title="Compliance audit findings">
+    Review call recording settings immediately. Confirm consent prompts are enabled. Verify PII redaction is active and working. Export call logs to demonstrate compliance history to auditors.
+  </Accordion>
+  <Accordion title="Spam call volume increasing">
+    Enable **Block Calls without Caller ID** to stop anonymous calls. Add repeat offenders to the block list. Educate users not to engage with suspected spam calls — answering and engaging confirms the number is active and increases the likelihood of future calls.
+  </Accordion>
+</AccordionGroup>

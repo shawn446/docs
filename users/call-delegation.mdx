@@ -1,0 +1,211 @@
+---
+title: "Set Up Call Delegation for Executives and Assistants"
+description: "Configure shared line appearance so an assistant can answer, place, and transfer calls on behalf of an executive — with VIP routing and privacy controls."
+---
+
+Call delegation — also called shared line appearance — lets you assign one or more delegates who can make and receive calls using your phone number. This is the foundation of a classic executive-assistant workflow: the assistant screens and handles calls on behalf of the executive, transfers callers when the executive is available, and places outbound calls that display the executive's caller ID. Both parties can see call status and activity on shared lines in real time.
+
+## Key terms
+
+- **Delegator** — the person whose calls are being managed, typically an executive or manager
+- **Delegate** — the person managing those calls, typically an assistant
+- **Shared line** — the delegator's phone line as it appears on the delegate's device
+
+## What delegation enables
+
+- Delegates answer inbound calls to the delegator's number
+- Delegates make outbound calls displaying the delegator's caller ID
+- Seamless call transfers between delegator and delegate
+- Shared call history and visibility into line activity
+- Multiple delegates per delegator with different privilege levels
+
+## Setting up delegation (for delegators)
+
+<Note>
+  Your admin may set up delegation on your behalf, or you can configure it yourself if you have permission. Zoom desktop or mobile app version 5.16.2 or later is required for advanced delegation features.
+</Note>
+
+<Steps>
+  <Step title="Open your phone settings">
+    Sign in to **zoom.us**. Click **Phone** in the navigation, then click the **Settings** tab.
+  </Step>
+  <Step title="Add a delegate">
+    Scroll to the **Delegation & Assistant** section. Click **Set** (or **Add** if adding additional delegates).
+  </Step>
+  <Step title="Assign your delegate">
+    Click the dropdown and choose **User** or **Common Area**. Search for and select your delegate, then click **Invite**.
+  </Step>
+  <Step title="Configure privileges">
+    Choose what your delegate is permitted to do:
+
+    | Privilege | What it allows |
+    |-----------|---------------|
+    | **Place Calls** | Delegate can make calls using your numbers |
+    | **Answer Calls** | Delegate receives calls to your numbers |
+    | **Join and Merge Calls** | Both of you can join the same call |
+    | **Opt In/Out** | Delegate can toggle receiving your calls on or off |
+    | **Pick Up Hold Calls** | Delegate can pick up calls you've placed on hold |
+    | **Set Business Hours** | Delegate's hours override yours — they won't get your calls outside their own hours |
+    | **Manage VIP Contacts** | Delegate can manage your VIP contact list |
+  </Step>
+  <Step title="Configure privacy settings (optional)">
+    - **Provide call locking** — prevents delegates from picking up certain calls you want to keep private
+    - **Play a chime** — plays a notification sound when a delegate joins or exits a call
+  </Step>
+  <Step title="Save">
+    Click **Save**. Your delegate receives a notification to accept the delegation request.
+  </Step>
+</Steps>
+
+## Accepting a delegation request (for delegates)
+
+<Steps>
+  <Step title="Open phone settings">
+    Sign in to **zoom.us** and go to **Phone → Settings**.
+  </Step>
+  <Step title="Accept the request">
+    In the **Assistant for** section, you'll see any pending delegation requests.
+
+    Click **Accept** to take on delegation responsibilities. Review the privileges granted to you.
+  </Step>
+  <Step title="Configure opt in/out (if enabled)">
+    Click **View** or **Edit** under "Receive calls for delegators." Toggle individual delegators on or off — useful when you're on vacation or unavailable.
+  </Step>
+</Steps>
+
+## Using delegation day-to-day
+
+### Making calls as a delegate
+
+<Tabs>
+  <Tab title="Desktop app">
+    <Steps>
+      <Step title="Open the Lines tab">
+        Click the **Phone** tab, then click **Lines** to see your shared lines.
+      </Step>
+      <Step title="Select the delegator's line">
+        Click the phone icon next to the delegator's name — or dial normally and choose the delegator's number from the caller ID dropdown.
+      </Step>
+      <Step title="Make the call">
+        Enter the number or select a contact. The call displays the delegator's caller ID to the recipient.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Mobile app">
+    <Steps>
+      <Step title="Open the Lines tab">
+        Tap **Phone**, then tap **Lines** to view shared lines.
+      </Step>
+      <Step title="Select the line and dial">
+        Tap the delegator's shared line, dial the number, and place the call. The delegator's number appears as the caller ID.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+### Answering calls as a delegate
+
+When a call comes to the delegator's number, both the delegator and delegate receive a notification (if the **Answer Calls** privilege is enabled). The notification shows the caller's name and number, and identifies which shared line is ringing.
+
+Click or tap **Accept** to answer. You can transfer the call to the delegator at any point.
+
+### Transferring calls between delegator and delegate
+
+<Steps>
+  <Step title="Delegate answers the call">
+    Receive the call on the shared line and speak with the caller as needed.
+  </Step>
+  <Step title="Place the call on hold">
+    Click or tap **Hold** in the call controls. Let the delegator know: "Call on Line 2 for you."
+  </Step>
+  <Step title="Delegator picks up">
+    The delegator opens the **Lines** tab and sees the call on hold (shown with a hold icon). They click or tap the phone icon to pick it up. The call transfers seamlessly.
+  </Step>
+</Steps>
+
+The same process works in reverse — the delegator places a call on hold and the delegate picks it up from the Lines tab.
+
+## Advanced delegation features
+
+<AccordionGroup>
+  <Accordion title="VIP delegation">
+    VIP delegation lets you control who reaches you directly versus who gets routed to your delegate first.
+
+    **How it works:**
+    - Contacts in your VIP list ring your phone directly
+    - All other callers route to your delegate(s) first for screening and transfer
+
+    **Setup:**
+    1. In Phone Settings, enable the **VIP Delegation** toggle
+    2. Under **VIP Contacts**, select your VIP group
+    3. Under **Everybody Else**, set your delegation sequence
+    4. Manage your VIP contact list under the Contacts tab
+  </Accordion>
+  <Accordion title="Call locking (privacy mode)">
+    When enabled, you can lock a call in progress so your delegate cannot join or pick it up — useful for confidential conversations or personal calls.
+
+    During a call, activate privacy or lock mode from your call controls. Delegates will be unable to join or intercept the call until you unlock it.
+  </Accordion>
+  <Accordion title="Business hours override">
+    Enable the **Set Business Hours** privilege so that your delegate's business hours override yours. If your hours are 8am–8pm but your delegate's are 8am–5pm, calls stop routing to the delegate after 5pm and go to you or voicemail instead.
+
+    This protects your delegate's personal time without requiring them to manually toggle availability.
+  </Accordion>
+  <Accordion title="Managing multiple delegates">
+    You can assign different privileges to multiple delegates:
+
+    - **Primary assistant** — full privileges (answer, place, transfer)
+    - **Backup assistant** — answer calls only, used when primary is unavailable
+    - **Team member** — pick up hold calls only, for specific transfers
+
+    Set the delegation sequence under "Everybody Else" routing in VIP Delegation settings to control which delegate receives calls first.
+  </Accordion>
+</AccordionGroup>
+
+## Viewing shared line activity
+
+Both delegator and delegate see all calls on shared lines in call history, with labels to identify who handled each call.
+
+**Delegator sees:**
+- "Outgoing by [Delegate Name] for you"
+- "Answered by [Delegate Name] for you"
+- Your own calls have no label
+
+**Delegate sees:**
+- "Outgoing by [Delegator Name]"
+- "Outgoing by you for [Delegator Name]"
+- "Answered by [Delegator Name]"
+- "Answered by you for [Delegator Name]"
+
+<Note>
+  Deleting a call history entry only removes it for you — it does not remove it from the other person's history.
+
+  Call recordings work independently: only the person who started the recording can access it. If the delegator records a call, only the delegator sees the recording. If the delegate records, only the delegate sees it. Both parties see the call history entry regardless.
+</Note>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Delegate not receiving call notifications">
+    Verify the **Answer Calls** privilege is enabled and that the delegate accepted the delegation request. Confirm the delegate is signed into Zoom.
+  </Accordion>
+  <Accordion title="Can't make calls using delegator's caller ID">
+    Ensure the **Place Calls** privilege is enabled. Select the correct shared line in the Lines tab before dialing.
+  </Accordion>
+  <Accordion title="Delegator can't pick up held calls from the delegate">
+    Verify the **Pick Up Hold Calls** privilege is enabled. Check the Lines tab to confirm the call is actually showing as held.
+  </Accordion>
+  <Accordion title="Delegation request shows 'Pending' indefinitely">
+    The delegate needs to accept the request in their Phone Settings. An admin can force-accept if needed.
+  </Accordion>
+  <Accordion title="Delegate receiving calls outside their business hours">
+    Enable the **Set Business Hours** privilege to respect the delegate's hours. This automatically opts them out of receiving calls after their working hours end.
+  </Accordion>
+  <Accordion title="Cannot enable 'Join Calls' option">
+    This setting requires admin enablement and may conflict with call monitoring configurations. Contact your admin.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Start with limited privileges and add more as you and your delegate grow comfortable with the workflow. It's easier to expand access than to troubleshoot unexpected behavior from over-broad permissions.
+</Tip>

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "almond",
+  "name": "Rivvet",
+  "colors": {
+    "primary": "#040404"
+  },
+  "logo": {
+    "light": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png",
+    "dark": "https://media.brand.dev/cad5d6e4-5400-4344-ac8e-5fcdc9b2e1ee.png"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "/introduction"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Admin Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "admin/implementation-planning",
+              "admin/licensing-overview",
+              "admin/network-readiness"
+            ]
+          },
+          {
+            "group": "Setup & Configuration",
+            "pages": [
+              "admin/account-setup",
+              "admin/sites-and-locations",
+              "admin/adding-users",
+              "admin/voicemail-and-greetings",
+              "admin/number-porting"
+            ]
+          },
+          {
+            "group": "Call Routing",
+            "pages": [
+              "admin/call-routing-overview",
+              "admin/auto-receptionists",
+              "admin/call-queues",
+              "admin/business-hours-and-holidays"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "admin/call-recording",
+              "admin/call-monitoring",
+              "admin/integrations",
+              "admin/security-and-compliance",
+              "admin/reporting-and-analytics"
+            ]
+          },
+          {
+            "group": "Go Live",
+            "pages": [
+              "admin/testing-and-go-live",
+              "admin/go-live-email-templates"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "User Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "users/overview",
+              "users/account-setup"
+            ]
+          },
+          {
+            "group": "Calls",
+            "pages": [
+              "users/making-and-receiving-calls",
+              "users/in-call-controls",
+              "users/mobile-app",
+              "users/call-history"
+            ]
+          },
+          {
+            "group": "Manage & Customize",
+            "pages": [
+              "users/call-forwarding",
+              "users/presence-and-status",
+              "users/contacts",
+              "users/call-queue-availability"
+            ]
+          },
+          {
+            "group": "Messaging & Voicemail",
+            "pages": [
+              "users/voicemail-and-greetings",
+              "users/sms"
+            ]
+          },
+          {
+            "group": "Team Features",
+            "pages": [
+              "users/call-delegation",
+              "users/call-monitoring",
+              "users/call-recording"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

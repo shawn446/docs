@@ -1,0 +1,403 @@
+---
+title: "Testing Checklist and Go-Live Readiness Guide"
+description: "Verify your Zoom Phone configuration with call flow, network, and device testing before cutover, then execute a smooth go-live day and monitor post-launch."
+---
+
+Before you flip the switch, run through every testing phase in this guide to confirm that your Zoom Phone deployment is ready for production traffic. Thorough pre-launch testing is the single best way to prevent support tickets, user frustration, and emergency rollbacks on go-live day. Plan for 2–4 hours of hands-on testing and one full day for the cutover itself.
+
+<Info>
+  **Estimated time:** 2–4 hours for testing, 1 day for cutover.
+  This checklist is for Zoom Phone administrators who have completed all configuration steps and are ready to test and launch.
+</Info>
+
+## Prerequisites
+
+Before you begin testing, confirm that all of the following are in place:
+
+<Check>All configuration articles completed</Check>
+<Check>Test user accounts created</Check>
+<Check>Access to multiple devices for testing (desktop, mobile, desk phones)</Check>
+<Check>Cutover date and time scheduled</Check>
+<Check>Rollback plan documented</Check>
+<Check>Support team briefed and available</Check>
+
+---
+
+## Call flow testing
+
+Work through each call flow category below using real user accounts and actual devices—not just admin accounts.
+
+### Basic call testing
+
+<Steps>
+  <Step title="Test internal calls">
+    Call between two internal extensions and confirm audio is clear in both directions.
+  </Step>
+  <Step title="Test inbound external calls">
+    Call from an external phone to a user's direct number and verify the call connects properly.
+  </Step>
+  <Step title="Test outbound external calls">
+    Place a call from a Zoom Phone user to an external phone number.
+  </Step>
+  <Step title="Verify audio quality">
+    Confirm audio is clear in both directions on every call type.
+  </Step>
+  <Step title="Test voicemail routing">
+    Call an offline user and verify the call routes to voicemail. Leave a voicemail and confirm it is delivered and transcribed correctly.
+  </Step>
+  <Step title="Test E911">
+    Place a test emergency call (911/999) and verify the correct location appears for the caller.
+  </Step>
+</Steps>
+
+<Warning>
+  Emergency calling location errors must be resolved before go-live. If the wrong location displays, update the emergency address for the affected site or user and wait 15 minutes for changes to propagate.
+</Warning>
+
+### Multi-device testing
+
+<Steps>
+  <Step title="Test from all device types">
+    Make calls from the desktop app, mobile app, and desk phone.
+  </Step>
+  <Step title="Test simultaneous ring">
+    Receive calls on all devices at the same time to confirm ring-all behavior works.
+  </Step>
+  <Step title="Test call handoff">
+    Initiate a call on one device and hand it off to another mid-call.
+  </Step>
+  <Step title="Verify contact sync">
+    Confirm that contacts sync correctly across all devices.
+  </Step>
+</Steps>
+
+### Auto receptionist testing
+
+<Steps>
+  <Step title="Call the main company number">
+    Dial your main company number from an external phone to verify the auto receptionist answers.
+  </Step>
+  <Step title="Test every IVR menu key">
+    Press each key in your IVR menu and confirm it routes to the correct destination.
+  </Step>
+  <Step title="Test timeout behavior">
+    Let the auto receptionist time out without pressing any key and verify the fallback routing fires.
+  </Step>
+  <Step title="Test invalid key press">
+    Press a key not mapped to any option and confirm the system handles it gracefully.
+  </Step>
+  <Step title="Test closed-hours routing">
+    Temporarily change the system time (or wait until after hours) to verify calls route correctly when the business is closed.
+  </Step>
+  <Step title="Test multi-level IVR navigation">
+    If you have nested menus, navigate between them to confirm sub-menus route correctly.
+  </Step>
+</Steps>
+
+### Call queue testing
+
+<Steps>
+  <Step title="Test queue entry">
+    Call a queue and verify hold music plays while waiting.
+  </Step>
+  <Step title="Test call distribution">
+    Confirm calls are distributed to queue members according to your configured routing strategy.
+  </Step>
+  <Step title="Test position announcements">
+    If position announcements are enabled, verify callers hear their queue position.
+  </Step>
+  <Step title="Test max wait time overflow">
+    Let a call exceed the maximum wait time and confirm overflow routing triggers.
+  </Step>
+  <Step title="Test overflow when queue is full">
+    Fill the queue to capacity and verify new callers are routed to the overflow destination.
+  </Step>
+  <Step title="Test wrap-up time">
+    After an agent handles a call, confirm wrap-up time prevents immediate back-to-back calls.
+  </Step>
+</Steps>
+
+### Recording and monitoring testing
+
+<Steps>
+  <Step title="Verify automatic recording">
+    Confirm that automatic recording starts on calls configured for recording.
+  </Step>
+  <Step title="Test recording consent prompt">
+    If your configuration requires a consent prompt, verify it plays at the start of applicable calls.
+  </Step>
+  <Step title="Check recordings in admin portal">
+    Confirm recordings appear in the admin portal with transcription.
+  </Step>
+  <Step title="Verify PII redaction">
+    If PII redaction is enabled, confirm it applies correctly to transcripts.
+  </Step>
+  <Step title="Test call monitoring">
+    Exercise each monitoring mode—listen, whisper, barge, and takeover—to confirm all four work.
+  </Step>
+</Steps>
+
+---
+
+## Network and quality testing
+
+<Steps>
+  <Step title="Test on office Wi-Fi">
+    Make calls from the office Wi-Fi network and monitor quality.
+  </Step>
+  <Step title="Test on remote and home networks">
+    Have remote or home-based users make calls to identify any network-specific issues.
+  </Step>
+  <Step title="Test on mobile data">
+    Place calls over a cellular data connection to verify mobile performance.
+  </Step>
+  <Step title="Monitor the call quality dashboard">
+    Open the Zoom admin portal call quality dashboard and watch for anomalies during testing.
+  </Step>
+  <Step title="Test during peak usage times">
+    Schedule at least one testing session during typical peak hours to catch capacity issues before they affect real calls.
+  </Step>
+</Steps>
+
+---
+
+## User communication and training
+
+### Pre-launch communications (1–2 weeks before)
+
+<Steps>
+  <Step title="Send the go-live announcement">
+    Send an announcement email to all users with the confirmed go-live date and time.
+  </Step>
+  <Step title="Distribute the extension directory">
+    Share the full extension directory so users can look up colleagues before go-live.
+  </Step>
+  <Step title="Share quick start guides">
+    Distribute quick start guides and links to documentation.
+  </Step>
+  <Step title="Communicate support channels">
+    Tell users how to reach IT support on launch day.
+  </Step>
+  <Step title="Send calendar holds">
+    Block the cutover window on user calendars so they know when to expect a brief service interruption.
+  </Step>
+</Steps>
+
+### Training materials
+
+Prepare the following materials before go-live:
+
+<Check>Making and receiving calls documentation</Check>
+<Check>Voicemail setup guide</Check>
+<Check>Mobile app setup instructions</Check>
+<Check>Desk phone quick reference cards</Check>
+<Check>FAQ document covering common issues</Check>
+
+### Support plan
+
+<Check>Help desk trained on Zoom Phone basics</Check>
+<Check>Escalation path defined for critical issues</Check>
+<Check>Admin team scheduled for extra coverage during launch week</Check>
+<Check>Known issues documented</Check>
+<Check>Rollback procedure documented and tested</Check>
+
+---
+
+## Go-live day checklist
+
+<Tip>
+  Launch on a Tuesday, Wednesday, or Thursday. Avoid Monday (highest call volume, users just returning) and Friday (reduced staff available for support, and issues discovered late Friday are hard to resolve over the weekend).
+</Tip>
+
+### Pre-cutover (morning of go-live)
+
+<Steps>
+  <Step title="Run a final test on the main number">
+    Call the main company number one last time to confirm everything is working before you begin cutover.
+  </Step>
+  <Step title="Confirm support team is ready">
+    Verify that your support team is in place and briefed on the cutover timeline.
+  </Step>
+  <Step title="Send the go-live reminder">
+    Send a "go-live today" reminder to all users with the expected cutover time.
+  </Step>
+  <Step title="Back up current configuration">
+    Export or document your current configuration before making any cutover changes.
+  </Step>
+  <Step title="Confirm desk phones are online">
+    Check the admin portal to verify all desk phones show as online and registered.
+  </Step>
+</Steps>
+
+### During the cutover window
+
+<Steps>
+  <Step title="Complete number porting cutover">
+    If your numbers are being ported, execute the final cutover with your carrier. (Skip if porting is already complete.)
+  </Step>
+  <Step title="Activate all user accounts">
+    Enable any accounts that were held in a pre-activation state.
+  </Step>
+  <Step title="Notify users the system is live">
+    Send the "system is live" notification as soon as cutover completes.
+  </Step>
+  <Step title="Test the main number immediately">
+    Place a call to the main company number the moment cutover completes to confirm inbound calling works.
+  </Step>
+  <Step title="Open the call quality dashboard">
+    Begin monitoring the call quality dashboard in real time for any spikes in errors or quality degradation.
+  </Step>
+</Steps>
+
+### Immediate post-cutover (first 2 hours)
+
+<Steps>
+  <Step title="Confirm key users can make and receive calls">
+    Reach out to stakeholders in each department to verify they can place and receive calls.
+  </Step>
+  <Step title="Verify call queues are receiving calls">
+    Place test calls into each queue and confirm members receive them.
+  </Step>
+  <Step title="Check the auto receptionist">
+    Call the main line from an external number to verify the auto receptionist is answering.
+  </Step>
+  <Step title="Monitor for unusual call failures">
+    Watch the call quality dashboard and call logs for any patterns of failed calls.
+  </Step>
+  <Step title="Address critical issues immediately">
+    Have your rollback plan ready. Escalate any critical issue blocking calls immediately.
+  </Step>
+  <Step title="Update leadership on status">
+    Send a brief status update to leadership confirming the system is live and how it's performing.
+  </Step>
+</Steps>
+
+---
+
+## Post-launch monitoring
+
+### Daily checks (first week)
+
+<Check>Monitor the call quality dashboard</Check>
+<Check>Review call logs for anomalies</Check>
+<Check>Check voicemail delivery rates</Check>
+<Check>Monitor support ticket volume and trends</Check>
+<Check>Hold a daily standup with the support team</Check>
+
+### End-of-week review
+
+<Check>Survey users for satisfaction feedback</Check>
+<Check>Track adoption metrics — calls per user, feature usage</Check>
+<Check>Analyze call queue performance metrics</Check>
+<Check>Verify billing matches expectations</Check>
+<Check>Document lessons learned</Check>
+
+---
+
+## Legacy system decommissioning
+
+### Post-cutover tasks (weeks 2–4)
+
+<Check>Monitor Zoom Phone stability for a minimum of 2 weeks</Check>
+<Check>Verify no critical functionality is missing compared to the old system</Check>
+<Check>Collect final user feedback</Check>
+
+### Final decommission (after 30 days)
+
+<Check>Cancel old phone system service</Check>
+<Check>Return old equipment if leased</Check>
+<Check>Archive old system documentation</Check>
+<Check>Remove old phone equipment from offices</Check>
+<Check>Complete final reconciliation of old phone bills</Check>
+
+---
+
+## Testing best practices
+
+<AccordionGroup>
+  <Accordion title="Test as end users would">
+    Use actual user accounts and devices to discover issues users will encounter—not just admin accounts. Admin accounts often have elevated permissions that mask real user-facing problems.
+  </Accordion>
+  <Accordion title="Test edge cases">
+    Try to break things intentionally: call during the exact minute business hours change, fill a queue to its maximum capacity, and test the longest supported call duration. Edge cases are where deployment issues most often hide.
+  </Accordion>
+  <Accordion title="Document everything">
+    Keep a testing log with timestamps, what was tested, the result, and who ran the test. This record is invaluable when troubleshooting issues discovered after go-live.
+  </Accordion>
+  <Accordion title="Schedule testing during business hours">
+    Test when your network carries typical load to surface performance issues before they affect real calls.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Quick wins
+
+<CardGroup cols={2}>
+  <Card title="Create a test call script" icon="file-lines">
+    Build a standardized script that walks testers through every scenario. A shared script ensures consistent coverage and nothing gets missed.
+  </Card>
+  <Card title="Plan cutover for low-impact time" icon="clock">
+    Schedule go-live for early morning, end of day, or the weekend when call volume is lowest to minimize disruption.
+  </Card>
+  <Card title="Set up a war room" icon="users">
+    Have your admin and support team in one place—physical or virtual—on go-live day so you can quickly coordinate and resolve issues.
+  </Card>
+  <Card title="Enable soft-launch mode" icon="toggle-on">
+    Activate a small pilot group 24–48 hours before full cutover to catch last-minute issues with minimal impact.
+  </Card>
+</CardGroup>
+
+---
+
+## Common issues during go-live
+
+<AccordionGroup>
+  <Accordion title="Calls not routing to desk phones">
+    Verify the desk phone is online and the user is signed in with the correct credentials. Check the admin portal to confirm the device is registered.
+  </Accordion>
+  <Accordion title="Emergency calling shows wrong location">
+    Update the emergency address for the affected site or users. Wait 15 minutes for the change to propagate before testing again.
+  </Accordion>
+  <Accordion title="Auto receptionist menu not responding">
+    Confirm IVR keys are mapped to destinations. Verify the greeting audio explains the correct menu options so callers know which key to press.
+  </Accordion>
+  <Accordion title="Users can't access the Phone tab">
+    Verify the user accepted their account invitation and has signed in at least once. Check that the phone license is activated on the user's account.
+  </Accordion>
+  <Accordion title="Call quality issues (echo, delay, dropped calls)">
+    Run a network quality test. Check that firewall rules allow Zoom Phone traffic. Verify QoS settings are configured correctly on the network.
+  </Accordion>
+  <Accordion title="Voicemail notifications not arriving">
+    Check spam and junk folders first. Verify that voicemail-to-email is enabled in the user's settings.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Ready for launch
+
+Once testing is complete, you have verified:
+
+<Check>All call routing works correctly</Check>
+<Check>User devices function properly on all platforms</Check>
+<Check>Recording and monitoring operate as expected</Check>
+<Check>Support team is trained and ready</Check>
+<Check>Cutover plan is documented and scheduled</Check>
+
+**Final steps:**
+
+<Steps>
+  <Step title="Get executive sign-off">
+    Confirm the go-live date and time with leadership before proceeding.
+  </Step>
+  <Step title="Send final user communications">
+    Send your last pre-go-live communication to all users 24 hours before cutover.
+  </Step>
+  <Step title="Execute cutover">
+    Run the cutover during your planned window.
+  </Step>
+  <Step title="Monitor closely">
+    Watch the system closely for the first 48 hours post-cutover.
+  </Step>
+</Steps>

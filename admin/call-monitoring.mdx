@@ -1,0 +1,185 @@
+---
+title: "Configure Call Monitoring and Live Supervision"
+description: "Set up listen, whisper, barge, and takeover monitoring modes so supervisors can coach agents, run QA reviews, and oversee live calls."
+---
+
+Call monitoring lets supervisors, managers, and trainers observe and participate in live calls without disrupting the customer experience. Use it for real-time coaching during challenging calls, quality assurance reviews, and onboarding new agents. This guide covers enabling the feature, creating monitoring groups, understanding group constraints, and using monitoring modes from both the Zoom desktop app and desk phones.
+
+## Prerequisites
+
+- Admin access to the Zoom web portal with privileges to edit account settings
+- A list of users who need monitoring capabilities (the monitors)
+- A list of users or call queues that will be monitored
+- Desk phones configured (if you plan to use monitoring on hardware devices)
+
+## Understanding call monitoring modes
+
+Call monitoring provides four real-time supervision modes:
+
+| Mode | What the monitor can do | Who can hear the monitor |
+|------|------------------------|--------------------------|
+| **Listen** | Silently observe the call | Neither party |
+| **Whisper** | Speak to the monitored user only | Monitored user only |
+| **Barge** | Join as a third participant | Both parties |
+| **Takeover** | Remove the monitored user and continue the call | Caller only |
+
+<Note>
+You can switch freely between listen, whisper, and barge during an active monitoring session. Once you take over a call, you cannot switch back to other monitoring modes.
+</Note>
+
+## Understanding monitoring group types
+
+Zoom Phone supports four monitoring configurations. Choose the type that matches your supervision structure — you cannot change the type after creating a group.
+
+| Group type | Use case |
+|------------|----------|
+| **Users & Common Area Phones** | Standard user-to-user monitoring |
+| **Call Queues** | Queue-specific oversight for call center operations |
+| **Shared Line Groups** | Mutual monitoring among members of the same shared line |
+| **Shared Line Appearance** | Executive and assistant monitoring within a delegation setup |
+
+<Warning>
+Common area phones can be monitored but cannot act as monitors. Desk phones will reboot when monitoring privileges change — this is expected behavior.
+</Warning>
+
+## Enabling call monitoring
+
+<Steps>
+  <Step title="Access account settings">
+    Sign in to the Zoom web portal as an admin. Navigate to **Account Management** > **Account Settings**, then click the **Zoom Phone** tab.
+  </Step>
+  <Step title="Enable the monitoring feature">
+    Under General, toggle **Monitoring** to on. If a verification dialog appears, click **Enable** to confirm.
+
+    Optionally, click the lock icon to prevent users from changing this setting themselves.
+  </Step>
+</Steps>
+
+## Creating monitoring groups
+
+After enabling call monitoring, create groups that define who can monitor whom. Each group pairs one or more monitors with the users or queues they are authorized to observe.
+
+<Steps>
+  <Step title="Start a new monitoring group">
+    Navigate to **Phone System Management** > **Monitoring** and click **Add**.
+  </Step>
+  <Step title="Configure the group type and name">
+    - **Type** — Select the monitoring configuration. This cannot be changed after creation.
+    - **Name** — Enter a descriptive display name, such as "Sales Team Monitoring" or "Support Queue Oversight."
+    - **Site** — Select the site if you use multiple sites. Users from other sites can still be added to the group.
+  </Step>
+  <Step title="Assign monitors">
+    Under **Monitors**, select the users who will perform monitoring.
+
+    - For Call Queues, the queue admin is added as a default monitor. Add queue members manually if needed.
+    - For Shared Line Groups, only members within the same shared line group can monitor each other.
+    - For Shared Line Appearance, only executives and assistants in the same delegation can monitor each other.
+  </Step>
+  <Step title="Assign monitored users">
+    Under **Monitored**, select the users or common area phones that can be monitored.
+
+    For Call Queues, the queue is automatically added based on monitor selection.
+  </Step>
+  <Step title="Configure notifications">
+    - **Prompt** — Enable a disclaimer that warns call participants their call may be monitored. Recommended for compliance and transparency.
+    - **Conference Barge Tone** (Shared Line Groups only) — Play an audible tone when a member barges into a call.
+  </Step>
+  <Step title="Save and apply">
+    Click **Save**. Desk phones associated with monitors and monitored users will automatically reboot to apply the new monitoring line keys. Phones may reboot more than once — wait for all reboots to complete before testing.
+
+    A BLF (Monitoring) line key is automatically added to the monitor's desk phone settings.
+  </Step>
+</Steps>
+
+## Editing monitoring groups
+
+<Steps>
+  <Step title="Access the monitoring group">
+    Navigate to **Phone System Management** > **Monitoring** and click the display name of the group you want to edit.
+  </Step>
+  <Step title="Modify group settings">
+    - Click **Rename** to change the display name.
+    - Add or remove monitors.
+    - Add or remove monitored users.
+    - Adjust prompt and tone settings.
+    - Click **Save** when finished.
+  </Step>
+</Steps>
+
+<Warning>
+You cannot change the group type after creation. If you need a different type, delete the group and create a new one.
+</Warning>
+
+## Understanding group constraints
+
+**Duplicate pair prevention:** Users can belong to multiple monitoring groups, but the same monitor–monitored pair cannot exist in more than one group. For example, if Sarah monitors John in Group A, you cannot add Sarah as a monitor and John as a monitored user in Group B.
+
+**Shared line group scope:** Adding multiple shared line groups to a single monitoring group does not allow all members to monitor all other members across groups. Members can only monitor other members within their own shared line group.
+
+**Call context requirement:** For Call Queue and Shared Line Group monitoring, the monitored user must be making or receiving calls from the queue's or shared line's extension or direct numbers. Monitoring does not work for calls made or received outside that context.
+
+## How monitors use call monitoring
+
+Once a monitoring group is configured, monitors can access monitoring features from the Zoom app or their desk phone.
+
+<Tabs>
+  <Tab title="Zoom desktop or mobile app">
+    1. Navigate to **Phone** > **Lines** tab.
+    2. Find the monitored user in the **MONITORING** section.
+    3. View call status and call duration when the user is on a call.
+    4. Click the user to access monitoring options: **Listen**, **Whisper**, **Barge**, or **Takeover**.
+  </Tab>
+  <Tab title="Desk phones">
+    1. View monitored users on the BLF (Monitoring) line keys on your desk phone.
+    2. A red icon or indicator light signals that the monitored user is on a call.
+    3. Press and hold the line key to access monitoring features.
+    4. Follow the on-screen prompts to select your monitoring mode.
+  </Tab>
+</Tabs>
+
+## Use cases
+
+<AccordionGroup>
+  <Accordion title="New agent onboarding">
+    Start new supervisors in listen-only mode to observe call patterns and learn the team's workflow before using whisper or barge. This builds confidence without impacting customer calls. After a few weeks, introduce whisper coaching for more active support.
+  </Accordion>
+  <Accordion title="Real-time coaching with whisper">
+    Use whisper mode when an agent is struggling with a difficult call. You can provide guidance — suggest answers, de-escalation language, or next steps — without the customer hearing you or the agent feeling undermined.
+  </Accordion>
+  <Accordion title="Quality assurance reviews">
+    Create queue-specific monitoring groups so quality assurance teams can observe call queue members. Use listen mode for silent reviews, then document findings for agent feedback sessions.
+  </Accordion>
+  <Accordion title="Escalation handling with barge and takeover">
+    Use barge mode to join an escalating call as a third participant and help resolve the issue directly. If the agent needs to be fully replaced on the call, switch to takeover mode to remove them and continue the conversation as the primary agent.
+  </Accordion>
+  <Accordion title="Department-specific oversight">
+    Create separate monitoring groups for sales, support, and other departments so supervisors only see their own teams in the monitoring list. This limits scope creep and keeps monitoring organized.
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<Tip>
+Enable disclaimer prompts to notify customers their call may be monitored for quality assurance. This supports compliance and builds trust.
+</Tip>
+
+- **Document monitoring policies** before going live. Include in employee handbooks: when monitoring occurs, why it is used, and who has access. Transparency helps with legal compliance and employee relations.
+- **Test all four modes** with test calls before using monitoring on live customer interactions. Have supervisors practice listen, whisper, barge, and takeover so they're comfortable with the controls.
+- **Organize by department** so supervisors only see relevant team members in their monitoring list and cannot inadvertently access unrelated queues.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Desk phones not showing monitoring line keys">
+    Verify that desk phones have available line key slots. If all slots are assigned, remove unused line keys to make room for BLF (Monitoring) keys. Phones may need to reboot after changes.
+  </Accordion>
+  <Accordion title="Cannot create a monitoring group with a specific user pair">
+    Check whether the monitor–monitored pair already exists in another group. The same pair cannot appear in multiple groups. Remove the pair from its existing group before adding it to a new one.
+  </Accordion>
+  <Accordion title="Monitor cannot see a monitored user's call status">
+    For Call Queue and Shared Line monitoring, verify the monitored user is making or receiving calls from the queue or shared line's extension. Monitoring only works within that specific call context.
+  </Accordion>
+  <Accordion title="Desk phones rebooting repeatedly after group creation">
+    This is expected behavior when monitoring privileges change. Wait for all reboots to complete before testing monitoring. Phones may reboot multiple times during the configuration propagation process.
+  </Accordion>
+</AccordionGroup>

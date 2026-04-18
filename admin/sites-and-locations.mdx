@@ -1,0 +1,216 @@
+---
+title: "Set Up Sites and Locations in Zoom Phone"
+sidebarTitle: "Sites & Locations"
+description: "Create sites for each office location, assign emergency addresses per site, configure extension ranges, and move users between sites in Zoom Phone."
+---
+
+Sites let you model your organization's physical locations inside Zoom Phone, giving each office its own emergency address, extension range, auto receptionist, and call routing rules. If your organization has multiple offices or needs location-specific emergency address handling, enabling multiple sites is the right approach before you begin provisioning users.
+
+**Estimated time:** 20–30 minutes
+
+**Who this is for:** Account Owners, System Admins, Multi-Location IT Managers
+
+## Prerequisites
+
+- Admin access to Zoom Phone portal
+- Company settings configured
+- List of all physical locations and offices
+- Emergency addresses for each location
+- Extension numbering plan
+
+## When to use multiple sites
+
+**Enable multiple sites if you have:**
+
+- Multiple physical office locations
+- Different emergency addresses needed per location
+- Location-specific phone numbers or area codes
+- Different business hours by location
+
+**You don't need multiple sites if you have:**
+
+- A single office location
+- Remote workers using the same emergency routing
+- No location-based requirements
+
+<Info>
+After enabling multiple sites, Zoom automatically creates a main site and moves all existing users, numbers, and settings to it. Your organization still has one main company number, which applies to the main auto receptionist of the main site.
+</Info>
+
+## Enable multiple sites
+
+<Steps>
+  <Step title="Navigate to sites settings">
+    - Sign in to the Zoom web portal as an admin with the privilege to edit site settings
+    - In the navigation menu, click **Phone System Management**, then click **Company Info**
+  </Step>
+
+  <Step title="Enable multiple sites">
+    - Click the **Enable Multiple Sites** toggle
+    - Confirm the dialog that appears
+    - Zoom automatically creates a main site and moves all existing users, numbers, and settings to it
+  </Step>
+
+  <Step title="Decide on site codes (optional)">
+    Site codes allow abbreviated dialing between sites. For example, site code `2` combined with extension `345` lets users dial `2345`.
+
+    Site codes are most useful for large organizations with thousands of extensions. Click **Save** when done.
+  </Step>
+</Steps>
+
+## Create a new site
+
+<Steps>
+  <Step title="Access the sites page">
+    - Navigate to **Phone System Management** > **Company Info** > **Sites**
+    - Click **Add Site**
+  </Step>
+
+  <Step title="Enter basic information">
+    - **Site Name:** Use a descriptive, location-based name (e.g., "Chicago Office")
+    - **Site Code** (if enabled): Enter a 1–3 digit unique code
+    - **Extension Range** (optional): Enter the number range for this site (e.g., 2000–2999)
+  </Step>
+
+  <Step title="Configure the auto receptionist">
+    - Under **Main Auto Receptionist**, click **Add**
+    - Choose to create a new auto receptionist or copy an existing one
+    - Name it descriptively (e.g., "Chicago Main Line")
+    - Inbound calls to the site route to this auto receptionist
+  </Step>
+
+  <Step title="Set the emergency address">
+    - Under **Default Emergency Address**, click **Add**
+    - Select an existing emergency address or enter a new one
+    - Include building, suite, and floor details
+    - This address applies by default to all phone users and numbers you add to the site
+  </Step>
+
+  <Step title="Save the site">
+    - Click **Save**
+    - Repeat these steps to add more sites
+  </Step>
+</Steps>
+
+## Create multiple sites in bulk
+
+For five or more sites, use the CSV import to save time and reduce errors.
+
+<Steps>
+  <Step title="Download the CSV template">
+    - Navigate to **Phone System Management** > **Company Info**
+    - Click **Import**
+    - In the dialog, click the **Add Sites** tab
+    - Click **CSV Sample** to download the template
+  </Step>
+
+  <Step title="Complete the CSV file">
+    Fill out your CSV with the following columns:
+
+    | Column | Description |
+    |--------|-------------|
+    | Site Name | Descriptive name for the location |
+    | Main Auto Receptionist Name | Name for the site's main receptionist |
+    | New or Copy from existing | Yes to create new, No to copy |
+    | Default Emergency Address | Full address for the site |
+
+    Follow the provided format exactly and avoid including any unnecessary information.
+  </Step>
+
+  <Step title="Upload and import">
+    - Click **Upload CSV**
+    - Review any errors reported
+    - Click **Close** when complete
+  </Step>
+</Steps>
+
+## Move users between sites
+
+<Steps>
+  <Step title="Access user settings">
+    - Navigate to **Phone System Management** > **Users & Rooms**
+    - Click the user's name
+  </Step>
+
+  <Step title="Change the site assignment">
+    - Find the **Site** dropdown
+    - Select the new site
+    - Update the extension if needed (the new site may have a different range)
+    - Verify the emergency address updated correctly
+  </Step>
+
+  <Step title="Save and test">
+    - Click **Save**
+    - Have the user test calling and verify routing works correctly
+  </Step>
+</Steps>
+
+<Tip>
+Site-specific settings like business hours, holidays, and audio can be customized for each location under the site's **Settings** tab.
+</Tip>
+
+## Site setup best practices
+
+<AccordionGroup>
+  <Accordion title="Use clear location-based names">
+    Name sites after locations, not functions. Use "Chicago Office" not "Sales Team Site." Locations don't change, but functions do.
+  </Accordion>
+
+  <Accordion title="Plan extension ranges with a growth buffer">
+    Reserve blocks per site with 20–30% room for growth. Example: New York (1000–1999), Chicago (2000–2999).
+  </Accordion>
+
+  <Accordion title="Only use site codes if you need them">
+    If you have four or more sites or thousands of extensions, site codes help. For smaller deployments, skip the added complexity.
+  </Accordion>
+
+  <Accordion title="Test E911 from each site">
+    Coordinate with local dispatch to verify the correct address displays for 911 calls placed from each site.
+  </Accordion>
+
+  <Accordion title="Copy auto receptionists instead of rebuilding">
+    Copy your main site's auto attendant and customize it for each new site. This saves significant time compared to building from scratch.
+  </Accordion>
+</AccordionGroup>
+
+## Quick wins
+
+<Tip>
+**Assign remote workers to the nearest office site**, then override their individual emergency address with their home address for accurate E911 routing.
+</Tip>
+
+<Tip>
+**Use site-specific caller ID** to display local numbers on outbound calls, which improves answer rates in each region.
+</Tip>
+
+<Tip>
+**Start with your main site only.** Get your primary location fully configured before expanding to additional sites. Don't overcomplicate day one.
+</Tip>
+
+<Tip>
+**Use bulk import for five or more sites.** Manual setup is fine for two or three sites. Beyond that, CSV import saves hours and reduces errors.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Can't enable multiple sites">
+    Some account types require Zoom support to activate multi-site. Contact your account team.
+  </Accordion>
+
+  <Accordion title="Extension conflicts after moving a user">
+    Extensions must be updated manually after a site move. Check the user's settings and reassign as needed.
+  </Accordion>
+
+  <Accordion title="Site-to-site calling not working">
+    Verify the correct dialing format (site code + extension if site codes are enabled). Check the inter-site calling policy.
+  </Accordion>
+
+  <Accordion title="Emergency address not updating after site move">
+    The address defaults to the new site, but verify manually after moving users. Always confirm the update.
+  </Accordion>
+
+  <Accordion title="CSV import failing">
+    The format must exactly match the template. Common issues include extra columns and special characters in names.
+  </Accordion>
+</AccordionGroup>

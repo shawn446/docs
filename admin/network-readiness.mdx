@@ -1,0 +1,236 @@
+---
+title: "Prepare Your Network for Zoom Phone & QoS"
+description: "Validate bandwidth, configure QoS (DSCP EF 46), open firewall ports, disable SIP ALG, and run pre-launch call quality tests before deploying Zoom Phone."
+---
+
+Your network is the foundation of call quality. Ninety percent of call issues — choppy audio, dropped calls, one-way audio — trace back to network configuration, not Zoom itself. Before you provision a single user, complete this network readiness checklist to ensure your infrastructure can handle concurrent voice traffic. This guide covers bandwidth sizing, QoS configuration, firewall rules, and pre-launch testing.
+
+<Info>
+**Estimated time:** 30–45 minutes
+
+**Audience:** Network admins, IT infrastructure teams, system administrators
+
+**Prerequisites:** Access to network equipment (routers, firewalls, switches), admin rights to configure QoS and firewall rules, ability to run network tests
+</Info>
+
+## Why network readiness matters
+
+<Warning>
+**Poor network = poor calls.** 90% of call quality issues stem from network problems, not Zoom. Get your network right and calls will be crystal clear.
+</Warning>
+
+**Common issues from poor network preparation:**
+
+- Choppy or robotic audio
+- Dropped calls
+- One-way audio (can't hear the caller or vice versa)
+- Echo and audio delays
+- Calls failing to connect
+
+## Bandwidth requirements
+
+### Per-user requirements
+
+**Zoom Phone audio only:**
+
+- Upload: 100 kbps per call
+- Download: 100 kbps per call
+
+**Typical usage scenario (including overhead):**
+
+- 1 concurrent call per user = 150 kbps up/down
+- Add 20% buffer for network overhead
+
+### Calculate your total bandwidth
+
+Use this formula to size your connection:
+
+```text
+Total Required = (Concurrent Calls × 150 kbps × 1.2) + Existing Traffic
+```
+
+**Example calculation:**
+
+- 50 users, 30% on calls simultaneously
+- 50 × 0.30 = 15 concurrent calls
+- 15 × 150 kbps × 1.2 = **2.7 Mbps** dedicated for Zoom Phone
+
+<Tip>
+Most offices need 3–5 Mbps dedicated for Zoom Phone. This is minimal for modern internet connections.
+</Tip>
+
+## Steps to prepare your network
+
+<Steps>
+  <Step title="Test your current bandwidth">
+    Run a speed test from your office network — not from a personal device on a cellular connection.
+
+    - Use [speed.cloudflare.com](https://speed.cloudflare.com) or [fast.com](https://fast.com)
+    - Test during peak business hours, not off-peak
+    - **Minimum recommended:** 25 Mbps down / 5 Mbps up for small offices
+    - Verify upload speeds especially — voice traffic needs good upload performance
+  </Step>
+
+  <Step title="Configure Quality of Service (QoS)">
+    QoS prioritizes voice traffic over less critical data like file downloads.
+
+    - Configure QoS on your router or firewall to prioritize Zoom traffic
+    - Mark Zoom Phone packets with **DSCP value: EF (46)** for audio
+    - Apply QoS to both inbound and outbound traffic
+    - QoS prevents file downloads and video streaming from degrading call quality during business hours
+  </Step>
+
+  <Step title="Open required firewall ports">
+    Allow the following ports for Zoom Phone traffic:
+
+    | Protocol | Ports | Purpose |
+    |----------|-------|---------|
+    | UDP | 8801–8810 | Audio/video |
+    | TCP | 443 | HTTPS signaling |
+    | TCP | 8801–8810 | Backup if UDP is blocked |
+
+    Additionally:
+
+    - Whitelist Zoom IP ranges (check the [Zoom network firewall documentation](https://support.zoom.us/hc/en-us/articles/201362683) for the current list)
+    - Allow outbound connections to `*.zoom.us` domains
+  </Step>
+
+  <Step title="Disable SIP ALG">
+    SIP ALG (Application Layer Gateway) on routers frequently causes call failures and is enabled by default on most consumer and SMB routers.
+
+    1. Log into your router's admin interface
+    2. Navigate to **Advanced Settings** > **SIP ALG** or **NAT Helper**
+    3. Disable SIP ALG
+    4. Save and apply the change
+
+    <Note>
+    Disabling SIP ALG fixes approximately 80% of "calls won't connect" issues reported during new Zoom Phone deployments.
+    </Note>
+  </Step>
+
+  <Step title="Configure additional network settings">
+    - Enable consistent NAT (Network Address Translation)
+    - Configure VPN split tunneling for remote workers — allow Zoom Phone traffic to bypass the VPN
+    - Set router or firewall session timeout to at least **300 seconds**
+    - Disable deep packet inspection (DPI) for Zoom traffic if possible, as DPI introduces latency
+  </Step>
+
+  <Step title="Test call quality">
+    Before going live, validate your network with Zoom's built-in tools.
+
+    - Run Zoom's network test at [zoom.us/test](https://zoom.us/test)
+    - Make test calls between internal users
+    - Monitor **jitter** (target: under 30ms)
+    - Monitor **packet loss** (target: under 1%)
+    - Check **latency** (target: under 150ms)
+  </Step>
+</Steps>
+
+## Network requirements checklist
+
+<AccordionGroup>
+  <Accordion title="Basic requirements (minimum to deploy)">
+    - [ ] Internet bandwidth: 25+ Mbps down / 5+ Mbps up
+    - [ ] Firewall ports opened (UDP 8801–8810, TCP 443)
+    - [ ] SIP ALG disabled on router
+    - [ ] Zoom domains whitelisted (`*.zoom.us`)
+  </Accordion>
+
+  <Accordion title="Recommended for best quality">
+    - [ ] QoS configured with DSCP EF (46) for Zoom traffic
+    - [ ] Dedicated bandwidth reserved for voice (3–5 Mbps)
+    - [ ] Latency under 150ms
+    - [ ] Jitter under 30ms
+    - [ ] Packet loss under 1%
+    - [ ] Network monitoring tools in place
+  </Accordion>
+
+  <Accordion title="Advanced deployments">
+    - [ ] VLAN segmentation for voice traffic
+    - [ ] Redundant internet connections (failover)
+    - [ ] Local internet breakout for branch offices
+    - [ ] SD-WAN for multi-site optimization
+  </Accordion>
+</AccordionGroup>
+
+## Remote worker considerations
+
+**Home network minimum requirements:**
+
+- 10 Mbps down / 3 Mbps up
+- Wired ethernet preferred over Wi-Fi
+- Router no more than 5 years old
+
+**Common remote worker issues:**
+
+| Issue | Fix |
+|-------|-----|
+| Wi-Fi interference | Switch to 5GHz band or use a wired connection |
+| Shared bandwidth | Enable QoS on home router if available |
+| VPN conflicts | Configure split tunneling so Zoom bypasses the VPN |
+| ISP throttling | Contact ISP if issues persist consistently |
+
+**Provide remote workers with:**
+
+- Network requirements documentation
+- Speed test instructions (link to [fast.com](https://fast.com))
+- Recommended router settings
+- IT contact information for network issues
+
+## Pre-launch testing
+
+Run all four of these tests before your go-live date:
+
+<Steps>
+  <Step title="Bandwidth test during business hours">
+    - Run speed tests from multiple office locations
+    - Test at 9am, 12pm, and 3pm (peak times) to capture real-world conditions
+  </Step>
+
+  <Step title="Make test calls">
+    - Between internal users on the same network
+    - To external phone numbers
+    - From different locations: office, home, and mobile
+  </Step>
+
+  <Step title="Stress test with multiple simultaneous calls">
+    - Have 30–50% of users on calls at the same time
+    - Monitor audio quality for degradation under load
+  </Step>
+
+  <Step title="Test failover scenarios">
+    - Simulate primary internet failure
+    - Verify calls fail gracefully with clear messaging to users
+    - Confirm automatic reconnection behavior
+  </Step>
+</Steps>
+
+## Quick wins for better call quality
+
+**Use wired connections when possible.** Ethernet is always more stable than Wi-Fi for voice calls.
+
+**Update router firmware.** Outdated firmware causes unpredictable call issues. Update routers before deployment and on a regular schedule afterward.
+
+**Separate voice and data VLANs.** If your network supports it, VLAN segmentation guarantees voice traffic priority without relying on software QoS alone.
+
+**Monitor network health.** Use tools like PingPlotter or Zoom's built-in call quality analytics to catch issues before users report them.
+
+**Plan for growth.** Today's 50 users might be 100 users next year. Size your network connection and QoS policies for where you're going, not just where you are.
+
+<AccordionGroup>
+  <Accordion title="Common network issues and fixes">
+    **Choppy or robotic audio** → Usually packet loss or jitter. Check QoS settings and confirm you have adequate bandwidth.
+
+    **One-way audio** → Usually a firewall or SIP ALG issue. Disable SIP ALG and verify all required ports are open.
+
+    **Calls drop after 30–60 seconds** → NAT session timeout is too short. Increase to 300+ seconds.
+
+    **Can't make outbound calls** → Firewall is blocking outbound connections. Check port 443 and UDP 8801–8810.
+
+    **Echo on calls** → Network loop or acoustic issue. Check for duplicate audio sources and confirm no audio feedback loop in the room.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+With adequate bandwidth confirmed, QoS configured, firewall ports open, SIP ALG disabled, and call quality tested, your network is ready to support Zoom Phone. Proceed to account setup to configure sites, emergency addresses, and your audio library.

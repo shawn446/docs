@@ -1,0 +1,461 @@
+---
+title: "Integrate Zoom Phone with Your Business Applications"
+description: "Connect Zoom Phone to CRM, collaboration, help desk, calendar, SSO, and automation tools to embed calling into your existing workflows."
+---
+
+Zoom Phone integrates with hundreds of business applications through the Zoom App Marketplace, enabling click-to-dial from any business tool, automatic call logging, screen pops with caller context, calendar presence sync, and workflow automation. This guide covers the major integration categories, setup steps for each platform, and a recommended rollout sequence so you can prioritize high-impact connections first.
+
+Browse all available integrations at [marketplace.zoom.us](https://marketplace.zoom.us).
+
+## Prerequisites
+
+- Admin access to the Zoom web portal
+- Admin access to the third-party applications you want to integrate
+- An understanding of your organization's tech stack and primary workflows
+- User requirements and workflow needs identified before configuration
+
+## General integration setup process
+
+Use this process for any integration in the Zoom App Marketplace.
+
+<Steps>
+  <Step title="Identify integration needs">
+    Survey users on their primary tools. Identify workflow bottlenecks where manual steps could be automated. Prioritize integrations by impact on daily call volume and data quality.
+  </Step>
+  <Step title="Access integration settings">
+    Navigate to **Advanced** > **Integration** in the Zoom web portal, or browse the Zoom App Marketplace directly at [marketplace.zoom.us](https://marketplace.zoom.us).
+  </Step>
+  <Step title="Install the integration">
+    Click the integration name, then click **Install** or **Add**. Authenticate with the third-party app and grant the required permissions.
+  </Step>
+  <Step title="Configure settings">
+    Map data fields between systems, set notification preferences, configure user access, and customize behavior for your organization's workflow.
+  </Step>
+  <Step title="Test before rolling out">
+    Make test calls to verify data sync, confirm screen pops display correctly, and validate that call logging writes to the correct records. Test with a known contact first.
+  </Step>
+  <Step title="Train users">
+    Demonstrate integration features with real use-case examples. Share documentation, provide hands-on practice, and set expectations about which features are automated vs. manual.
+  </Step>
+  <Step title="Monitor and optimize">
+    Track adoption metrics and gather user feedback. Adjust configuration as needed and add integrations based on team requests.
+  </Step>
+</Steps>
+
+## CRM integrations
+
+Connect Zoom Phone with your CRM to log calls automatically, surface caller context before you answer, and reduce manual data entry.
+
+<Tabs>
+  <Tab title="Salesforce">
+    **Features:**
+    - Click-to-dial from any phone number in Salesforce
+    - Automatic call logging to contact, account, and case records
+    - Screen pop showing contact, account, or case when an inbound call arrives
+    - Call disposition and notes synced to Salesforce after the call
+    - Supports both Salesforce Lightning and Classic
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the Salesforce app">
+        Install the Zoom Phone app from the Salesforce AppExchange.
+      </Step>
+      <Step title="Configure the connection in Zoom">
+        Navigate to **Advanced** > **Integration** in the Zoom web portal and configure the Salesforce connection.
+      </Step>
+      <Step title="Assign permissions in Salesforce">
+        Assign Zoom Phone permissions to the appropriate profiles or permission sets in Salesforce.
+      </Step>
+      <Step title="Access the phone from Salesforce">
+        Users access Zoom Phone from the Salesforce sidebar. No separate app window required.
+      </Step>
+    </Steps>
+
+    **Best for:** Sales teams, customer success, and support departments that live in Salesforce throughout the day.
+  </Tab>
+  <Tab title="Microsoft Dynamics 365">
+    **Features:**
+    - Embedded dialer within the Dynamics interface
+    - Call recordings attached directly to customer records
+    - Automatic activity logging to contacts, leads, and accounts
+    - Click-to-dial from any entity — contact, lead, or account
+
+    **Best for:** Organizations standardized on the Microsoft ecosystem that want a unified Dynamics experience without switching to a separate phone app.
+  </Tab>
+  <Tab title="HubSpot">
+    **Features:**
+    - In-app calling directly from HubSpot contacts
+    - Automatic call logging and recording attached to the contact timeline
+    - Call transcription saved to the contact record
+    - Integration with HubSpot workflows for post-call automation
+
+    **Best for:** Small to mid-size businesses using HubSpot for sales and marketing who want a fully connected contact history.
+  </Tab>
+  <Tab title="Zendesk">
+    **Features:**
+    - Call customers directly from support tickets
+    - Screen pop with ticket information when an inbound call arrives
+    - Automatic ticket creation from calls
+    - Call recordings attached to tickets
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the Zendesk integration">
+        Install Zoom Phone for Zendesk from the Zoom Marketplace.
+      </Step>
+      <Step title="Configure the connection">
+        Navigate to **Advanced** > **Integration** in Zoom and configure the Zendesk connection.
+      </Step>
+      <Step title="Authenticate Zendesk">
+        Authenticate your Zendesk account and grant the required API permissions.
+      </Step>
+      <Step title="Access the phone from Zendesk">
+        Agents access Zoom Phone from the Zendesk sidebar during their support workflow.
+      </Step>
+    </Steps>
+
+    **Best for:** Customer support teams that manage inbound calls alongside support ticket queues.
+  </Tab>
+</Tabs>
+
+## Collaboration platform integrations
+
+Embed Zoom Phone into your team's primary collaboration tool to reduce context switching and keep call activity visible within the tools people already use.
+
+<Tabs>
+  <Tab title="Microsoft Teams">
+    **Features:**
+    - Make and receive Zoom Phone calls from within Microsoft Teams
+    - Teams presence integration — your Teams status reflects call activity
+    - Call history sync between Zoom Phone and Teams
+    - Click-to-dial from Teams contacts
+    - Voicemail access within the Teams interface
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the Teams app">
+        Install Zoom Phone for Microsoft Teams from the Teams app store.
+      </Step>
+      <Step title="Configure in Zoom">
+        Configure the integration in the Zoom web portal under **Advanced** > **Integration**.
+      </Step>
+      <Step title="Authenticate within Teams">
+        Users authenticate their Zoom account from within the Teams app.
+      </Step>
+      <Step title="Access the Phone tab">
+        Users access Zoom Phone from the **Phone** tab in the Teams left sidebar.
+      </Step>
+    </Steps>
+
+    **Requirements:**
+    - Requires a specific Zoom Phone license tier — confirm with your Zoom account manager.
+    - Requires Teams admin approval for app installation.
+
+    **Best for:** Organizations using Microsoft Teams as their primary collaboration hub who want phone access without leaving Teams.
+  </Tab>
+  <Tab title="Slack">
+    **Features:**
+    - Start calls using slash commands (`/zoom phone`)
+    - Call history and recording links posted to channels
+    - Screen pop with the caller's Slack profile
+    - Integration with Slack Workflow Builder for automation
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the Slack app">
+        Install Zoom Phone for Slack from the Slack App Directory.
+      </Step>
+      <Step title="Authenticate with Zoom">
+        Authenticate with your Zoom account from within Slack.
+      </Step>
+      <Step title="Configure channel notifications">
+        Set which channels receive call history posts and recording link notifications.
+      </Step>
+      <Step title="Use the slash command">
+        Users initiate calls with `/zoom phone` commands directly in Slack messages.
+      </Step>
+    </Steps>
+
+    **Best for:** Organizations using Slack for team communication who want to initiate and log calls without leaving the Slack interface.
+  </Tab>
+  <Tab title="Google Workspace">
+    **Features:**
+    - Click-to-dial from Gmail contacts
+    - Google Calendar integration for presence status
+    - Call from Google Contacts with one click
+    - Chrome extension for one-click calling from any webpage
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the Google Workspace add-on">
+        Install the Zoom Phone Google Workspace add-on from the Google Workspace Marketplace.
+      </Step>
+      <Step title="Enable in Zoom">
+        Navigate to **Advanced** > **Integration** and enable the Google Workspace connection.
+      </Step>
+      <Step title="Users authorize their Google accounts">
+        Each user authorizes the connection between their Google account and Zoom Phone.
+      </Step>
+      <Step title="Access phone from Gmail">
+        Users access Zoom Phone from the Gmail sidebar and use the Chrome extension for calling from any page.
+      </Step>
+    </Steps>
+
+    **Best for:** Organizations using Google Workspace — Gmail, Google Calendar, and Google Contacts — as their primary productivity suite.
+  </Tab>
+</Tabs>
+
+## Help desk and ITSM integrations
+
+Streamline support operations by surfacing call controls directly in your ticketing system.
+
+<Tabs>
+  <Tab title="ServiceNow">
+    **Features:**
+    - Call users directly from ServiceNow incidents and requests
+    - Automatic incident creation from inbound calls
+    - Screen pop showing user information when a call arrives
+    - Call details and recordings logged to tickets
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Install the ServiceNow app">
+        Install Zoom Phone for ServiceNow from the Zoom Marketplace or ServiceNow Store.
+      </Step>
+      <Step title="Configure the connection in Zoom">
+        Navigate to **Advanced** > **Integration** and configure the ServiceNow connection.
+      </Step>
+      <Step title="Map fields between systems">
+        Map Zoom Phone call fields (caller ID, duration, recording link) to the corresponding ServiceNow fields on incidents and requests.
+      </Step>
+      <Step title="Test the call flow">
+        Make a test call and verify that a ticket is automatically created with the correct information and call details.
+      </Step>
+    </Steps>
+
+    **Best for:** IT support teams and enterprise service management operations using ServiceNow as their ITSM platform.
+  </Tab>
+  <Tab title="Jira Service Management">
+    **Features:**
+    - Click-to-dial from customer requests in Jira Service Management
+    - Call logging to Jira issues
+    - Integration with Jira automation workflows for post-call actions
+
+    **Best for:** Technical support teams using Atlassian tools who want phone activity surfaced alongside issue tracking.
+  </Tab>
+</Tabs>
+
+## Calendar and scheduling integrations
+
+Sync calendars to keep your Zoom Phone presence status accurate and enable calling directly from scheduling tools.
+
+<Tabs>
+  <Tab title="Microsoft Outlook">
+    **Features:**
+    - Outlook plugin for scheduling Zoom Phone calls and meetings
+    - Calendar integration that updates presence status based on calendar events
+    - Click-to-dial from Outlook contacts
+    - Voicemail notifications delivered to your Outlook inbox
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Download and install the Outlook plugin">
+        Download the Outlook plugin from the Zoom website and install it on user workstations. An Outlook Web add-in is also available for browser-based Outlook access.
+      </Step>
+      <Step title="Configure plugin settings">
+        Configure the plugin settings to connect to your Zoom account and set notification preferences.
+      </Step>
+      <Step title="Access Zoom Phone from Outlook">
+        Users access Zoom Phone from the **Zoom** section in the Outlook ribbon.
+      </Step>
+    </Steps>
+
+    **Available formats:** Outlook desktop plugin and Outlook Web add-in.
+  </Tab>
+  <Tab title="Google Calendar">
+    **Features:**
+    - Calendar sync that automatically updates your availability status in Zoom Phone
+    - Google Contacts integration for click-to-dial
+    - Chrome extension for quick calling from any page
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Enable Google Calendar in Zoom">
+        Navigate to **Advanced** > **Integration** and enable Google Calendar.
+      </Step>
+      <Step title="Users connect their Google accounts">
+        Each user connects their Google account to authorize calendar access.
+      </Step>
+      <Step title="Presence updates automatically">
+        Calendar events automatically update the user's presence status in Zoom Phone.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Office 365">
+    **Features:**
+    - Office 365 calendar sync for accurate presence status
+    - Presence integration across the Microsoft 365 suite
+    - SSO authentication support for seamless sign-in
+
+    **Setup:**
+
+    <Steps>
+      <Step title="Configure Office 365 in Zoom">
+        Navigate to **Advanced** > **Integration** and configure the Office 365 connection.
+      </Step>
+      <Step title="Enable SSO if applicable">
+        If your organization uses Azure AD for SSO, configure SSO at the same time to simplify the user sign-in experience.
+      </Step>
+      <Step title="Users authorize calendar access">
+        Each user authorizes Zoom Phone to read their Office 365 calendar for presence sync.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Single sign-on (SSO)
+
+<Tip>
+Configure SSO before go-live. It simplifies user onboarding and eliminates password management headaches from day one.
+</Tip>
+
+SSO centralizes authentication, enables automatic user provisioning, enhances security, and simplifies access for employees across your organization.
+
+**Supported identity providers:**
+- Okta
+- Azure AD
+- OneLogin
+- Ping Identity
+- Any SAML 2.0-compliant provider
+
+**Setup:**
+
+<Steps>
+  <Step title="Access SSO settings">
+    Navigate to **Advanced** > **Single Sign-On** in the Zoom web portal.
+  </Step>
+  <Step title="Configure SAML 2.0 settings">
+    Enter your identity provider's SAML 2.0 configuration details, including the SSO URL, issuer ID, and signing certificate.
+  </Step>
+  <Step title="Enter IdP metadata">
+    Enter the metadata from your identity provider. Most IdPs allow you to export this as an XML file or provide a metadata URL.
+  </Step>
+  <Step title="Test the SSO connection">
+    Test the connection with an admin account before enabling it for all users. Verify that authentication succeeds and that the correct Zoom account is accessed.
+  </Step>
+  <Step title="Enable for all users">
+    Once testing passes, enable SSO for the full organization.
+  </Step>
+</Steps>
+
+**Best for:** Enterprises requiring centralized identity management, automated provisioning, and a single authentication layer across all business tools.
+
+## Workflow automation
+
+### Zapier
+
+Connect Zoom Phone to over 5,000 apps and automate workflows without writing code.
+
+**Features:**
+- Trigger actions in other apps based on Zoom Phone call events
+- Create custom integrations between Zoom Phone and tools with no native integration
+- Build multi-step workflows across systems
+
+**Example use cases:**
+- Add missed calls to a Google Sheet
+- Post a Slack notification when a voicemail arrives
+- Log all calls to Airtable
+- Send an SMS via Twilio when a call ends
+
+**Setup:**
+
+<Steps>
+  <Step title="Create a Zapier account">
+    Go to zapier.com and create an account if you don't already have one.
+  </Step>
+  <Step title="Find Zoom Phone in Zapier">
+    Search for Zoom Phone in the Zapier app directory to see available triggers and actions.
+  </Step>
+  <Step title="Choose a trigger">
+    Select the Zoom Phone event that starts your workflow — for example: new call, new voicemail, missed call, or call ended.
+  </Step>
+  <Step title="Configure the action">
+    Choose the target app and configure what happens when the trigger fires.
+  </Step>
+  <Step title="Test and enable the Zap">
+    Run a test to verify data flows correctly, then enable the Zap for production use.
+  </Step>
+</Steps>
+
+**Best for:** Custom workflows, quick integrations between apps that lack a native connection, and teams without dedicated development resources.
+
+### API and webhooks
+
+For custom development and integration with proprietary systems, Zoom Phone provides a REST API and webhook support.
+
+**Features:**
+- REST API for programmatic control of phone features
+- Webhooks for real-time event notifications pushed to your endpoint
+- Ability to build custom reporting dashboards
+- Automated provisioning workflows
+- Third-party application development
+
+**Use cases:**
+- Custom reporting dashboards connected to your business intelligence tools
+- Integration with proprietary or legacy systems
+- Automated user provisioning from your HR system
+- Third-party application development on top of Zoom Phone data
+
+See the [Zoom API documentation](https://marketplace.zoom.us/docs) for endpoint references and webhook event schemas.
+
+## Recommended integration rollout
+
+<CardGroup cols={3}>
+  <Card title="Phase 1: Foundation (Week 1)" icon="calendar-check">
+    Enable calendar integration (Outlook or Google), configure SSO if required, and set up your primary CRM integration.
+  </Card>
+  <Card title="Phase 2: Collaboration (Weeks 2–3)" icon="users">
+    Install Teams or Slack integration, enable Google Workspace or Microsoft 365 add-ons, and configure click-to-dial browser extensions.
+  </Card>
+  <Card title="Phase 3: Operations (Week 4+)" icon="gear">
+    Integrate your help desk system (ServiceNow or Zendesk), set up workflow automation with Zapier, and enable department-specific integrations.
+  </Card>
+</CardGroup>
+
+After initial rollout, monitor integration usage metrics, gather user feedback quarterly, review and optimize configurations, and evaluate new integrations as business needs evolve.
+
+## Best practices
+
+- **Start with high-impact integrations.** Focus on tools users spend the most time in. CRM and collaboration platforms typically deliver the most immediate value.
+- **Pilot before rolling out.** Test integrations with a small pilot group first. Identify issues and refine configuration before deploying organization-wide.
+- **Document use cases.** Create simple guides showing how integrations solve real problems — "How to log calls in Salesforce" is more useful than a generic feature list.
+- **Avoid over-integrating.** Too many integrations create confusion and maintenance burden. Focus on quality over quantity.
+- **Keep integrations updated.** Regularly review installed integrations, remove unused ones, and update configurations as business needs change.
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Integration not appearing in the app">
+    Verify the integration is installed and enabled in the Zoom web portal. Check that the user has the proper permissions in both Zoom and the third-party app.
+  </Accordion>
+  <Accordion title="Calls not logging to CRM">
+    Confirm field mapping is correct. Check that the user is authenticated in both systems. Verify that API permissions are granted for the connected account.
+  </Accordion>
+  <Accordion title="Screen pop not showing caller information">
+    Ensure the caller ID format in Zoom matches the format used in your CRM (check for country code and formatting differences). Test with a known contact first to isolate the issue.
+  </Accordion>
+  <Accordion title="SSO authentication fails">
+    Verify that the SAML configuration matches between Zoom and your identity provider. Check that the signing certificate is current. Test with an admin account before enabling SSO for all users.
+  </Accordion>
+  <Accordion title="Calendar sync not updating presence">
+    Verify the user authorized calendar access. Check that time zones match between the calendar and Zoom. Ensure calendar events have the correct busy or free status set.
+  </Accordion>
+</AccordionGroup>

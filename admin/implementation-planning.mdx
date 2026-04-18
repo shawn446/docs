@@ -1,0 +1,315 @@
+---
+title: "Plan Your Zoom Phone Deployment Step by Step"
+description: "Plan your Zoom Phone deployment before configuring anything. Covers user inventory, E911, number porting, call routing design, and phased rollout timeline."
+---
+
+Before you touch a single setting in the Zoom admin portal, invest two hours in planning. Admins who skip this step spend two weeks fixing problems after go-live — incorrect extensions, E911 violations, and failed number ports are all avoidable with upfront preparation. This guide walks you through all ten planning steps and gives you the documents you need before configuration begins.
+
+<Info>
+**Estimated time:** 1–2 hours
+
+**Audience:** IT admins, telecom admins, implementation teams
+
+**Use case:** Post-purchase planning for new Zoom Phone deployments or migrations from legacy systems
+</Info>
+
+## Prerequisites
+
+- Zoom Phone licenses purchased and visible in your account
+- Admin access to the Zoom web portal
+- Access to current phone system information (if migrating)
+- Authority to make configuration decisions
+
+## Why planning matters
+
+<Warning>
+**The 2-hour rule:** Spend 2 hours planning now or 2 weeks fixing issues later.
+</Warning>
+
+**Skip planning and you'll face:**
+
+- Incorrect extensions requiring mass user changes
+- E911 compliance violations and potential fines
+- Failed number ports causing service outages
+- Frustrated users and an overwhelmed help desk
+
+**Complete planning and you'll get:**
+
+- 3x faster deployment
+- 60% fewer post-launch issues
+- Higher user satisfaction
+- A smooth go-live experience
+
+## Quick planning checklist
+
+Use this to track your progress before starting configuration:
+
+- [ ] User inventory and license types
+- [ ] Site structure and E911 addresses
+- [ ] Extension numbering scheme
+- [ ] Numbers to port (with carrier info)
+- [ ] Call routing design
+- [ ] User groups and permissions
+- [ ] Rollout timeline
+- [ ] Training plan
+
+## Steps to plan your implementation
+
+<Steps>
+  <Step title="Create your user inventory">
+    Build a spreadsheet with these columns:
+
+    | Name | Email | Department | Location | User Type | License Needed | Extension | Direct Number? |
+    |------|-------|------------|----------|-----------|----------------|-----------|----------------|
+
+    **User types to identify:**
+
+    - **Power users** (high volume calling) → US & Canada Unlimited or Global
+    - **Standard users** (moderate calling) → US & Canada Unlimited
+    - **Extension-only** (internal only) → Basic (no calling plan)
+    - **Common areas** (conference rooms, lobbies) → Common Area License
+
+    <Tip>
+    Export your user list from Active Directory or your HR system as a starting point.
+    </Tip>
+  </Step>
+
+  <Step title="Design your site structure">
+    Sites control emergency routing, caller ID, and number assignment. Document the following for each site:
+
+    - Complete street address (exact address for E911)
+    - Building, suite, and floor details
+    - Emergency contact name and phone
+    - Business hours and time zone
+
+    <Tabs>
+      <Tab title="Single location">
+        ```text
+        Main Site: San Francisco HQ
+        ├─ Address: 123 Main St, San Francisco, CA 94102
+        ├─ Emergency Contact: Security (555-0100)
+        └─ Remote Workers: Managed individually
+        ```
+      </Tab>
+      <Tab title="Multi-location">
+        ```text
+        Site 1: West Coast HQ (San Francisco)
+        Site 2: East Coast Office (New York)
+        Site 3: Remote Workers (Virtual)
+        ```
+      </Tab>
+    </Tabs>
+
+    <Warning>
+    You must test 911 calling from each location before going live.
+    </Warning>
+  </Step>
+
+  <Step title="Plan your extension numbering">
+    Create a logical numbering scheme before assigning any extensions.
+
+    **Best practices:**
+
+    - Use 3–4 digits
+    - Group by department or location
+    - Leave 20–30% room for growth
+    - Avoid conflicts with special codes (911, 411, etc.)
+
+    <Tabs>
+      <Tab title="By department">
+        ```text
+        1000-1099: Executives
+        1100-1299: Sales (200 slots)
+        1300-1499: Support (200 slots)
+        9000-9099: Conference rooms
+        ```
+      </Tab>
+      <Tab title="By location">
+        ```text
+        1xxx: San Francisco office
+        2xxx: New York office
+        3xxx: Remote workers
+        ```
+      </Tab>
+    </Tabs>
+
+    <Warning>
+    Changing extensions post-deployment is disruptive. Get this right now.
+    </Warning>
+  </Step>
+
+  <Step title="Inventory numbers to port">
+    For each number you want to keep, document:
+
+    - Phone number
+    - Current carrier name
+    - Account number
+    - Authorized contact name (must match exactly)
+    - Service address on file
+    - Current usage (main line, department, etc.)
+
+    <Note>
+    **Timeline:** Number porting takes 2–4 weeks. Main business lines may take longer. Start early!
+    </Note>
+
+    **Port priority:**
+
+    1. Department lines (port first, test thoroughly)
+    2. Individual user lines
+    3. Main business line (port last after everything is tested)
+  </Step>
+
+  <Step title="Map E911 requirements">
+    For each physical location, gather:
+
+    - Exact street address
+    - Floor, suite, and building
+    - Emergency contact details
+    - Special access instructions for first responders
+
+    **E911 location template:**
+
+    | Site | Street Address | City | State | ZIP | Floor | Emergency Contact | Phone |
+    |------|---------------|------|-------|-----|-------|-------------------|-------|
+    | SF HQ | 123 Main St | San Francisco | CA | 94102 | 2nd Floor | Security | 555-0100 |
+
+    **Remote workers:** Decide your policy before configuration:
+
+    - **Option A:** Users update their own E911 address (requires training)
+    - **Option B:** Default to HQ address, require manual updates
+    - **Option C:** Use nomadic E911 (automatic, device-based)
+  </Step>
+
+  <Step title="Design call routing">
+    Map your main number call flow before configuring anything. For each call flow, document the greeting message and who records it, menu options (limit to 3–4), business hours vs. after-hours routing, holiday routing, and voicemail destinations.
+
+    **Example call flow:**
+
+    ```text
+    Main Number: (555) 123-4000
+        ↓
+    Auto Attendant
+    ├─ Press 1 → Sales Queue
+    ├─ Press 2 → Support Queue
+    ├─ Press 0 → Reception
+    └─ Timeout → Reception
+    ```
+  </Step>
+
+  <Step title="Define user groups">
+    Create groups to streamline administration.
+
+    **Example groups:**
+
+    | Group | Calling Allowed | Key Features | Members |
+    |-------|----------------|--------------|---------|
+    | Sales | Domestic + International | Call recording, SMS | 45 |
+    | Support | Domestic only | Call queues, recording | 32 |
+    | General Staff | Domestic only | Basic features | 150 |
+    | Executives | Unrestricted | All features | 8 |
+
+    **Admin roles to assign:**
+
+    - **Account Owner** — full control
+    - **Phone Admin** — configuration
+    - **Help Desk** — basic support
+  </Step>
+
+  <Step title="Create a rollout timeline">
+    Use a phased approach to minimize risk.
+
+    **Phase 1: Pilot (weeks 1–2)**
+
+    - 5–10 tech-savvy volunteers
+    - Test all features and workflows
+    - Gather feedback
+
+    **Phase 2: Department rollout (weeks 3–5)**
+
+    - Deploy by department
+    - Typical order: IT → Sales → Support → General Staff
+    - Provide training and support
+
+    **Phase 3: Final migration (week 6+)**
+
+    - Port main business lines
+    - Deploy common area phones
+    - Decommission legacy system
+
+    <Tip>
+    Always launch on Tuesday–Thursday, never Monday or Friday.
+    </Tip>
+  </Step>
+
+  <Step title="Plan communication and training">
+    **Communication timeline:**
+
+    | When | Audience | Message |
+    |------|----------|---------|
+    | T-minus 4 weeks | All users | Project announcement |
+    | T-minus 2 weeks | All users | Training schedule + KB links |
+    | T-minus 1 week | Wave 1 | "You go live Monday" |
+    | Go-live | Wave 1 | Quick start guide |
+    | T-plus 3 days | Wave 1 | Feedback survey |
+
+    **Training approach:**
+
+    - Self-service KB articles
+    - Optional live training sessions (30 min)
+    - Quick reference cards (printable PDF)
+    - Office hours during the first 2 weeks
+  </Step>
+
+  <Step title="Set success metrics">
+    Track these to measure deployment success:
+
+    | Metric | Target | Check Frequency |
+    |--------|--------|----------------|
+    | Call quality (MOS) | >4.0 | Weekly |
+    | Failed calls | &lt;2% | Daily |
+    | Active users | >95% | Weekly |
+    | Help desk tickets | &lt;20/week | Weekly |
+    | User satisfaction | >8/10 | Monthly |
+  </Step>
+</Steps>
+
+## Planning deliverables
+
+Before starting configuration, have these documents ready:
+
+- User inventory spreadsheet
+- Site addresses with E911 info
+- Extension numbering plan
+- Number porting list
+- Call flow diagrams
+- Rollout timeline
+
+<AccordionGroup>
+  <Accordion title="Pro tips for a successful deployment">
+    **Start simple, iterate later.** Launch with basic features first. Add advanced routing and integrations after users are comfortable.
+
+    **Test with temporary numbers first.** Configure everything and test thoroughly before porting your main business lines.
+
+    **Over-communicate.** Users fear change. Frequent updates reduce anxiety and support burden.
+
+    **Document your decisions.** Write down _why_ you chose certain configurations. Future you will thank you.
+
+    **Plan for extra support.** Double your help desk coverage for the first week. Better to be overstaffed than overwhelmed.
+  </Accordion>
+
+  <Accordion title="Common mistakes to avoid">
+    **Porting numbers too early** → Test everything with temporary numbers first. Port main lines last.
+
+    **Skipping the pilot phase** → Even "simple" deployments benefit from testing with real users first.
+
+    **Not planning for remote workers** → They need special E911 handling and bandwidth considerations.
+
+    **Underestimating training needs** → Even tech-savvy users need guidance on the new system.
+
+    **Analysis paralysis** → Don't overthink it. Start with "good enough" and refine after launch.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+Once you have your user inventory, site structure, extension scheme, number porting strategy, call routing design, and rollout timeline ready, you're prepared to start configuration. Move on to licensing to understand how to assign the right plan to each user.

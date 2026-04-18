@@ -1,0 +1,130 @@
+{
+  "projectType": "saas",
+  "projectName": "Rivvet",
+  "projectDescription": "Rivvet provides expert-built guides for deploying, configuring, and using Zoom Phone — covering everything from initial planning and call routing setup to day-to-day end-user features.",
+  "theme": "almond",
+  "primaryColor": "#040404",
+  "lightColor": null,
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Admin Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "admin/implementation-planning",
+              "admin/licensing-overview",
+              "admin/network-readiness"
+            ]
+          },
+          {
+            "group": "Setup & Configuration",
+            "pages": [
+              "admin/account-setup",
+              "admin/sites-and-locations",
+              "admin/adding-users",
+              "admin/voicemail-and-greetings",
+              "admin/number-porting"
+            ]
+          },
+          {
+            "group": "Call Routing",
+            "pages": [
+              "admin/call-routing-overview",
+              "admin/auto-receptionists",
+              "admin/call-queues",
+              "admin/business-hours-and-holidays"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "admin/call-recording",
+              "admin/call-monitoring",
+              "admin/integrations",
+              "admin/security-and-compliance",
+              "admin/reporting-and-analytics"
+            ]
+          },
+          {
+            "group": "Go Live",
+            "pages": [
+              "admin/testing-and-go-live",
+              "admin/go-live-email-templates"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "User Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "users/overview",
+              "users/account-setup"
+            ]
+          },
+          {
+            "group": "Calls",
+            "pages": [
+              "users/making-and-receiving-calls",
+              "users/in-call-controls",
+              "users/mobile-app",
+              "users/call-history"
+            ]
+          },
+          {
+            "group": "Manage & Customize",
+            "pages": [
+              "users/call-forwarding",
+              "users/presence-and-status",
+              "users/contacts",
+              "users/call-queue-availability"
+            ]
+          },
+          {
+            "group": "Messaging & Voicemail",
+            "pages": [
+              "users/voicemail-and-greetings",
+              "users/sms"
+            ]
+          },
+          {
+            "group": "Team Features",
+            "pages": [
+              "users/call-delegation",
+              "users/call-monitoring",
+              "users/call-recording"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Step-by-step Zoom Phone deployment guides for IT admins",
+    "Call routing setup including auto receptionists and call queues",
+    "Number porting with timeline guidance and best practices",
+    "Security and compliance configuration (HIPAA, E2EE, data retention)",
+    "Integrations with CRMs, collaboration tools, and calendar apps",
+    "Reporting and analytics for call quality and adoption tracking",
+    "End-user guides for making calls, voicemail, SMS, and team features",
+    "Call delegation, monitoring, and recording for teams"
+  ],
+  "publicApiSurface": [
+    "Zoom Phone admin portal configuration",
+    "Call queue setup and management",
+    "Auto receptionist and IVR configuration",
+    "Number porting (self-service and assisted)",
+    "CRM integrations (Salesforce, HubSpot, Zendesk, Dynamics 365)",
+    "Collaboration integrations (Teams, Slack, Google Workspace)",
+    "SSO configuration (Okta, Azure AD, SAML 2.0)",
+    "End-to-end encryption settings",
+    "Call recording and data retention policies",
+    "QoS and analytics dashboards"
+  ]
+}

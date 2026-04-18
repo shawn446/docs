@@ -1,0 +1,180 @@
+---
+title: "Manage Voicemail and Audio Greetings in Zoom Phone"
+sidebarTitle: "Voicemail & Greetings"
+description: "Upload greetings to the asset library, record audio, create text-to-speech prompts, assign hold music, and manage audio assets for voicemail and IVR menus."
+---
+
+The Asset Library is Zoom Phone's centralized hub for all audio content in your organization — voicemail greetings, hold music, IVR prompts, and more. Managing audio centrally means you maintain brand consistency and can update greetings across the entire system without hunting through individual extension settings.
+
+**Estimated time:** 15–20 minutes
+
+**Who this is for:** Zoom Phone administrators managing audio assets for their organization
+
+## Prerequisites
+
+- Admin access to Zoom web portal with privilege to edit account settings
+- Audio files prepared (if uploading) in MP3 or WAV format, under 10 MB
+- Working microphone (if recording directly in Zoom)
+
+## Understanding the Asset Library
+
+The Asset Library supports three methods for creating audio:
+
+| Method | Description |
+|--------|-------------|
+| Text-to-Speech | Convert text to audio using automated voices |
+| Record by Computer | Use your microphone to record directly in the browser |
+| Upload | Add existing MP3 or WAV files |
+
+Audio can be set to **Public** (available organization-wide) or **Personal** (private to specific users).
+
+## Create text-to-speech audio
+
+<Steps>
+  <Step title="Start a new asset">
+    - Sign in to the Zoom web portal as an admin
+    - Navigate to **Phone System Management** > **Assets Library**
+    - Click **Add**, then click the **Text to Speech** tab
+  </Step>
+
+  <Step title="Configure and create">
+    - **Asset Name:** Enter a descriptive internal name
+    - **Category:** Select the type (Voicemail greeting, Music on hold, etc.)
+    - **Language:** Choose your language
+    - **Voice:** Select a voice style
+    - Enter your message text in the message box
+    - Click **Play** to preview
+
+    <Tip>
+    You can add up to 5 message segments that play in sequence. Click **+ Add message** to create multiple parts.
+    </Tip>
+  </Step>
+
+  <Step title="Save">
+    - Under **Visibility**, choose **Asset Library (Public)** or **Personal Audios**
+    - Click **Add**
+  </Step>
+</Steps>
+
+## Record audio directly
+
+<Steps>
+  <Step title="Start recording">
+    - In the Asset Library, click **Add**
+    - Click the **Record by Computer** tab
+    - Allow Zoom to access your microphone when prompted
+  </Step>
+
+  <Step title="Record your audio">
+    - Enter **Asset Name**, **Category**, and **Language**
+    - Click the red record icon to start
+    - Click the stop icon when finished
+    - Click **Play** to review, or **Record Again** to redo
+  </Step>
+
+  <Step title="Save">
+    - Choose your visibility setting
+    - Click **Add**
+  </Step>
+</Steps>
+
+## Upload existing audio files
+
+<Steps>
+  <Step title="Upload the file">
+    - In the Asset Library, click **Add**
+    - Click the **Upload** tab
+    - Enter **Asset Name**, **Category**, and **Language**
+    - Click **Upload** and select your file (MP3 or WAV, under 10 MB)
+  </Step>
+
+  <Step title="Save">
+    - Choose your visibility setting
+    - Click **Add**
+  </Step>
+</Steps>
+
+## Assign audio to extensions
+
+<Steps>
+  <Step title="Navigate to the extension">
+    - Go to **Phone System Management** > **Users** (or **Call Queues** or **Auto Receptionists**)
+    - Click the extension name
+    - Click the **Settings** tab
+  </Step>
+
+  <Step title="Assign a voicemail greeting">
+    - In the **Call Handling** section, locate **Greeting & Leave voicemail instruction**
+    - Click **Edit**
+    - Select **Choose from Asset Library**
+    - Choose your audio asset
+    - Click **Save**
+  </Step>
+
+  <Step title="Configure hold music">
+    - Navigate to **Phone** > **Settings**
+    - In the **Others** section, next to **Hold Music**, click **Edit**
+    - Select **Choose from Asset Library**
+    - Choose your audio
+    - Click **Save**
+  </Step>
+</Steps>
+
+## Manage existing assets
+
+<AccordionGroup>
+  <Accordion title="Edit an asset">
+    - Click the ellipsis icon next to the asset name
+    - Select **Edit**, make your changes, and click **Save**
+  </Accordion>
+
+  <Accordion title="Duplicate, download, or delete an asset">
+    - Click the ellipsis icon next to the asset name
+    - Select **Duplicate** to copy, **Download** to save locally, or **Delete** to remove
+
+    If you delete an asset that is currently in use, you must choose a replacement audio file before confirming the deletion.
+  </Accordion>
+
+  <Accordion title="Manage permissions">
+    - Click the ellipsis icon > **Manage Editors**
+    - Add admins, roles, or groups with Edit or Delete permissions
+  </Accordion>
+</AccordionGroup>
+
+## Configuration best practices
+
+<Tip>
+**Use descriptive asset names.** Name assets clearly — for example, "Main-Voicemail-English" or "HoldMusic-Jazz" — so they're easy to identify and find.
+</Tip>
+
+<Tip>
+**Leverage text-to-speech for quick updates.** For time-sensitive messages like holiday closures or emergencies, text-to-speech allows instant updates without recording equipment.
+</Tip>
+
+<Tip>
+**Test audio quality before deploying widely.** Test assets on desk phones, mobile devices, and computers to ensure clarity across all platforms.
+</Tip>
+
+<Tip>
+**Create holiday greetings in advance.** Record and upload holiday closure messages weeks ahead, then schedule them in call handling settings so you're always prepared.
+</Tip>
+
+<Tip>
+**Build a template library.** Create pre-approved greetings for common scenarios — vacation, meetings, after-hours — that users can quickly apply to their own settings.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Browser won't allow microphone access">
+    Check your browser's address bar for a microphone icon. Click it and allow access. Chrome often hides this permission in the address bar area.
+  </Accordion>
+
+  <Accordion title="Uploaded audio file rejected">
+    Verify the file is in MP3 or WAV format and is under 10 MB. Convert files using audio editing software if needed.
+  </Accordion>
+
+  <Accordion title="Can't find audio asset in dropdown menu">
+    Verify the asset has the correct category assigned. Assets only appear in menus that match their category type.
+  </Accordion>
+</AccordionGroup>

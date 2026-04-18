@@ -1,0 +1,272 @@
+---
+title: "Add Users and Assign Zoom Phone Licenses"
+sidebarTitle: "Adding Users"
+description: "Provision users in Zoom, assign Phone licenses and calling packages, configure extensions, and bulk-import large numbers of users via CSV upload."
+---
+
+Provisioning a user with Zoom Phone is a two-step process: first you create the user in Zoom, then you assign them a Phone license and calling package. These two actions happen in different sections of the admin portal. Understanding this distinction upfront prevents the most common provisioning mistakes.
+
+**Estimated time:** 10–15 minutes per user (5 minutes for bulk import)
+
+**Who this is for:** Zoom Phone administrators responsible for onboarding new users and managing phone system access
+
+## Prerequisites
+
+- Admin access to Zoom web portal
+- Available Zoom Phone licenses
+- User information (name, email address)
+- Extension numbering plan (if customizing)
+- Calling packages purchased (for outbound calling)
+- Direct phone numbers assigned (optional)
+
+## Understanding the two-step process
+
+Provisioning users with Zoom Phone requires two distinct steps:
+
+**Step 1 — Create Zoom user account:** Users must first exist in your Zoom account with basic access. This happens in **User Management** > **Users**.
+
+**Step 2 — Assign Zoom Phone license:** Once the user exists, you assign them a Phone license, extension, and calling package. This happens in **Phone System Management** > **Users & Rooms**.
+
+<Note>
+A user cannot have Zoom Phone without first being a Zoom user. You'll navigate between two different sections of the admin portal to complete provisioning.
+</Note>
+
+## Step 1: Add users to Zoom
+
+<Steps>
+  <Step title="Navigate to user management">
+    - Sign in to the Zoom web portal as an admin
+    - Click **User Management** > **Users**
+    - Click **Add**
+  </Step>
+
+  <Step title="Choose user type">
+    - **Add Users:** Create individual users manually
+    - **Import Users:** Bulk-add via CSV file (covered in the bulk import section below)
+  </Step>
+
+  <Step title="Enter user information">
+    - **Email Address:** Required for account creation
+    - **First Name** and **Last Name**
+    - **Display Name:** How the user appears to others
+  </Step>
+
+  <Step title="Assign base license (optional)">
+    - In the **Zoom Workplace** dropdown, select a license tier if the user needs meeting capabilities
+    - If the user only needs phone service, you can skip this or assign "Unassigned"
+    - Select **Zoom Meetings Basic** if they only need to join meetings (not host)
+  </Step>
+
+  <Step title="Create the user">
+    - Click **Add** or **Save**
+    - The user receives an email invitation to activate their account
+    - The user must accept the invitation before phone features can be added
+  </Step>
+</Steps>
+
+<Note>
+Users show as "Pending" until they activate their account by clicking the email link and setting a password.
+</Note>
+
+## Step 2: Assign Zoom Phone licenses
+
+After users are created in Zoom — and preferably have activated their accounts — assign them Phone licenses.
+
+<Steps>
+  <Step title="Navigate to phone management">
+    - Click **Phone System Management** > **Users & Rooms**
+    - Click the **Users** tab
+    - Click **Add**
+  </Step>
+
+  <Step title="Select the existing user">
+    - Choose the user from the list of existing Zoom users
+    - Only users without Phone licenses appear in this list
+    - Click **Next**
+  </Step>
+
+  <Step title="Review auto-assigned settings">
+    - **Extension Number:** Automatically assigned (you can change it later)
+    - **Site:** Assigned based on your configuration
+    - The user immediately receives a welcome email with their extension information
+  </Step>
+
+  <Step title="Assign a calling package">
+    - After adding the user, locate them in the Users list
+    - In the last column, click **Assign** > **Assign Package**
+    - Select a calling package (required for outbound calling)
+    - Click **Confirm and Assign Numbers**
+  </Step>
+
+  <Step title="Assign a direct phone number (optional)">
+    - When prompted, select a direct phone number
+    - Or click **Skip** if the user only needs an extension
+    - Numbers can be assigned later if needed
+  </Step>
+</Steps>
+
+<Note>
+Users without a calling package can only receive calls to their extension. They cannot make outbound calls or receive calls on direct numbers.
+</Note>
+
+## Alternative: one-step user creation
+
+You can create a Zoom user and assign a Phone license in a single step.
+
+<Steps>
+  <Step title="Start in user management">
+    - Navigate to **User Management** > **Users**
+    - Click **Add**
+  </Step>
+
+  <Step title="Enable phone during creation">
+    - Fill out user information as normal
+    - In the **Licenses and add-ons** section, check **Zoom Phone**
+    - Complete user creation
+  </Step>
+
+  <Step title="Complete phone setup">
+    - The user automatically appears in **Phone System Management** > **Users & Rooms**
+    - You still need to assign a calling package and direct number separately
+  </Step>
+</Steps>
+
+## Bulk import users via CSV
+
+For adding 100 or more users, use the batch import feature.
+
+<Steps>
+  <Step title="Prepare the CSV file">
+    - Navigate to **Phone System Management** > **Users & Rooms**
+    - Click **Import**
+    - Click the **Add Users** tab
+    - Click **CSV Sample** to download the template
+    - Fill out the template with:
+
+    | Field | Required |
+    |-------|----------|
+    | Email address | Yes |
+    | First name | Yes |
+    | Last name | Yes |
+    | Extension number | Optional |
+    | Calling package | Optional |
+    | Phone numbers | Optional |
+    | Site (if using multiple sites) | Optional |
+  </Step>
+
+  <Step title="Upload the CSV">
+    - Click **Upload CSV** and select your file
+    - If using multiple sites: either select a target site in the portal or specify it in the CSV
+    - Check **Specify a template** to apply a settings template (optional)
+  </Step>
+
+  <Step title="Review and confirm">
+    - If errors exist, click **Details** to see the issues
+    - Click **Ignore Issues and Upload Others** to import valid rows, or **Reupload** to fix the CSV and try again
+    - Click **Close** when the import completes
+  </Step>
+</Steps>
+
+## Manage existing phone users
+
+<AccordionGroup>
+  <Accordion title="Re-send welcome email">
+    - Navigate to **Phone System Management** > **Users & Rooms**
+    - Click the user's name, then click the **Profile** tab
+    - Scroll down and click **Resend Invite**
+  </Accordion>
+
+  <Accordion title="Change extension number">
+    - Click the user's name, then click the **Settings** tab
+    - Update the extension in user settings
+  </Accordion>
+
+  <Accordion title="Remove phone license">
+    - Select the user(s) in the Users list
+    - Click **Remove** > **Remove Users**
+    - Confirm deletion
+
+    <Warning>
+    Removing a Phone license permanently deletes the user's call recordings, call history, and voicemails.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Remove calling package only">
+    - Select the user(s) in the Users list
+    - Click **Remove** > **Remove All Packages**
+    - The user keeps their Phone license but loses outbound calling ability
+  </Accordion>
+</AccordionGroup>
+
+## Bulk update existing users
+
+<Steps>
+  <Step title="Export current data">
+    - Navigate to **Phone System Management** > **Users & Rooms**
+    - Use filters to display the users you want to update
+    - Click **Export** to download a CSV
+  </Step>
+
+  <Step title="Edit the CSV file">
+    - Update extensions, calling packages, direct numbers, or desk phone details
+    - Leave fields blank to remove or downgrade items
+    - Save the CSV file
+  </Step>
+
+  <Step title="Import updates">
+    - Click **Import** > **Update Users** tab
+    - Upload your edited CSV
+    - Review any errors and fix or ignore as appropriate
+    - Click **Close** when complete
+  </Step>
+</Steps>
+
+## User management best practices
+
+<Tip>
+**Have users activate before assigning phone.** Wait for users to activate their Zoom account before assigning Phone licenses. This ensures they can immediately access phone features and reduces support tickets.
+</Tip>
+
+<Tip>
+**Use templates for consistent settings.** Create user templates with standard settings (voicemail, call forwarding, etc.) and apply them during bulk import to ensure consistency across users.
+</Tip>
+
+<Tip>
+**Document your extension numbering scheme.** Establish a clear extension numbering convention — by department, location, or otherwise — before provisioning users to avoid confusion and renumbering later.
+</Tip>
+
+<Tip>
+**Assign calling packages based on role.** Not all users need the same calling package. Assign packages based on job function to control costs and capabilities.
+</Tip>
+
+<Tip>
+**Use bulk import for initial deployment.** A properly formatted CSV can provision 100 users in minutes versus hours of manual entry.
+</Tip>
+
+<Tip>
+**Use soft delete for departing employees.** Enable the Soft Delete policy to move users to trash instead of permanent deletion. This retains data for 30 days and makes licenses immediately available.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="User doesn't appear in Phone System Management after creation">
+    Verify the user activated their Zoom account via email. Pending users cannot be assigned Phone licenses until they activate.
+  </Accordion>
+
+  <Accordion title="Cannot assign calling package to user">
+    Ensure the user has an active Phone license first. Calling packages can only be assigned to licensed users.
+  </Accordion>
+
+  <Accordion title="Bulk CSV import fails completely">
+    Check that the first row with field names is intact, and that phone numbers include the `+` country code with no spaces or dashes. Use a text editor if Excel removes the `+` sign.
+  </Accordion>
+
+  <Accordion title="Removed user's data is gone permanently">
+    When you remove a Phone license, recordings and voicemails are deleted immediately. Enable the Soft Delete policy to retain data for 30 days before permanent deletion.
+  </Accordion>
+
+  <Accordion title="User didn't receive welcome email with extension">
+    Check spam folders first. If not found, navigate to the user's profile and click **Resend Invite** at the bottom of the Profile tab.
+  </Accordion>
+</AccordionGroup>

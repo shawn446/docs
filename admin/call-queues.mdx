@@ -1,0 +1,218 @@
+---
+title: "Create and Configure Call Queues in Zoom Phone Admin"
+description: "Set up team-based call distribution with members, distribution methods, hold music, overflow routing, and analytics for support, sales, or help desk teams."
+---
+
+Call queues distribute incoming calls across a group of users based on rules you configure. Use them when multiple people need to handle calls from a shared number or extension—common scenarios include support teams, sales departments, and help desks. Each queue can hold up to 50 members, play hold music, announce caller position, and route overflow calls automatically when wait times or capacity limits are exceeded.
+
+**Estimated time:** 20–30 minutes
+
+**Who this is for:** Zoom Phone administrators setting up team-based call distribution
+
+## Prerequisites
+
+- Admin access to the Zoom web portal with privilege to edit account settings
+- Phone users created and licensed
+- An extension number available for the queue
+- Understanding of your team's call handling workflow
+- Audio files prepared for greetings and hold music (optional)
+
+## Understanding call queues
+
+Call queues give you control over how calls arrive, wait, and route to your team:
+
+- **Distribution methods:** Simultaneous, sequential, rotating, longest idle, or group rotating
+- **Queue management:** Max wait time, overflow routing, and member business hours
+- **Caller experience:** Hold music, position announcements, and estimated wait time
+- **Capacity:** Up to 50 members per queue
+
+## Create a call queue
+
+<Steps>
+  <Step title="Access call queues">
+    Sign in to the Zoom web portal as an admin, then navigate to **Phone System Management** > **Call Queues** and click **Add**.
+  </Step>
+  <Step title="Configure basic settings">
+    Fill in the following fields:
+
+    - **Site:** Select the appropriate site if you use multiple sites.
+    - **Name:** Enter a descriptive display name (e.g., "Technical Support Queue").
+    - **Description:** Add an optional description to identify the queue's purpose.
+    - **Extension Number:** Assign the extension callers will use to reach this queue.
+  </Step>
+  <Step title="Add queue members">
+    Click **Add** in the Member(s) section, select phone users or common area phones, then click **OK**. You can add up to 50 members per queue.
+  </Step>
+  <Step title="Apply a template (optional)">
+    Check **Specify a template** to apply pre-configured settings from an existing queue. This is useful for maintaining consistency when setting up multiple queues with similar requirements.
+  </Step>
+  <Step title="Save and continue">
+    Click **Save**. The portal redirects you to the queue settings page where you continue configuration.
+  </Step>
+</Steps>
+
+## Configure call distribution
+
+Call distribution determines how incoming calls are routed to available members. Access these settings by navigating to your queue, clicking the queue name, then selecting the **Profile** tab.
+
+<Steps>
+  <Step title="Set business hours">
+    Click **Edit** next to Business Hours and define when the queue actively distributes calls. Hours can span past 11:30 PM for night shifts. Use 10-minute increments by manually entering times (e.g., 11:10 PM).
+  </Step>
+  <Step title="Choose a distribution method">
+    Select the method that fits your team's workflow:
+
+    - **Simultaneous:** Rings all available members at once for the fastest answer time.
+    - **Sequential:** Rings members one at a time in a specified order.
+    - **Rotating:** Distributes calls evenly by cycling through member order regularly.
+    - **Longest Idle:** Routes to the member who has gone longest without answering a queue call.
+    - **Group Rotating:** Rings subsets of members simultaneously, then moves to the next subset.
+  </Step>
+  <Step title="Configure member behavior">
+    Set additional member-level options:
+
+    - **Allow queue members to set their own business hours:** When checked, individual member hours override queue hours. When unchecked, queue hours take priority.
+    - **Ring duration for each member:** Set how long to ring before moving to the next member (applies to Sequential, Rotating, and Longest Idle only).
+    - **Skip offline devices:** Skip members who are not signed in to any device.
+    - **Receive calls while on a call:** Allow members to receive notifications even when they are already on a call.
+  </Step>
+  <Step title="Configure advanced distribution settings">
+    For high-volume queues with limited staff, enable **Handle multiple incoming calls simultaneously**. Note that when this is active, calls may not be answered in the exact order they arrived.
+
+    Set **Wrap-up Time** to give members a break between queue calls. During wrap-up, members won't receive calls from any queue they belong to—use this to give your team time to complete post-call tasks.
+  </Step>
+</Steps>
+
+## Configure the caller experience
+
+<Steps>
+  <Step title="Set hold audio">
+    Configure audio for callers waiting in the queue:
+
+    - **Audio While Connecting:** Plays while the caller waits for an available member.
+    - **Music on Hold:** Plays when a member places the caller on hold.
+
+    Select from system defaults or click **Audio Library** to choose custom audio. Select **Disable** to play no audio.
+  </Step>
+  <Step title="Set queue limits">
+    Configure thresholds to manage queue capacity:
+
+    - **Max Wait Time:** Maximum time a caller waits before overflow routing activates.
+    - **Max Calls in Queue:** Maximum number of callers waiting simultaneously.
+
+    When either limit is exceeded, callers route based on your Overflow setting.
+  </Step>
+  <Step title="Set the time zone">
+    Click the time zone dropdown and select the appropriate zone for this queue's business hours. This ensures time-based routing applies correctly.
+  </Step>
+  <Step title="Choose the audio prompt language">
+    Select the language for system announcements. This affects position announcements and estimated wait time prompts heard by callers.
+  </Step>
+</Steps>
+
+## Set up overflow and closed-hours routing
+
+<Steps>
+  <Step title="Configure overflow routing">
+    Click **Edit** next to Overflow and choose what happens when the max wait time or max calls limit is exceeded:
+
+    - **Voicemail:** Route to the queue's dedicated voicemail inbox.
+    - **Allow callers to reach an operator:** Present callers with the option to press 0 for an operator or 1 for voicemail.
+    - **Another extension:** Route to a user, another queue, or an auto receptionist.
+    - **External phone number:** Route outside your system (requires a direct number assigned to the queue).
+    - **Disconnect:** End the call.
+
+    If routing to voicemail, customize the greeting audio callers hear before leaving a message.
+  </Step>
+  <Step title="Set closed-hours routing">
+    Define how calls route outside business hours. The same options as overflow routing are available. A typical approach is to route to voicemail with an after-hours message.
+  </Step>
+  <Step title="Configure holiday hours">
+    Click **Manage** next to Holiday Hours to designate specific dates as holidays and set special routing. You can create holiday-specific messages for office closures and configure routing that differs from your standard closed-hours behavior.
+  </Step>
+</Steps>
+
+## Manage queue members and admins
+
+<Steps>
+  <Step title="Add queue admins">
+    In queue settings, click **Add** next to Admin and assign the call queue admin role to users who need to manage the queue. If no admins exist, click **Set** to open role management.
+  </Step>
+  <Step title="Enable or disable member notifications">
+    Navigate to your queue > **Member(s)** > **View or Edit**, then click a member name and select the **User Settings** tab. Toggle **Receive Call Queue Calls** to enable or disable all queue calls for that member, or click **View or Edit** to manage notifications per queue.
+  </Step>
+  <Step title="Share voicemail access">
+    Toggle **Voicemail** in queue settings to allow multiple users to access the queue's voicemail inbox.
+  </Step>
+</Steps>
+
+## Distribution method use cases
+
+<AccordionGroup>
+  <Accordion title="Simultaneous — best for small, fast-response teams">
+    All available members ring at once. The first to answer takes the call. Use this for teams of five or fewer members where speed of answer is the priority. As your team grows, consider switching to Rotating to distribute load more evenly.
+  </Accordion>
+  <Accordion title="Sequential — best for tiered support models">
+    Members ring one at a time in a fixed order. Use this when you want your most experienced agents to receive calls first, or when you have a primary and backup staffing model.
+  </Accordion>
+  <Accordion title="Rotating (round-robin) — best for even workload distribution">
+    Calls cycle through members in order, distributing volume evenly over time. Use this for sales or support teams where equal call distribution is important for fairness and performance tracking.
+  </Accordion>
+  <Accordion title="Longest Idle — best for equitable distribution with variable activity">
+    Routes each call to the member who has been idle the longest since their last queue call. Works well when you want to balance call volume naturally, but ensure all members have similar skill levels—this method may send calls to less experienced agents.
+  </Accordion>
+  <Accordion title="Group Rotating — best for large teams with defined subgroups">
+    Rings groups of members simultaneously and rotates through groups for each new call. Use this for large queues where you want the speed of simultaneous ringing within subgroups while still rotating workload across the team.
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Set realistic max wait times">
+    Balance caller patience with team capacity. The industry standard for support queues is two to three minutes. Monitor abandonment rates and adjust the limit based on real call data.
+  </Accordion>
+  <Accordion title="Use wrap-up time strategically">
+    Give members time to document calls without letting the queue back up. Start with 30–60 seconds and adjust based on team feedback and queue performance metrics.
+  </Accordion>
+  <Accordion title="Monitor longest idle performance">
+    Longest Idle distributes calls evenly but can route to less skilled members. Use it only if all members have similar capabilities, or use Sequential to keep your strongest agents in priority position.
+  </Accordion>
+  <Accordion title="Always configure overflow routing">
+    Set overflow routing even if you expect the queue to never reach its limit. Unexpected call spikes will route gracefully instead of disconnecting callers.
+  </Accordion>
+</AccordionGroup>
+
+## Quick wins
+
+<Tip>
+  **Enable queue position announcements.** Telling callers their position in the queue and estimated wait time reduces perceived wait time and lowers call abandonment rates.
+</Tip>
+
+<Tip>
+  **Enable Skip Offline Devices.** This prevents wasting ring time on members who aren't signed in, so calls move to available members faster.
+</Tip>
+
+<Tip>
+  **Set member business hours for mixed schedules.** Let members control their own availability—especially useful for queues that span multiple time zones or include part-time workers.
+</Tip>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Calls not distributing to all members">
+    Check that all members have **Receive Call Queue Calls** enabled in their settings. If **Skip Offline Devices** is on, verify members are signed in to at least one device.
+  </Accordion>
+  <Accordion title="Members receiving too many back-to-back calls">
+    Increase wrap-up time to give members a break between calls. Also check whether the distribution method is sending a disproportionate number of calls to specific members.
+  </Accordion>
+  <Accordion title="Callers getting disconnected instead of routing to overflow">
+    Verify overflow routing is configured and not set to Disconnect. Test by calling the queue and waiting past the max wait time to confirm the overflow destination activates.
+  </Accordion>
+  <Accordion title="Sequential routing not following the specified order">
+    Check the **Skip Offline Devices** setting—offline members are skipped and this can shift the apparent order. Also verify the ring duration is long enough for each member before the call moves on.
+  </Accordion>
+  <Accordion title="Analytics showing high abandonment rate">
+    Reduce the max wait time or add more members to the queue. Adjust business hours to match actual team availability. Consider whether a callback feature would reduce abandonment for your use case.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,130 @@
+---
+title: "Configure Your Zoom Phone Account Access and Roles"
+sidebarTitle: "Account Setup"
+description: "Verify admin access, confirm Zoom Phone licenses, assign admin roles, and prepare your portal for initial Zoom Phone configuration. Takes 5–10 minutes."
+---
+
+Before you configure any phone settings, you need to confirm that your account is correctly set up: licenses are active, the right people have admin access, and the Phone System Management menu is visible. Completing these checks upfront prevents common blockers like missing menus or permission errors during later configuration steps.
+
+**Estimated time:** 5–10 minutes
+
+**Who this is for:** IT Owners, Project Leads, System Admins
+
+## Prerequisites
+
+- Admin account created in Zoom
+- Zoom Phone licenses provisioned to account
+- Account verified and activated via Zoom email
+- SSO or 2FA enabled per your organization's policy (optional but recommended)
+- Admin access to Zoom web portal and Phone System Management
+
+## Steps to configure account setup and access
+
+<Steps>
+  <Step title="Log in to the Zoom admin portal">
+    - Go to [admin.zoom.us](https://admin.zoom.us)
+    - Sign in with your admin credentials
+    - Verify you land on the **Account Management** dashboard
+  </Step>
+
+  <Step title="Verify license quantities">
+    - Navigate to **Account Management** > **Billing**
+    - Confirm Zoom Phone licenses are visible and active
+    - Check for related services (e.g., toll-free numbers, SMS, Power Pack)
+    - Verify license quantity matches your purchase order
+    - Note any add-ons that require additional configuration
+  </Step>
+
+  <Step title="Check admin roles and permissions">
+    - Go to **User Management** > **Roles**
+    - Ensure correct roles are assigned (e.g., Admin, Phone System Admin)
+    - Verify who has access to billing, user management, and phone configuration
+    - Review any custom roles if applicable
+    - Confirm separation of duties aligns with your security policy
+  </Step>
+
+  <Step title="Add additional admins and roles (optional)">
+    - Go to **User Management** > **Users**
+    - Click **Add Users** or select existing users
+    - Assign the appropriate admin role:
+
+    | Role | Scope |
+    |------|-------|
+    | Account Owner | Full control (usually one person) |
+    | Admin | Can manage users and settings |
+    | Phone System Admin | Phone configuration only |
+    | User Admin | Basic user management |
+    | Billing Admin | Billing and subscriptions only |
+
+    - Send invitation emails to new admins
+    - Document who holds each level of access
+  </Step>
+</Steps>
+
+## Helpful notes
+
+<Note>
+**Zoom only displays Phone System menus if licenses are correctly assigned.** If you don't see Phone System Management, check your billing section to confirm licenses are active.
+</Note>
+
+<Note>
+**Some features require additional setup or approval.** SMS, international calling, and certain integrations may need carrier approval or additional configuration before use.
+</Note>
+
+<Note>
+**Role hierarchy matters.** Lower-level admins cannot modify settings of higher-level admins. Plan your role structure carefully.
+</Note>
+
+<Note>
+**Billing access is separate.** You can grant phone admin rights without giving access to billing information. Use this to protect financial data.
+</Note>
+
+## Pro tips
+
+<Tip>
+**Create a separate test admin account.** Set up a test admin to validate settings without risking production data. This is invaluable during configuration.
+</Tip>
+
+<Tip>
+**Use role-based access control (RBAC).** Limit who can make configuration changes. Not everyone needs full admin access — assign the minimum necessary permissions.
+</Tip>
+
+<Tip>
+**Document your admin structure early.** Create a simple spreadsheet listing admins, their roles, and contact info. This makes scaling and handoffs smoother later.
+</Tip>
+
+<Tip>
+**Enable audit logging.** Turn on activity logs to track who made what changes. This is critical for troubleshooting and compliance.
+</Tip>
+
+<Tip>
+**Set up admin notifications.** Configure alerts for critical changes (like license assignments or policy updates) to stay informed.
+</Tip>
+
+<Tip>
+**Use admin groups for efficiency.** If you have multiple admins, group them by responsibility (network team, helpdesk, etc.) for easier management.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Can't see Phone System Management menu">
+    Verify Zoom Phone licenses are assigned to your account under **Billing**. The menu only appears when active licenses are present.
+  </Accordion>
+
+  <Accordion title="'Access Denied' when trying to configure phone settings">
+    Your user account may not have the Phone System Admin role. Have the Account Owner assign the correct role.
+  </Accordion>
+
+  <Accordion title="SSO users can't access admin portal">
+    Ensure SSO is configured correctly with proper role mappings in your identity provider (Okta, Azure AD, etc.).
+  </Accordion>
+
+  <Accordion title="Changes not saving in Phone System Management">
+    Check for browser cache issues or try an incognito window. Also verify you have write permissions for that section.
+  </Accordion>
+
+  <Accordion title="Multiple admins making conflicting changes">
+    Establish a change management process. Use a shared document or ticketing system to coordinate configuration changes.
+  </Accordion>
+</AccordionGroup>
