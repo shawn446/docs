@@ -43,6 +43,7 @@
         "groups": [
           {
             "group": "Getting Started",
+            "icon": "rocket",
             "pages": [
               "introduction",
               "admin/implementation-planning",
@@ -52,6 +53,7 @@
           },
           {
             "group": "Setup & Configuration",
+            "icon": "settings",
             "pages": [
               "admin/account-setup",
               "admin/sites-and-locations",
@@ -62,6 +64,7 @@
           },
           {
             "group": "Call Routing",
+            "icon": "git-branch",
             "pages": [
               "admin/call-routing-overview",
               "admin/auto-receptionists",
@@ -71,6 +74,7 @@
           },
           {
             "group": "Advanced Features",
+            "icon": "zap",
             "pages": [
               "admin/call-recording",
               "admin/call-monitoring",
@@ -81,6 +85,7 @@
           },
           {
             "group": "Go Live",
+            "icon": "flag",
             "pages": [
               "admin/testing-and-go-live",
               "admin/go-live-email-templates"
@@ -93,6 +98,7 @@
         "groups": [
           {
             "group": "Getting Started",
+            "icon": "sparkles",
             "pages": [
               "users/overview",
               "users/account-setup"
@@ -100,6 +106,7 @@
           },
           {
             "group": "Calls",
+            "icon": "phone",
             "pages": [
               "users/making-and-receiving-calls",
               "users/in-call-controls",
@@ -109,6 +116,7 @@
           },
           {
             "group": "Manage & Customize",
+            "icon": "sliders",
             "pages": [
               "users/call-forwarding",
               "users/presence-and-status",
@@ -118,6 +126,7 @@
           },
           {
             "group": "Messaging & Voicemail",
+            "icon": "message-square",
             "pages": [
               "users/voicemail-and-greetings",
               "users/sms"
@@ -125,6 +134,7 @@
           },
           {
             "group": "Team Features",
+            "icon": "users",
             "pages": [
               "users/call-delegation",
               "users/call-monitoring",
