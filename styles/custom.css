@@ -551,7 +551,7 @@ aside button,
 }
 
 /* ============================================================
-   Accordions — gap between stacked items
+   Accordions — gap between stacked items, single border only
    ============================================================ */
 .accordion,
 [class*="accordion"],
@@ -560,19 +560,27 @@ details {
   border: var(--rv-border-width) solid var(--rv-border) !important;
 }
 
+/* Kill doubled borders when Mintlify nests an accordion wrapper
+   inside an outer accordion-class element. */
+[class*="accordion"] [class*="accordion"],
+[class*="Accordion_"] [class*="Accordion_"],
+.accordion .accordion {
+  border: none !important;
+}
+
 .accordion + .accordion,
 [class*="accordion"] + [class*="accordion"],
 [class*="Accordion_"] + [class*="Accordion_"],
 details + details {
-  margin-top: 0.75rem !important;
+  margin-top: 0.25rem !important;
 }
 
-/* AccordionGroup wrapper — flex column with gap */
+/* AccordionGroup wrapper — flex column with tight gap */
 [class*="AccordionGroup"],
 [class*="accordion-group"] {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.25rem;
 }
 
 [class*="AccordionGroup"] > *,
